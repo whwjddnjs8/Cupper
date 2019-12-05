@@ -35,6 +35,8 @@ public class CafeActivity extends AppCompatActivity {
         int[] covers = new int[] {
                 R.drawable.cafe1, R.drawable.cafe2, R.drawable.cafe3
         };
+
+        
         if(title.equals("혜화")) {
             Cafe cafe = new Cafe(232, covers[0], "남녀공용", "학림다방", "아메리카노5000원", "4.2점");
             cafeList.add(cafe);
