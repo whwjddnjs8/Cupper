@@ -1,5 +1,6 @@
 package com.example.gamsung;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,10 +15,12 @@ public class CafeDetail extends AppCompatActivity {
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
+    private String title;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe_detail);
-
+        Intent intent = getIntent();
+        title = intent.getStringExtra("title");
         mPager = (ViewPager) findViewById(R.id.pager);  // 페이저를가져옴
         mPagerAdapter = new SlidePagerAdapter(getSupportFragmentManager());     //어댑터 클래스를 오브젝트로 만들어서 어댑터로 가져옴.
         mPager.setAdapter(mPagerAdapter);   //어댑터를 등록
@@ -57,16 +60,18 @@ public class CafeDetail extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {     // 페이지를 만드는 역할 페이지를 페이저에게 전달해주는 역할
-            switch (position) {
-                case 0:
-                    return SlideFirstPageFragment.newInstance(0, "Page 1");     // 첫번째 페이지를 하나 만듬 SlideFirstPageFragment는 fragment로 상속되어잇음 그래야 액티비티의 화면에 포함되어잇음.
-                case 1:
-                    return SlideSecondPageFragment.newInstance(1, "Page 2");    //
-                case 2:
-                    return new SlidePageFragment();
-                default:
-                    return null;
-            }
+            if (title.equals("학림다방")) {
+                switch (position) {
+                    case 0:
+                        return SlideFirstPageFragment.newInstance(0, "Page 1");     // 첫번째 페이지를 하나 만듬 SlideFirstPageFragment는 fragment로 상속되어잇음 그래야 액티비티의 화면에 포함되어잇음.
+                    case 1:
+                        return SlideSecondPageFragment.newInstance(1, "Page 2");    //
+                    case 2:
+                        return new SlidePageFragment();
+                    default:
+                        return null;
+                }
+            }return  null;
         }
 
         @Override
