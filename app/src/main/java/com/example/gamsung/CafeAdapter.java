@@ -68,12 +68,12 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
 
             @Override
             public void onClick(View view) {
-//                String title = cafe.getTitle();
-//                Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
-//                extras.putString("title", title);
-//                Intent intent = new Intent(view.getContext(), Cafe1Activity.class); // 예를들어 혜화카페페이지로 넘어감
-//                intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
-//                view.getContext().startActivity(intent); //화면을 띄움
+                String title = cafe.getName();
+                Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
+                extras.putString("title", title);
+                Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
+                intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
+                view.getContext().startActivity(intent); //화면을 띄움
             }
         });
     }

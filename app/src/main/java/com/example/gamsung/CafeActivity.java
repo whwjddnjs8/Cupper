@@ -17,6 +17,7 @@ public class CafeActivity extends AppCompatActivity {
     private String title;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe_listview);
@@ -33,7 +34,8 @@ public class CafeActivity extends AppCompatActivity {
 
     private void prepareCafeData() {
         int[] covers = new int[] {
-                R.drawable.cafe1, R.drawable.cafe2, R.drawable.cafe3
+                R.drawable.hcafe1, R.drawable.hcafe4, R.drawable.hcafe7, R.drawable.hcafe10, R.drawable.hcafe13, R.drawable.hcafe16,
+                R.drawable.hcafe19, R.drawable.hcafe22, R.drawable.hcafe25, R.drawable.hcafe28
         };
 
         if(title.equals("혜화")) {
@@ -45,22 +47,32 @@ public class CafeActivity extends AppCompatActivity {
 
             cafe = new Cafe(232, covers[2], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
             cafeList.add(cafe);
-            cafe = new Cafe(232, covers[1], "남녀공용", "카페 데 코믹스 대학로점", "아메리카노5000원", "4.5점");
+
+            cafe = new Cafe(232, covers[3], "남녀공용", "카페 데 코믹스 대학로점", "아메리카노5000원", "4.5점");
             cafeList.add(cafe);
 
+            cafe = new Cafe(232, covers[4], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
+            cafeList.add(cafe);
 
-            cafe = new Cafe(232, covers[2], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
+            cafe = new Cafe(232, covers[5], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
+            cafeList.add(cafe);
+
+            cafe = new Cafe(232, covers[6], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
+            cafeList.add(cafe);
+
+            cafe = new Cafe(232, covers[7], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
+            cafeList.add(cafe);
+
+            cafe = new Cafe(232, covers[8], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
+            cafeList.add(cafe);
+
+            cafe = new Cafe(232, covers[9], "남녀공용", "학림다방", "아메리카노5000원", "4.5점");
             cafeList.add(cafe);
         }
         else if(title.equals("망원동")) {
             Cafe cafe = new Cafe(232, covers[0], "남녀공용", "학림다방", "아메리카노5000원", "4.2점");
             cafeList.add(cafe);
 
-            cafe = new Cafe(232, covers[1], "남녀공용", "카페 데 코믹스 대학로점", "아메리카노5000원", "4.5점");
-            cafeList.add(cafe);
-
-            cafe = new Cafe(232, covers[2], "남녀공용", "최진영", "아메리카노5000원", "4.5점");
-            cafeList.add(cafe);
         }
         cafeAdapter.notifyDataSetChanged();
     }
