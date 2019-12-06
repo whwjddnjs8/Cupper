@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CafeActivity"></activity>
+        <activity android:name=".CafeDetail"></activity>
 
     </application>
 
