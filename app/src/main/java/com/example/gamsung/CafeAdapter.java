@@ -39,7 +39,7 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         this.context = context;
         cafeList = list;
     }
-    // 안녕 정원아
+
     @Override
     public int getItemCount() {     // 데이터가 총 몇개인지 알려주는 함수
         return cafeList.size();
@@ -76,8 +76,5 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 view.getContext().startActivity(intent); //화면을 띄움
             }
         });
-    }
-    public void calculate() {
-
     }
 }
