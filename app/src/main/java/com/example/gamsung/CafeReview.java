@@ -41,6 +41,7 @@ public class CafeReview extends AppCompatActivity {
 
             }
 
+            // 글자 수가 변동되면 동작하는 메소드
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 String input = reviewText.getText().toString();
