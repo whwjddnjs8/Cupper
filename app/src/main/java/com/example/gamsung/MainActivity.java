@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return SlideSecondPageFragment.newInstance(1, "Page 2");    //
                 case 2:
-                    return new SlidePageFragment();
+                    return SlideThirdPageFragment.newInstance(2, "Page 3");
                 default:
                     return null;
             }
