@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
 
 public class CafeReview extends AppCompatActivity {
     private RatingBar review_ratingBar;
@@ -76,6 +75,5 @@ public class CafeReview extends AppCompatActivity {
             }
         });
     }
-
 }
 
