@@ -1,5 +1,6 @@
 package com.example.gamsung;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // ViewPager content view 메인화면인됨
 
+        Intent intent = new Intent(this, LoadingActivity.class);
+        startActivity(intent);
         /** ActionBar 없애기 **/
         ActionBar ab = getSupportActionBar();
         ab.hide();

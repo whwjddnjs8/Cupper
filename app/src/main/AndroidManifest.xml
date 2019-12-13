@@ -16,9 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoadingActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:name=".CafeActivity"></activity>
         <activity android:name=".CafeDetail"></activity>
         <activity android:name=".CafeReview"></activity>
+
     </application>
 
 </manifest>
