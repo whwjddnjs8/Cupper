@@ -1,8 +1,35 @@
 package com.example.gamsung;
 
 public class Review {
-    int profile,revphoto;
-    private String username,cafename,rating,text,tag1,tag2,tag3;
+    int profile,photo;
+    private String username,cafe,text,tag1,tag2,tag3;
+
+    public Review(int profile, int photo, String username, String cafe,String text, String tag1, String tag2, String tag3) {
+        this.profile = profile;
+        this.photo = photo;
+        this.username = username;
+        this.cafe = cafe;
+        this.text = text;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+    }
+
+    public int getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(int photo) {
+        this.photo = photo;
+    }
+
+    public String getCafe() {
+        return cafe;
+    }
+
+    public void setCafe(String cafe) {
+        this.cafe = cafe;
+    }
 
     public int getProfile() {
         return profile;
@@ -12,13 +39,6 @@ public class Review {
         this.profile = profile;
     }
 
-    public int getRevphoto() {
-        return revphoto;
-    }
-
-    public void setRevphoto(int revphoto) {
-        this.revphoto = revphoto;
-    }
 
     public String getUsername() {
         return username;
@@ -28,21 +48,6 @@ public class Review {
         this.username = username;
     }
 
-    public String getCafename() {
-        return cafename;
-    }
-
-    public void setCafename(String cafename) {
-        this.cafename = cafename;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
 
     public String getText() {
         return text;

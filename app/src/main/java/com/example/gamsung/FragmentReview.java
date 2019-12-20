@@ -24,6 +24,19 @@ public class FragmentReview extends Fragment {
         reviewAdapter = new ReviewAdapter(getActivity(), reviewList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(reviewAdapter);
+        prepareReview();
         return rootview;
     }
+    public void prepareReview(){
+        final int[] imgs = new int[] {
+          R.drawable.cafe1,R.drawable.cafe1,R.drawable.cafe1,R.drawable.cafe1
+        };
+        Review r = new Review(imgs[0],imgs[1],"조정원",
+                "갬성","맛있어요!","sdfsdf","sdf","sdf");
+        reviewList.add(r);
+        r = new Review(imgs[2],imgs[3],"조정원",
+                "갬성","dsg","sdfsdf","sdf","sdf");
+        reviewList.add(r);
+    }
+
 }

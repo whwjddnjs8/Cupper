@@ -16,10 +16,29 @@ import java.util.List;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
     private Context context;
     private List<Review> reviewList;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView username,cafe,text,tag1,tag2,tag3;
+        public ImageView profile,photo;
+        public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
+            super(view);
+            profile = view.findViewById(R.id.profile);
+            username = view.findViewById(R.id.username);
+            cafe = view.findViewById(R.id.cafename);
+            text = view.findViewById(R.id.text);
+            photo = view.findViewById(R.id.reviewPhoto);
+            tag1 = view.findViewById(R.id.tag1);
+            tag2 = view.findViewById(R.id.tag2);
+            tag3 = view.findViewById(R.id.tag3);
+        }
 
+    }
     public ReviewAdapter(Context mContext, List<Review> data) {
-        context = mContext;
+        this.context = mContext;
         reviewList = data;
+    }
+    @Override
+    public int getItemCount() {
+        return reviewList.size();
     }
 
     @NonNull
@@ -32,29 +51,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return reviewList.size();
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView username,cafename,rating,text,tag1,tag2,tag3;
-        public ImageView profile,revphoto;
-        public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
-            super(view);
-            profile = view.findViewById(R.id.profile);
-            username = view.findViewById(R.id.username);
-            cafename = view.findViewById(R.id.cafename);
-            rating = view.findViewById(R.id.ratingbar);
-            text = view.findViewById(R.id.text);
-            revphoto = view.findViewById(R.id.reviewPhoto);
-            tag1 = view.findViewById(R.id.tag1);
-            tag2 = view.findViewById(R.id.tag2);
-            tag3 = view.findViewById(R.id.tag3);
-        }
 
     }
 }
