@@ -21,6 +21,7 @@
         <activity android:name=".CafeActivity"></activity>
         <activity android:name=".CafeDetail"></activity>
         <activity android:name=".CafeReview"></activity>
+        <activity android:name=".writeActivity"></activity>
 
     </application>
 

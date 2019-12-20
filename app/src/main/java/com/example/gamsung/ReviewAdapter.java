@@ -24,7 +24,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             profile = view.findViewById(R.id.profile);
             username = view.findViewById(R.id.username);
             cafe = view.findViewById(R.id.cafename);
-            text = view.findViewById(R.id.text);
+            text = view.findViewById(R.id.reviewText);
             photo = view.findViewById(R.id.reviewPhoto);
             tag1 = view.findViewById(R.id.tag1);
             tag2 = view.findViewById(R.id.tag2);
@@ -51,7 +51,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        final Review review = reviewList.get(position);
+        holder.profile.setImageResource(review.getProfile());
+        holder.photo.setImageResource(review.getPhoto());
+        holder.username.setText(review.getUsername());
+        holder.cafe.setText(review.getCafe());
+        holder.text.setText(review.getText());
+        holder.tag1.setText(review.getTag1());
+        holder.tag2.setText(review.getTag2());
+        holder.tag3.setText(review.getTag3());
     }
 }
 
