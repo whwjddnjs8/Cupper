@@ -16,7 +16,9 @@ public class FragmentReview extends Fragment {
     private List<Review> reviewList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_review, container, false);
-        recyclerView = findViewById(R.id.recycler_view);
+        ViewGroup rootview = (ViewGroup)inflater.inflate(R.layout.fragment_review, container, false);
+
+
+        return rootview;
     }
 }
