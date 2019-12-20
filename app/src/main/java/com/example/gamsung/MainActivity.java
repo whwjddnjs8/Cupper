@@ -137,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.frameLayout, fragmentMain).commitAllowingStateLoss();
                     break;
                 case R.id.navigation_today:
-                    transaction.replace(R.id.frameLayout, fragmentReview).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameLayout, fragmentToday).commitAllowingStateLoss();
                     break;
                 case R.id.navigation_review:
-                    transaction.replace(R.id.frameLayout, fragmentToday).commitAllowingStateLoss();
+                    transaction.replace(R.id.frameLayout, fragmentReview).commitAllowingStateLoss();
                     break;
             }
 

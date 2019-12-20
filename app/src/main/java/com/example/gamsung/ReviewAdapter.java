@@ -18,9 +18,28 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     private List<Review> reviewList;
 
     public ReviewAdapter(Context mContext, List<Review> data) {
-        this.context = mContext;
+        context = mContext;
         reviewList = data;
     }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_content, parent, false);
+
+        return new ReviewAdapter.MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return reviewList.size();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username,cafename,rating,text,tag1,tag2,tag3;
         public ImageView profile,revphoto;
@@ -37,14 +56,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             tag3 = view.findViewById(R.id.tag3);
         }
 
-        public ReviewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_content, parent, false);
-
-            return new ReviewAdapter.MyViewHolder(itemView);
-        }
-        public int getItemCount() {
-            return reviewList.size();
-        }
     }
 }
 
