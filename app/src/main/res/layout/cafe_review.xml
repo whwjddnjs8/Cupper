@@ -90,6 +90,15 @@
             android:background="@android:color/transparent"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/baseline_add_black_18dp" />
+
+        <Button
+            android:id="@+id/rest3"
+            android:layout_width="60dp"
+            android:layout_height="34dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/buttonborder"
+            android:text="외부" />
     </LinearLayout>
 
     <LinearLayout
@@ -310,11 +319,7 @@
             </LinearLayout>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -389,15 +394,6 @@
                             android:text="남녀공용" />
 
                         <Button
-                            android:id="@+id/rest3"
-                            android:layout_width="60dp"
-                            android:layout_height="34dp"
-                            android:layout_marginRight="2dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/buttonborder"
-                            android:text="외부" />
-
-                        <Button
                             android:id="@+id/rest4"
                             android:layout_width="60dp"
                             android:layout_height="34dp"
@@ -408,6 +404,110 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+        <!-- 가격-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingTop="13dp"
+                android:text="가격"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="392dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/price1"
+                        android:layout_width="60dp"
+                        android:layout_height="34dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonborder"
+                        android:text="비싸요 😠" />
+
+                    <Button
+                        android:id="@+id/price2"
+                        android:layout_width="60dp"
+                        android:layout_height="34dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonborder"
+                        android:text="가성비 good😇" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/waiting"
+                        android:layout_width="182dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingTop="13dp"
+                        android:text="웨이팅"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="392dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/waiting1"
+                                android:layout_width="60dp"
+                                android:layout_height="34dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/buttonborder"
+                                android:text="없어요" />
+
+                            <Button
+                                android:id="@+id/waiting2"
+                                android:layout_width="60dp"
+                                android:layout_height="34dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/buttonborder"
+                                android:text="있어요" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
-</LinearLayout></ScrollView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="#59FF607F"
+        android:text="REVIEW 제출하기" />
+</LinearLayout>
+</ScrollView>
