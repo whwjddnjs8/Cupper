@@ -19,7 +19,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CafeReview extends AppCompatActivity {
+public class
+CafeReview extends AppCompatActivity {
     private RatingBar review_ratingBar;
     private ImageButton addButton, subButton;
     private TextView textView;

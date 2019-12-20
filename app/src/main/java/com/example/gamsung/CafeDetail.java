@@ -2,8 +2,11 @@ package com.example.gamsung;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,16 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CafeDetail extends AppCompatActivity{
     private ViewPager mPager;
@@ -35,6 +32,11 @@ public class CafeDetail extends AppCompatActivity{
         TextView name = findViewById(R.id.name);
         TextView pay = findViewById(R.id.price);
         TextView starr = findViewById(R.id.star);
+        final TextView mmenu = findViewById(R.id.mmenu);
+        ImageButton info = (ImageButton)findViewById(R.id.info);
+        ImageButton review =(ImageButton) findViewById(R.id.review);
+        ImageButton menu = (ImageButton)findViewById(R.id.menu);
+
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
         name.setText(title);
@@ -58,25 +60,26 @@ public class CafeDetail extends AppCompatActivity{
             public void onPageScrollStateChanged(int state) {
             }
         });
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                        switch (item.getItemId()) {
-                            case R.id.navigation_info:
-                                findViewById(R.id.email_item_layout);
-                                return true;
-                            case R.id.navigation_review:
-                                return true;
-                            case R.id.navigation_menu:
-                                 return true;
-                        }
-                        return false;
-                    }
-                });
+            }
+        });
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.cafe_review);
+            }
+        });
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {
