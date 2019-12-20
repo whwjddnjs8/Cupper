@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             circleList.add(c);
             c = new Circle("익선동", covers[2]);
             circleList.add(c);
-            c = new Circle("성수동", covers[3]);
+            c = new Circle("연남동", covers[3]);
             circleList.add(c);
         }
         else if (i == 2) {
