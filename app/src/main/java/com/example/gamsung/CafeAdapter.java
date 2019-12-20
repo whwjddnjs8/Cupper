@@ -75,8 +75,6 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
 
             @Override
             public void onClick(View view) {
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("혜화");
-                ref.getKey().equals(cafe.getName());
 
                 String title = cafe.getName();
                 String price = cafe.getPrice();
