@@ -75,7 +75,6 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
 
             @Override
             public void onClick(View view) {
-
                 String title = cafe.getName();
                 String price = cafe.getPrice();
                 String star = cafe.getStar();
