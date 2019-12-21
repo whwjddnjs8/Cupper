@@ -2,7 +2,11 @@ package com.example.gamsung;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,8 +17,13 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,11 +31,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> {
     private Context context;
     private List<Cafe> cafeList;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView views, toilet, name, price, star;
@@ -65,16 +78,36 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         final Cafe cafe = cafeList.get(position); // 배열에 있는것중에 무비하나를 꺼내옴.
         // 위에서는 껍데기를 만들고 여기서는 실제 데이터를 생성하는함수.
         // 뷰 홀더의 각 자리에 데이터 셋팅(binding)
-        holder.image.setImageResource(cafe.getImage());
+        //holder.image.setImageResource(cafe.getImage());
+        /** 여기가 데이터베이스에서 이미지 받아와서 세팅하는 곳 **/
+        String url = cafe.getImageone();
+        Glide.with(holder.itemView.getContext()).load(url).into(holder.image);
+        holder.image.setColorFilter(Color.parseColor("#6F000000"), PorterDuff.Mode.SRC_ATOP);
         holder.views.setText(Integer.toString(cafe.getViews()));
         holder.toilet.setText(cafe.getToilet());
         holder.name.setText(cafe.getName());
         holder.price.setText(cafe.getPrice());
         holder.star.setText(cafe.getStar());
         holder.image.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
+                /** 조회수 변경하려고 시도한거
+                String key = cafe.getName();
+                databaseReference = FirebaseDatabase.getInstance().getReference();
+                Map<String, Object> updateMap = new HashMap<>();
+                updateMap.put("views", cafe.getViews() + 1);
+
+                databaseReference.child(key).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+                    }
+                }); **/
                 String title = cafe.getName();
                 String price = cafe.getPrice();
                 String star = cafe.getStar();

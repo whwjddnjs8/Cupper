@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +15,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +34,10 @@ public class CafeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         title = intent.getStringExtra("title");     // 메인 페이지에서 item을 클릭하면 title값 intent로 넘어옴
+
+        /** ActionBar 없애기 **/
+        ActionBar ab = getSupportActionBar();
+        ab.hide();
 
         recyclerView = findViewById(R.id.recycler_view);
         cafeAdapter = new CafeAdapter(this, cafeList);
@@ -56,7 +60,7 @@ public class CafeActivity extends AppCompatActivity {
                 System.out.println("name = " + allcafe.getName());
 
                 if(title.equals("혜화")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), covers[0], allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("익선동")) {
@@ -64,11 +68,11 @@ public class CafeActivity extends AppCompatActivity {
                     cafeList.add(cafe);
                 }
                 else if(title.equals("망원동")) {
-                    Cafe cafe = new Cafe(232, covers[0], allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("연남동")) {
-                    Cafe cafe = new Cafe(232, covers[0], allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(232, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
             }
