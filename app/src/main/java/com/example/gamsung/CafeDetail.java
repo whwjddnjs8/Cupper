@@ -25,7 +25,7 @@ public class CafeDetail extends AppCompatActivity{
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
-    private String title,price,star;
+    private String title,price,star, imgone, imgtwo, imgthr;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe_detail);
@@ -44,6 +44,10 @@ public class CafeDetail extends AppCompatActivity{
         pay.setText(price);
         star = intent.getStringExtra("star");
         starr.setText(star);
+        imgone = intent.getStringExtra("imgone");
+        imgtwo = intent.getStringExtra("imgtwo");
+        imgthr = intent.getStringExtra("imgthr");
+
         mPager = findViewById(R.id.pager);  // 페이저를가져옴
         mPagerAdapter = new SlidePagerAdapter(getSupportFragmentManager());     //어댑터 클래스를 오브젝트로 만들어서 어댑터로 가져옴.
         mPager.setAdapter(mPagerAdapter);   //어댑터를 등록
@@ -102,11 +106,11 @@ public class CafeDetail extends AppCompatActivity{
         public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return SlideFirstPageFragment.newInstance(0, "Page 1");
+                        return SlidePageFragment.newInstance(0, imgone);
                     case 1:
-                        return SlideSecondPageFragment.newInstance(1, "Page 2");
+                        return SlidePageFragment.newInstance(1, imgtwo);
                     case 2:
-                        return new SlidePageFragment();
+                        return SlidePageFragment.newInstance(2, imgthr);
                     default:
                         return null;
                 }

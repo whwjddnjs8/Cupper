@@ -74,7 +74,7 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         final Cafe cafe = cafeList.get(position); // 배열에 있는것중에 무비하나를 꺼내옴.
         // 위에서는 껍데기를 만들고 여기서는 실제 데이터를 생성하는함수.
         // 뷰 홀더의 각 자리에 데이터 셋팅(binding)
@@ -83,7 +83,7 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         String url = cafe.getImageone();
         Glide.with(holder.itemView.getContext()).load(url).into(holder.image);
         holder.image.setColorFilter(Color.parseColor("#6F000000"), PorterDuff.Mode.SRC_ATOP);
-        holder.views.setText(Integer.toString(cafe.getViews()));
+        holder.views.setText(cafe.getViews());
         holder.toilet.setText(cafe.getToilet());
         holder.name.setText(cafe.getName());
         holder.price.setText(cafe.getPrice());
@@ -91,30 +91,35 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                /** 조회수 변경하려고 시도한거
                 String key = cafe.getName();
-                databaseReference = FirebaseDatabase.getInstance().getReference();
+                databaseReference = FirebaseDatabase.getInstance().getReference(cafeList.get(position).getTitle()+'/');
                 Map<String, Object> updateMap = new HashMap<>();
-                updateMap.put("views", cafe.getViews() + 1);
-
-                databaseReference.child(key).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
+                databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
+
                     public void onFailure(@NonNull Exception e) {
                         System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
                     }
-                }); **/
+                });
                 String title = cafe.getName();
                 String price = cafe.getPrice();
                 String star = cafe.getStar();
+                String imgone = cafe.getImageone();
+                String imgtwo = cafe.getImagetwo();
+                String imgthr = cafe.getImagethr();
                 Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
                 extras.putString("title", title);
                 extras.putString("price", price);
                 extras.putString("star", star);
+                extras.putString("imgone", imgone);
+                extras.putString("imgtwo", imgtwo);
+                extras.putString("imgthr", imgthr);
                 Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
                 intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
                 view.getContext().startActivity(intent); //화면을 띄움

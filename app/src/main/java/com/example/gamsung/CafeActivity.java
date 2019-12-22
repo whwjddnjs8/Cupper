@@ -64,22 +64,41 @@ public class CafeActivity extends AppCompatActivity {
                     cafeList.add(cafe);
                 }
                 else if(title.equals("익선동")) {
-                    Cafe cafe = new Cafe(232, covers[0], allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("망원동")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("연남동")) {
-                    Cafe cafe = new Cafe(232, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                System.out.println("name = " + allcafe.getName());
 
+                if(title.equals("혜화")) {
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    cafeList.add(cafe);
+                }
+                else if(title.equals("익선동")) {
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    cafeList.add(cafe);
+                }
+                else if(title.equals("망원동")) {
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    cafeList.add(cafe);
+                }
+                else if(title.equals("연남동")) {
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    cafeList.add(cafe);
+                }
             }
 
             @Override

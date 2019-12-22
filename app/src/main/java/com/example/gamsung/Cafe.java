@@ -1,19 +1,10 @@
 package com.example.gamsung;
 
 public class Cafe {
-    int views, image;   // 조회수, 카페사진
-    private String title, toilet, name, price ,star, imageone;      // 화장실, 카페 이름, 가격, 별점
+    int image;   // 조회수, 카페사진
+    private String title, toilet, name, price ,star, imageone, imagetwo, imagethr, views;      // 화장실, 카페 이름, 가격, 별점
 
-    public Cafe(int views, int image, String toilet, String name, String price, String star) {
-        this.views = views;
-        this.image = image;
-        this.toilet = toilet;
-        this.name = name;
-        this.price = price;
-        this.star = star;
-    }
-
-    public Cafe(int views, String imageone, String toilet, String name, String price, String star) {
+    public Cafe(String views, String imageone, String toilet, String name, String price, String star) {
         this.views = views;
         this.toilet = toilet;
         this.name = name;
@@ -22,7 +13,7 @@ public class Cafe {
         this.imageone = imageone;
     }
 
-    public Cafe(int views, String title, String imageone, String toilet, String name, String price, String star) {
+    public Cafe(String views, String title, String imageone, String toilet, String name, String price, String star) {
         this.views = views;
         this.title = title;
         this.toilet = toilet;
@@ -30,6 +21,18 @@ public class Cafe {
         this.price = price;
         this.star = star;
         this.imageone = imageone;
+    }
+
+    public Cafe(String views, String title, String imageone, String imagetwo, String imagethr, String toilet, String name, String price, String star) {
+        this.views = views;
+        this.title = title;
+        this.toilet = toilet;
+        this.name = name;
+        this.price = price;
+        this.star = star;
+        this.imageone = imageone;
+        this.imagetwo = imagetwo;
+        this.imagethr = imagethr;
     }
 
     public String getImageone() {
@@ -48,11 +51,11 @@ public class Cafe {
         this.image = image;
     }
 
-    public int getViews() {
+    public String getViews() {
         return views;
     }
 
-    public void setViews(int views) {
+    public void setViews(String views) {
         this.views = views;
     }
 
@@ -86,6 +89,14 @@ public class Cafe {
 
     public void setStar(String star) {
         this.star = star;
+    }
+
+    public String getImagetwo() {
+        return imagetwo;
+    }
+
+    public String getImagethr() {
+        return imagethr;
     }
 }
 

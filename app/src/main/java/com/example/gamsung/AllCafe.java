@@ -3,7 +3,7 @@ package com.example.gamsung;
 import android.content.Intent;
 
 public class AllCafe {
-    String name, address, dessert, time, tel, restroom, views, imageone;
+    String name, address, dessert, time, tel, restroom, views, imageone,imagetwo, imagethr;
 
     public String getName() {
         return name;
@@ -29,12 +29,20 @@ public class AllCafe {
         return restroom;
     }
 
-    public int getViews() {
-        return Integer.parseInt(views);
+    public String getViews() {
+        return views;
     }
 
     public String getImageone() {
         return imageone;
+    }
+
+    public String getImagetwo() {
+        return imagetwo;
+    }
+
+    public String getImagethr() {
+        return imagethr;
     }
 
     public AllCafe() {}
