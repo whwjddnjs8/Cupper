@@ -1,26 +1,37 @@
 package com.example.gamsung;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentMain extends Fragment {
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    public static List<AllCafe> allCafeList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
 
@@ -28,12 +39,15 @@ public class FragmentMain extends Fragment {
     private List<Circle> circleList;
     private List<Circle> circleList2;
 
+    private EditText search;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootview = (ViewGroup)inflater.inflate(R.layout.fragment_main, container, false);
+        search = (EditText)rootview.findViewById(R.id.myFilter);
         recyclerView = (RecyclerView)rootview.findViewById(R.id.recycler_view);
         recyclerView2 = (RecyclerView)rootview.findViewById(R.id.recycler_view2);
         circleList = new ArrayList<>();
@@ -54,7 +68,6 @@ public class FragmentMain extends Fragment {
         mPagerAdapter = new ViewPagerAdapter(getFragmentManager());     //어댑터 클래스를 오브젝트로 만들어서 어댑터로 가져옴.
         mPager.setAdapter(mPagerAdapter);   //어댑터를 등록
         mPager.setPageTransformer(true, new ZoomOutTransformer());
-
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -70,6 +83,142 @@ public class FragmentMain extends Fragment {
             }
 
         });
+
+        search.setInputType(0);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        databaseReference.child("혜화").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("혜화");
+                System.out.println(allCafeList.size());
+//                System.out.println(allCafeList.get(allCafeList.size()-1).getTitle());
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("혜화");
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("망원동").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("망원동");
+//                System.out.println(allCafeList.size());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("망원동");
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("익선동").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("익선동");
+//                System.out.println(allCafeList.size());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("익선동");
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("연남동").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("연남동");
+//                System.out.println(allCafeList.size());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
+                allCafeList.add(allCafe);
+//                allCafeList.get(allCafeList.size()-1).setTitle("연남동");
+//                System.out.println(allCafeList.size());
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         return rootview;
     }
 

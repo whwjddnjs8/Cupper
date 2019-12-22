@@ -3,8 +3,6 @@ package com.example.gamsung;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,11 +58,13 @@ public class CafeActivity extends AppCompatActivity {
                 System.out.println("name = " + allcafe.getName());
 
                 if(title.equals("혜화")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("익선동")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("망원동")) {
@@ -73,7 +73,8 @@ public class CafeActivity extends AppCompatActivity {
                     cafeList.add(cafe);
                 }
                 else if(title.equals("연남동")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
             }
@@ -84,19 +85,23 @@ public class CafeActivity extends AppCompatActivity {
                 System.out.println("name = " + allcafe.getName());
 
                 if(title.equals("혜화")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("익선동")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("망원동")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
                 else if(title.equals("연남동")) {
-                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
+                    Cafe cafe = new Cafe(allcafe.getViews(), title, allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), allcafe.getRestroom(), allcafe.getName(), "아메리카노5000원", "4.2점");
                     cafeList.add(cafe);
                 }
             }

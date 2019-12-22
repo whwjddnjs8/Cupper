@@ -23,6 +23,17 @@ public class Cafe {
         this.imageone = imageone;
     }
 
+    public Cafe(String views, String imageone, String imagetwo, String imagethr, String toilet, String name, String price, String star) {
+        this.views = views;
+        this.toilet = toilet;
+        this.name = name;
+        this.price = price;
+        this.star = star;
+        this.imageone = imageone;
+        this.imagetwo = imagetwo;
+        this.imagethr = imagethr;
+    }
+
     public Cafe(String views, String title, String imageone, String imagetwo, String imagethr, String toilet, String name, String price, String star) {
         this.views = views;
         this.title = title;
