@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentMain fragmentMain = new FragmentMain();
     private FragmentReview fragmentReview = new FragmentReview();
     private FragmentToday fragmentToday = new FragmentToday();
+    private FragmentMypage fragmentMypage = new FragmentMypage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_review:
                     transaction.replace(R.id.frameLayout, fragmentReview).commitAllowingStateLoss();
                     break;
+                case R.id.navigation_mypage:
+                    transaction.replace(R.id.frameLayout, fragmentMypage).commitAllowingStateLoss();
+                    break;
             }
             return true;
         }
@@ -141,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_review:
                     transaction.replace(R.id.frameLayout, fragmentReview).commitAllowingStateLoss();
+                    break;
+                case R.id.navigation_mypage:
+                    transaction.replace(R.id.frameLayout, fragmentMypage).commitAllowingStateLoss();
                     break;
             }
 
