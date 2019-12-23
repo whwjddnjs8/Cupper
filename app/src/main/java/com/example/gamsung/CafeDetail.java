@@ -25,28 +25,51 @@ public class CafeDetail extends AppCompatActivity{
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
-    private String title,price,star, imgone, imgtwo, imgthr;
+    private String name, address, dessert, time, tel, restroom , views, imgone, imgtwo, imgthr, title, price, star, reviewcnt, pos;
+
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe_detail);
-        TextView name = findViewById(R.id.name);
+
+        TextView nametv = findViewById(R.id.name);
+        TextView addresstv = findViewById(R.id.address);
         TextView pay = findViewById(R.id.price);
         TextView starr = findViewById(R.id.star);
+        TextView timetv = findViewById(R.id.time);
+        TextView teltv = findViewById(R.id.tel);
+        TextView toilet = findViewById(R.id.restroom);
+        TextView menutv = findViewById(R.id.menutv);
+        TextView paytv = findViewById(R.id.pay);
         final TextView mmenu = findViewById(R.id.mmenu);
         ImageButton info = (ImageButton)findViewById(R.id.info);
         ImageButton review =(ImageButton) findViewById(R.id.review);
-        ImageButton menu = (ImageButton)findViewById(R.id.menu);
+        ImageButton web = (ImageButton)findViewById(R.id.web);
 
         Intent intent = getIntent();
-        title = intent.getStringExtra("title");
-        name.setText(title);
+        name = intent.getStringExtra("name");
+        nametv.setText(name);
+        address = intent.getStringExtra("address");
+        addresstv.setText(address);
+        dessert = intent.getStringExtra("dessert");
+        menutv.setText(dessert);
         price = intent.getStringExtra("price");
         pay.setText(price);
+        paytv.setText(price);
         star = intent.getStringExtra("star");
         starr.setText(star);
+        time = intent.getStringExtra("time");
+        timetv.setText(time);
+        tel = intent.getStringExtra("tel");
+        teltv.setText(tel);
+        restroom = intent.getStringExtra("restroom");
+        toilet.setText(restroom);
+        views = intent.getStringExtra("views");
+        title = intent.getStringExtra("title");
+        reviewcnt = intent.getStringExtra("reviewcnt");
         imgone = intent.getStringExtra("imgone");
         imgtwo = intent.getStringExtra("imgtwo");
         imgthr = intent.getStringExtra("imgthr");
+        pos = intent.getStringExtra("pos");
 
         mPager = findViewById(R.id.pager);  // 페이저를가져옴
         mPagerAdapter = new SlidePagerAdapter(getSupportFragmentManager());     //어댑터 클래스를 오브젝트로 만들어서 어댑터로 가져옴.
@@ -76,7 +99,7 @@ public class CafeDetail extends AppCompatActivity{
                 setContentView(R.layout.cafe_review);
             }
         });
-        menu.setOnClickListener(new View.OnClickListener() {
+        web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

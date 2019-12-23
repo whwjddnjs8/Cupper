@@ -101,14 +101,14 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            super.onBackPressed();
-        } else {
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (mPager.getCurrentItem() == 0) {
+//            super.onBackPressed();
+//        } else {
+//            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+//        }
+//    }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener{
 

@@ -32,7 +32,7 @@ public class FragmentReview extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),writeActivity.class);
+                Intent intent = new Intent(getActivity(),CafeReview.class);
                 startActivity(intent);
             }
         });

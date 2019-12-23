@@ -43,6 +43,7 @@ public class FragmentMain extends Fragment {
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
+    private String pos = "0";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -88,7 +89,10 @@ public class FragmentMain extends Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle extras = new Bundle();
+                extras.putInt("where", 0);
                 Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -98,7 +102,7 @@ public class FragmentMain extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("혜화");
+                allCafeList.get(allCafeList.size()-1).setTitle("혜화");
                 System.out.println(allCafeList.size());
 //                System.out.println(allCafeList.get(allCafeList.size()-1).getTitle());
             }
@@ -106,7 +110,8 @@ public class FragmentMain extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("혜화");
+                allCafeList.get(allCafeList.size()-1).setTitle("혜화");
+
             }
 
             @Override
@@ -124,12 +129,14 @@ public class FragmentMain extends Fragment {
 
             }
         });
+        pos = null;
         databaseReference.child("망원동").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("망원동");
+                allCafeList.get(allCafeList.size()-1).setTitle("망원동");
+
 //                System.out.println(allCafeList.size());
             }
 
@@ -137,7 +144,8 @@ public class FragmentMain extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("망원동");
+                allCafeList.get(allCafeList.size()-1).setTitle("망원동");
+
             }
 
             @Override
@@ -155,12 +163,15 @@ public class FragmentMain extends Fragment {
 
             }
         });
+
+        pos = null;
         databaseReference.child("익선동").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("익선동");
+                allCafeList.get(allCafeList.size()-1).setTitle("익선동");
+
 //                System.out.println(allCafeList.size());
             }
 
@@ -168,7 +179,8 @@ public class FragmentMain extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("익선동");
+                allCafeList.get(allCafeList.size()-1).setTitle("익선동");
+
             }
 
             @Override
@@ -186,12 +198,14 @@ public class FragmentMain extends Fragment {
 
             }
         });
+        pos = null;
         databaseReference.child("연남동").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("연남동");
+                allCafeList.get(allCafeList.size()-1).setTitle("연남동");
+
 //                System.out.println(allCafeList.size());
             }
 
@@ -199,7 +213,8 @@ public class FragmentMain extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
                 allCafeList.add(allCafe);
-//                allCafeList.get(allCafeList.size()-1).setTitle("연남동");
+                allCafeList.get(allCafeList.size()-1).setTitle("연남동");
+
 //                System.out.println(allCafeList.size());
             }
 
