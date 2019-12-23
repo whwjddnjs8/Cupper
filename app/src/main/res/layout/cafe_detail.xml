@@ -11,7 +11,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="290dp">
+        android:layout_height="280dp">
 
     </androidx.viewpager.widget.ViewPager>
 
@@ -144,7 +144,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -168,7 +168,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -192,25 +192,27 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/menu"
+                android:id="@+id/imageButton3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_weight="1"
+                android:scaleType="center"
                 android:background="@android:color/transparent"
-                app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+                android:paddingBottom="5dp"
+                app:srcCompat="@drawable/internet" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="메뉴"
+                android:text="웹리뷰"
                 android:textAlignment="center" />
         </LinearLayout>
 
