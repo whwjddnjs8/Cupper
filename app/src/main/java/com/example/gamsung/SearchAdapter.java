@@ -28,6 +28,7 @@ import java.util.Map;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
     private Context context;
     private List<Cafe> cafeList;
+    private int where;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -49,6 +50,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     public SearchAdapter(Context context, List<Cafe> list) {       // 생성자
         this.context = context;
         cafeList = list;
+    }
+
+    public SearchAdapter(Context context, List<Cafe> list, int where) {       // 생성자
+        this.context = context;
+        cafeList = list;
+        this.where = where;
     }
 
     @Override
@@ -73,38 +80,66 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String key = cafe.getName();
-                databaseReference = FirebaseDatabase.getInstance().getReference(cafeList.get(position).getTitle()+'/');
-                Map<String, Object> updateMap = new HashMap<>();
-                updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
-                databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
-                    }
-                });
-                String title = cafe.getName();
-                String price = cafe.getPrice();
-                String star = cafe.getStar();
+//                String key = cafe.getName();
+//                databaseReference = FirebaseDatabase.getInstance().getReference(cafeList.get(position).getTitle()+'/');
+//                Map<String, Object> updateMap = new HashMap<>();
+//                updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
+//                databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//
+//                    public void onFailure(@NonNull Exception e) {
+//                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+//                    }
+//                });
+//                int pos = position;
+                String name = cafe.getName();
+                String address = cafe.getAddress();
+                String dessert = cafe.getDessert();
+                String time = cafe.getTime();
+                String tel = cafe.getTel();
+                String restroom = cafe.getToilet();
+                String views = cafe.getViews();
                 String imgone = cafe.getImageone();
                 String imgtwo = cafe.getImagetwo();
                 String imgthr = cafe.getImagethr();
+                String title = cafe.getTitle();
+                String price = cafe.getPrice();
+                String star = cafe.getStar();
+                String reviewcnt = cafe.getReviewcnt();
+                String pos = cafe.getPos();
+
                 Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
-                extras.putString("title", title);
-                extras.putString("price", price);
-                extras.putString("star", star);
+//                extras.putInt("pos", pos);
+                extras.putString("name", name);
+                extras.putString("address", address);
+                extras.putString("dessert", dessert);
+                extras.putString("time", time);
+                extras.putString("tel", tel);
+                extras.putString("restroom", restroom);
+                extras.putString("views", views);
                 extras.putString("imgone", imgone);
                 extras.putString("imgtwo", imgtwo);
                 extras.putString("imgthr", imgthr);
-                Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
-                intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
-                view.getContext().startActivity(intent); //화면을 띄움
+                extras.putString("title", title);
+                extras.putString("price", price);
+                extras.putString("star", star);
+                extras.putString("reviewcnt", reviewcnt);
+                extras.putString("pos", pos);
+                if(where == 1) {
+                    Intent intent1 = new Intent(view.getContext(), CafeReview.class);
+                    intent1.putExtras(extras);
+                    view.getContext().startActivity(intent1);
+                }
+                else if(where == 0){
+                    Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
+                    intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
+                    view.getContext().startActivity(intent); //화면을 띄움
+                }
             }
         });
     }

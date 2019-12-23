@@ -3,7 +3,19 @@ package com.example.gamsung;
 import android.content.Intent;
 
 public class AllCafe {
-    String name, address, dessert, time, tel, restroom, views, imageone,imagetwo, imagethr;
+    String name, address, dessert, time, tel, restroom, views, imageone,imagetwo, imagethr, title, reviewcnt, pos;
+
+    public String getReviewcnt() {
+        return reviewcnt;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getName() {
         return name;
@@ -43,6 +55,14 @@ public class AllCafe {
 
     public String getImagethr() {
         return imagethr;
+    }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
     }
 
     public AllCafe() {}

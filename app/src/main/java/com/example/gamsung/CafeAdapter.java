@@ -107,19 +107,38 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                         System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
                     }
                 });
-                String title = cafe.getName();
-                String price = cafe.getPrice();
-                String star = cafe.getStar();
+                String name = cafe.getName();
+                String address = cafe.getAddress();
+                String dessert = cafe.getDessert();
+                String time = cafe.getTime();
+                String tel = cafe.getTel();
+                String restroom = cafe.getToilet();
+                String views = cafe.getViews();
                 String imgone = cafe.getImageone();
                 String imgtwo = cafe.getImagetwo();
                 String imgthr = cafe.getImagethr();
+                String title = cafe.getTitle();
+                String price = cafe.getPrice();
+                String star = cafe.getStar();
+                String reviewcnt = cafe.getReviewcnt();
+                String pos = cafe.getPos();
+
                 Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
-                extras.putString("title", title);
-                extras.putString("price", price);
-                extras.putString("star", star);
+                extras.putString("name", name);
+                extras.putString("address", address);
+                extras.putString("dessert", dessert);
+                extras.putString("time", time);
+                extras.putString("tel", tel);
+                extras.putString("restroom", restroom);
+                extras.putString("views", views);
                 extras.putString("imgone", imgone);
                 extras.putString("imgtwo", imgtwo);
                 extras.putString("imgthr", imgthr);
+                extras.putString("title", title);
+                extras.putString("price", price);
+                extras.putString("star", star);
+                extras.putString("reviewcnt", reviewcnt);
+                extras.putString("pos", pos);
                 Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
                 intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
                 view.getContext().startActivity(intent); //화면을 띄움
