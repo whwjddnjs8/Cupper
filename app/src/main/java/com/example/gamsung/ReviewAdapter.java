@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +18,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     private Context context;
     private List<Review> reviewList;
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView username,cafe,text,tag1,tag2,tag3;
+        public TextView username,cafe,text,tag1,tag2,tag3,Likecnt;
+        public ImageButton btnLike;
         public ImageView profile,photo;
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
@@ -29,9 +31,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             tag1 = view.findViewById(R.id.tag1);
             tag2 = view.findViewById(R.id.tag2);
             tag3 = view.findViewById(R.id.tag3);
+            btnLike=view.findViewById(R.id.btnLike);
+            Likecnt = view.findViewById(R.id.likecnt);
+
         }
 
     }
+
     public ReviewAdapter(Context mContext, List<Review> data) {
         this.context = mContext;
         reviewList = data;

@@ -182,15 +182,18 @@
                 android:outAnimation="@anim/slide_out_likes_counter">
 
                 <TextView
+                    android:id="@+id/likecnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="123 likes"
+                    android:text="123"
                     android:textColor="@color/text_like_counter" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="likes"
                     android:textColor="@color/text_like_counter" />
+
+
             </TextSwitcher>
         </LinearLayout>
     </LinearLayout>
