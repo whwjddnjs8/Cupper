@@ -1,5 +1,6 @@
 package com.example.gamsung;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
@@ -14,13 +15,15 @@ public class CafeWebView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_view);
 
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
         this.webView = (WebView)findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings(); //웹뷰가 여러가지 동작을 설정
         webSettings.setJavaScriptEnabled(true);//자바스크립트 프로그램이 실행되게 할것이다.
 
         MyWebViewClient webViewClient = new MyWebViewClient(this);
         webView.setWebViewClient(webViewClient);
-        webView.loadUrl("https://www.naver.com/");
+        webView.loadUrl("https://m.search.naver.com/search.naver?where=m_view&sm=mtb_jum&query="+name);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
