@@ -23,6 +23,7 @@
         <activity android:name=".CafeReview"></activity>
         <activity android:name=".writeActivity"></activity>
         <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".CafeWebView"></activity>
 
     </application>
 

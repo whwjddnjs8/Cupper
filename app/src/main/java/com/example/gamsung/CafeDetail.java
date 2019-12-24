@@ -102,6 +102,7 @@ public class CafeDetail extends AppCompatActivity{
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setContentView(R.layout.web_view);
 
             }
         });
