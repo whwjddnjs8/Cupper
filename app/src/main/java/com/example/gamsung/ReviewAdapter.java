@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
@@ -59,7 +61,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Review review = reviewList.get(position);
         holder.profile.setImageResource(review.getProfile());
-        holder.photo.setImageResource(review.getPhoto());
+        String url = review.getImg();
+        Glide.with(holder.itemView.getContext()).load(url).into(holder.photo);
+//        holder.photo.setImageResource(review.getPhoto());
         holder.username.setText(review.getUsername());
         holder.cafe.setText(review.getCafe());
         holder.text.setText(review.getText());

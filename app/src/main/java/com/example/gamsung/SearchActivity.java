@@ -36,6 +36,7 @@ public class SearchActivity extends AppCompatActivity {
         where = intent.getIntExtra("where", 0);
 
         recyclerView = findViewById(R.id.search_recycler);
+        if(cafeList.size() > 0) cafeList.clear();
 
         if(where == 1) {
             searchAdapter1 = new SearchAdapter(this, cafeList, where);
@@ -62,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 searchword = search.getText().toString();
                 System.out.println(searchword);
+                if(cafeList.size() > 0) cafeList.clear();
                 if(where == 1) {
                     if(cafeList.size() > 0) cafeList.clear();
                     prepareData(1);
@@ -88,6 +90,8 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void prepareData(int n) {
+        if(cafeList.size() > 0) cafeList.clear();
+
         for(int i = 0; i < FragmentMain.allCafeList.size(); i++) {
             if(FragmentMain.allCafeList.get(i).getName().contains(""+searchword+"")) {
                 System.out.println(FragmentMain.allCafeList.get(i).getName());

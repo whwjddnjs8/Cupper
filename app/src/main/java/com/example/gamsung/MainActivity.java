@@ -54,7 +54,20 @@ public class MainActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.hide();
 
+        Intent intent1 = getIntent();
+        String name = intent1.getStringExtra("name");
+        String text = intent1.getStringExtra("text");
+        String mood = intent1.getStringExtra("mood");
+        String coffee = intent1.getStringExtra("coffee");
+        String dessert = intent1.getStringExtra("dessert");
+        String rest = intent1.getStringExtra("rest");
+        String price = intent1.getStringExtra("price");
+        String star = intent1.getStringExtra("star");
+        String waiting = intent1.getStringExtra("waiting");
+        String imgtwo = intent1.getStringExtra("imgtwo");
 
+        AllReview review = new AllReview(text,text, mood, coffee, rest, price, star, waiting, name,imgtwo);
+        CafeReview.allReviewList.add(CafeReview.allReviewList.size(), review);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, fragmentMain).commitAllowingStateLoss();
 

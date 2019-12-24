@@ -3,6 +3,7 @@ package com.example.gamsung;
 public class Review {
     int profile,photo;
     private String username,cafe,text,tag1,tag2,tag3;
+    private String img;
 
     public Review(int profile, int photo, String username, String cafe,String text, String tag1, String tag2, String tag3) {
         this.profile = profile;
@@ -13,6 +14,22 @@ public class Review {
         this.tag1 = tag1;
         this.tag2 = tag2;
         this.tag3 = tag3;
+    }
+
+    public Review(int profile, String img,  String username, String cafe, String text, String tag1, String tag2, String tag3) {
+        this.profile = profile;
+        this.username = username;
+        this.cafe = cafe;
+        this.text = text;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+        this.img = img;
+    }
+
+
+    public String getImg() {
+        return img;
     }
 
     public int getPhoto() {

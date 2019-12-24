@@ -7,6 +7,15 @@ import java.util.Map;
 
 public class AllReview {
     String text, mood, coffee, dessert, rest, price, star, waiting;
+    String cafename, imgtwo;
+
+    public String getCafename() {
+        return cafename;
+    }
+
+    public void setCafename(String cafename) {
+        this.cafename = cafename;
+    }
 
     public String getText() {
         return text;
@@ -72,6 +81,10 @@ public class AllReview {
         this.waiting = waiting;
     }
 
+    public String getImgtwo() {
+        return imgtwo;
+    }
+
     public AllReview(){};
 
     public AllReview(String text, String mood, String coffee, String dessert, String rest, String price, String star, String waiting) {
@@ -83,6 +96,31 @@ public class AllReview {
         this.price = price;
         this.star = star;
         this.waiting = waiting;
+    }
+
+    public AllReview(String text, String mood, String coffee, String dessert, String rest, String price, String star, String waiting, String cafename) {
+        this.text = text;
+        this.mood = mood;
+        this.coffee = coffee;
+        this.dessert = dessert;
+        this.rest = rest;
+        this.price = price;
+        this.star = star;
+        this.waiting = waiting;
+        this.cafename = cafename;
+    }
+
+    public AllReview(String text, String mood, String coffee, String dessert, String rest, String price, String star, String waiting, String cafename, String imgtwo) {
+        this.text = text;
+        this.mood = mood;
+        this.coffee = coffee;
+        this.dessert = dessert;
+        this.rest = rest;
+        this.price = price;
+        this.star = star;
+        this.waiting = waiting;
+        this.cafename = cafename;
+        this.imgtwo = imgtwo;
     }
 
     @Exclude
