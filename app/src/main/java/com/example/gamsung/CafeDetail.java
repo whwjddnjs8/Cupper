@@ -40,7 +40,6 @@ public class CafeDetail extends AppCompatActivity{
         TextView toilet = findViewById(R.id.restroom);
         TextView menutv = findViewById(R.id.menutv);
         TextView paytv = findViewById(R.id.pay);
-        final TextView mmenu = findViewById(R.id.mmenu);
         ImageButton info = (ImageButton)findViewById(R.id.info);
         ImageButton review =(ImageButton) findViewById(R.id.review);
         ImageButton web = (ImageButton)findViewById(R.id.web);
@@ -96,13 +95,16 @@ public class CafeDetail extends AppCompatActivity{
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.cafe_review);
+                Intent intent = new Intent(getApplicationContext(), CafeReview.class);
+                Bundle extras = new Bundle();
+                extras.putString("name", name);
+                intent.putExtras(extras);
+                startActivity(intent);
             }
         });
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                setContentView(R.layout.web_view);
                 Intent intent = new Intent(getApplicationContext(), CafeWebView.class);
                 Bundle extras = new Bundle();
                 extras.putString("name", name);

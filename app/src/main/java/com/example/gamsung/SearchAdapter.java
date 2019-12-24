@@ -79,23 +79,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-//                String key = cafe.getName();
-//                databaseReference = FirebaseDatabase.getInstance().getReference(cafeList.get(position).getTitle()+'/');
-//                Map<String, Object> updateMap = new HashMap<>();
-//                updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
-//                databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//
-//                    public void onFailure(@NonNull Exception e) {
-//                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
-//                    }
-//                });
-//                int pos = position;
+
                 String name = cafe.getName();
                 String address = cafe.getAddress();
                 String dessert = cafe.getDessert();
@@ -113,7 +97,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                 String pos = cafe.getPos();
 
                 Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
-//                extras.putInt("pos", pos);
                 extras.putString("name", name);
                 extras.putString("address", address);
                 extras.putString("dessert", dessert);

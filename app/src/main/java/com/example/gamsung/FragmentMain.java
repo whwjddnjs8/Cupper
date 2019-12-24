@@ -106,7 +106,6 @@ public class FragmentMain extends Fragment {
                     allCafeList.get(allCafeList.size() - 1).setTitle("혜화");
                     System.out.println(allCafeList.size());
                 }
-//                System.out.println(allCafeList.get(allCafeList.size()-1).getTitle());
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -141,7 +140,6 @@ public class FragmentMain extends Fragment {
                     allCafeList.add(allCafe);
                     allCafeList.get(allCafeList.size() - 1).setTitle("망원동");
                 }
-//                System.out.println(allCafeList.size());
             }
 
             @Override
@@ -177,7 +175,6 @@ public class FragmentMain extends Fragment {
                     allCafeList.add(allCafe);
                     allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
                 }
-//                System.out.println(allCafeList.size());
             }
 
             @Override
@@ -212,7 +209,6 @@ public class FragmentMain extends Fragment {
                     allCafeList.add(allCafe);
                     allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
                 }
-//                System.out.println(allCafeList.size());
             }
 
             @Override

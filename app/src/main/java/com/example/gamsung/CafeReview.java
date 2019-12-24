@@ -43,7 +43,6 @@ public class CafeReview extends AppCompatActivity {
     private Button mood1, mood2, mood3, mood4, mood5, mood6, mood7, mood8; //분위기 버튼 8개
     private Button coffee1, coffee2, coffee3, dessert1, dessert2, dessert3; //커피와 디저트 버튼 각각 3개씩
     private Button rgood, rbad; //화장실 좋은지 나쁜지
-    private Button rest1,rest2,rest3,rest4;// 남녀구분,남녀공용,내부,외부
     private Button price1,price2,waiting1,waiting2; //가격과 웨이팅
     private Button reviewbtn;
     private String button;
@@ -525,13 +524,9 @@ public class CafeReview extends AppCompatActivity {
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
 
-//                        AllReview review1 = new AllReview(text, mood, coffee, rest, price, star, waiting, search.getText().toString());
-//                        allReviewList.add(no, review1);
-//                        no = no+1;
                         System.out.println(allReviewList.size());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
-//                extras.putInt("pos", pos);
                         extras.putString("name", name);
                         extras.putString("address", address);
                         extras.putString("dessert", dessert);
@@ -567,7 +562,6 @@ public class CafeReview extends AppCompatActivity {
                         System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
                     }
                 });
-                //databaseReference.child(String.valueOf(pos)).child("review").child(reviewcnt).setValue(reviewValues);
 
                 Map<String, Object> updateMap = new HashMap<>();
                 updateMap.put("reviewcnt", String.valueOf(Integer.parseInt(reviewcnt)+1));
@@ -582,19 +576,6 @@ public class CafeReview extends AppCompatActivity {
                         System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
                     }
                 });
-//                databaseReference.child(String.valueOf(pos)).child("review").updateChildren(reviewValues).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        System.out.println("데이터베이스에 갱신되었습니다");
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        System.out.println("아쉽지만 갱신이 되지  않을것 같아요");
-//                    }
-//                });
-
-//                Map<String, Object> childUpdates = new HashMap<>();
             }
         });
     }
