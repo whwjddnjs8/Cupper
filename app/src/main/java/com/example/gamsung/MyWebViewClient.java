@@ -35,15 +35,6 @@ public class MyWebViewClient extends WebViewClient {
         view.loadUrl(url);
         return super.shouldOverrideUrlLoading(view, request);
     }
-    //    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//        return false;
-//    }
-
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//        view.getContext().startActivity(intent); //묵시적인 인텐트 커널한테 이것을 보여달라 의도를 전달
-//        return  true; //새로운 링크처리를 액티비티한테 넘긴다
-
-
 
     }
 

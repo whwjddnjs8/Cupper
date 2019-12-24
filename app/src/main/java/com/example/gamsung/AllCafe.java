@@ -1,7 +1,5 @@
 package com.example.gamsung;
 
-import android.content.Intent;
-
 public class AllCafe {
     String name, address, dessert, time, tel, restroom, views, imageone,imagetwo, imagethr, title, reviewcnt, pos;
 

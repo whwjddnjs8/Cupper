@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
@@ -63,9 +62,7 @@ public class FragmentReview extends Fragment {
                 reviewList.add(r);
             }
         }
-//        Review r = new Review(imgs[0],imgs[1],"정원이",
-//                "RMD","대박맛있움~!~!~!!","#마카롱","#혜화","#룰루");
-//        reviewList.add(r);
+
         Review r = new Review(imgs[2], img,"조정원",
                 "갬성","처음으로 간 카페였는데 되게 괜찮았던 카페~~~!!","#연남동","#컵케익","#맛이또");
         reviewList.add(r);

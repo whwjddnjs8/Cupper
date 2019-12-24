@@ -18,8 +18,8 @@ public class CafeWebView extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         this.webView = (WebView)findViewById(R.id.webview);
-        WebSettings webSettings = webView.getSettings(); //웹뷰가 여러가지 동작을 설정
-        webSettings.setJavaScriptEnabled(true);//자바스크립트 프로그램이 실행되게 할것이다.
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
 
         MyWebViewClient webViewClient = new MyWebViewClient(this);
         webView.setWebViewClient(webViewClient);

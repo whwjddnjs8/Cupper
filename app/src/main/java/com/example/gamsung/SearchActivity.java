@@ -50,7 +50,6 @@ public class SearchActivity extends AppCompatActivity {
             recyclerView.setAdapter(searchAdapter);
             prepareData(0);
         }
-//        imageView = (ImageView)findViewById(R.id.imageView);
         search = (EditText)findViewById(R.id.myFilter);
 
         search.addTextChangedListener(new TextWatcher() {
@@ -78,15 +77,6 @@ public class SearchActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                cafeList.clear();
-//                searchword = search.getText().toString();
-//                prepareData();
-//
-//            }
-//        });
     }
 
     private void prepareData(int n) {

@@ -50,11 +50,11 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.myViewHold
             @Override
             public void onClick(View view) {
                 String title = circle.getTitle();
-                Bundle extras = new Bundle(); //번들은 인텐트 속에 있는 데이터 꾸러미
+                Bundle extras = new Bundle();
                 extras.putString("title", title);
-                Intent intent = new Intent(view.getContext(), CafeActivity.class); //예를들어 혜화카페페이지로 넘어감
-                intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
-                view.getContext().startActivity(intent); //화면을 띄움
+                Intent intent = new Intent(view.getContext(), CafeActivity.class);
+                intent.putExtras(extras);
+                view.getContext().startActivity(intent);
             }
         });
     }

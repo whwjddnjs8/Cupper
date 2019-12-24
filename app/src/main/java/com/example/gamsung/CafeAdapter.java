@@ -24,12 +24,8 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,16 +65,12 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
     @Override
     public CafeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cafe_item, parent, false);
-        //LayoutInflater->xml을 컴파일해서 실시간적으로 읽어들이는 작업.  inflater부풀리는것. 소스에있는것을 메모리에 로딩시켜라. movie_item레이아웃을 읽어들여서 객체로 만들어주는것
-        return new CafeAdapter.MyViewHolder(itemView); //myViewHolder 아이템뷰 하나를 만들어주는것. 뷰홀더객체 하나 생성. 뷰홀더란 아이템뷰를 가리킨다.
+        return new CafeAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        final Cafe cafe = cafeList.get(position); // 배열에 있는것중에 무비하나를 꺼내옴.
-        // 위에서는 껍데기를 만들고 여기서는 실제 데이터를 생성하는함수.
-        // 뷰 홀더의 각 자리에 데이터 셋팅(binding)
-        //holder.image.setImageResource(cafe.getImage());
+        final Cafe cafe = cafeList.get(position);
         /** 여기가 데이터베이스에서 이미지 받아와서 세팅하는 곳 **/
         String url = cafe.getImageone();
         Glide.with(holder.itemView.getContext()).load(url).into(holder.image);
@@ -123,7 +115,7 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 String reviewcnt = cafe.getReviewcnt();
                 String pos = cafe.getPos();
 
-                Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
+                Bundle extras = new Bundle();
                 extras.putString("name", name);
                 extras.putString("address", address);
                 extras.putString("dessert", dessert);
@@ -140,8 +132,8 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 extras.putString("reviewcnt", reviewcnt);
                 extras.putString("pos", pos);
                 Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
-                intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
-                view.getContext().startActivity(intent); //화면을 띄움
+                intent.putExtras(extras);
+                view.getContext().startActivity(intent);
             }
         });
     }

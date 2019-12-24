@@ -63,7 +63,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.profile.setImageResource(review.getProfile());
         String url = review.getImg();
         Glide.with(holder.itemView.getContext()).load(url).into(holder.photo);
-//        holder.photo.setImageResource(review.getPhoto());
         holder.username.setText(review.getUsername());
         holder.cafe.setText(review.getCafe());
         holder.text.setText(review.getText());

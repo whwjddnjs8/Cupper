@@ -71,9 +71,9 @@ public class CafeDetail extends AppCompatActivity{
         imgthr = intent.getStringExtra("imgthr");
         pos = intent.getStringExtra("pos");
 
-        mPager = findViewById(R.id.pager);  // 페이저를가져옴
-        mPagerAdapter = new SlidePagerAdapter(getSupportFragmentManager());     //어댑터 클래스를 오브젝트로 만들어서 어댑터로 가져옴.
-        mPager.setAdapter(mPagerAdapter);   //어댑터를 등록
+        mPager = findViewById(R.id.pager);
+        mPagerAdapter = new SlidePagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
         mPager.setPageTransformer(true, new ZoomOutTransformer());
 
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

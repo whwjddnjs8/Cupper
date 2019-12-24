@@ -65,9 +65,9 @@ public class FragmentMain extends Fragment {
         recyclerView2.setAdapter(circleadapter);
         prepareCircles(2);
 
-        mPager = (ViewPager)rootview.findViewById(R.id.pager);  // 페이저를가져옴
-        mPagerAdapter = new ViewPagerAdapter(getFragmentManager());     //어댑터 클래스를 오브젝트로 만들어서 어댑터로 가져옴.
-        mPager.setAdapter(mPagerAdapter);   //어댑터를 등록
+        mPager = (ViewPager)rootview.findViewById(R.id.pager);
+        mPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
         mPager.setPageTransformer(true, new ZoomOutTransformer());
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -75,7 +75,7 @@ public class FragmentMain extends Fragment {
 
             }
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {  //현재 페이지가 사라져서 스크롤 됐을 때
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
             @Override
@@ -222,7 +222,7 @@ public class FragmentMain extends Fragment {
                     allCafeList.add(allCafe);
                     allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
                 }
-//                System.out.println(allCafeList.size());
+
             }
 
             @Override
@@ -244,7 +244,7 @@ public class FragmentMain extends Fragment {
         return rootview;
     }
 
-    private class ViewPagerAdapter extends FragmentPagerAdapter {     // 어댑터 두개의 메소드 가져와야함
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
         private String tabTitiles[] = {"Tab1", "Tab2", "Tab3"};
 
         public ViewPagerAdapter(FragmentManager fm) {
@@ -257,12 +257,12 @@ public class FragmentMain extends Fragment {
         }
 
         @Override
-        public Fragment getItem(int position) {     // 페이지를 만드는 역할 페이지를 페이저에게 전달해주는 역할
+        public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return SlideFirstPageFragment.newInstance(0, "Page 1");     // 첫번째 페이지를 하나 만듬 SlideFirstPageFragment는 fragment로 상속되어잇음 그래야 액티비티의 화면에 포함되어잇음.
+                    return SlideFirstPageFragment.newInstance(0, "Page 1");
                 case 1:
-                    return SlideSecondPageFragment.newInstance(1, "Page 2");    //
+                    return SlideSecondPageFragment.newInstance(1, "Page 2");
                 case 2:
                     return SlideThirdPageFragment.newInstance(2, "Page 3");
                 default:

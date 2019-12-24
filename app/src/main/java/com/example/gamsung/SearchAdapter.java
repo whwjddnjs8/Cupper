@@ -61,7 +61,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     @Override
     public SearchAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cafe_item, parent, false);
-        //LayoutInflater->xml을 컴파일해서 실시간적으로 읽어들이는 작업.  inflater부풀리는것. 소스에있는것을 메모리에 로딩시켜라. movie_item레이아웃을 읽어들여서 객체로 만들어주는것
         return new SearchAdapter.MyViewHolder(itemView);
     }
 
@@ -136,9 +135,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                     view.getContext().startActivity(intent1);
                 }
                 else if(where == 0){
-                    Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
-                    intent.putExtras(extras); //인텐트 안에 번들을 집어 넣음
-                    view.getContext().startActivity(intent); //화면을 띄움
+                    Intent intent = new Intent(view.getContext(), CafeDetail.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
                 }
             }
         });
