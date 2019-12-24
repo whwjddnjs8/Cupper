@@ -13,10 +13,6 @@ public class AllReview {
         return cafename;
     }
 
-    public void setCafename(String cafename) {
-        this.cafename = cafename;
-    }
-
     public String getText() {
         return text;
     }
@@ -29,40 +25,20 @@ public class AllReview {
         return mood;
     }
 
-    public void setMood(String mood) {
-        this.mood = mood;
-    }
-
     public String getCoffee() {
         return coffee;
-    }
-
-    public void setCoffee(String coffee) {
-        this.coffee = coffee;
     }
 
     public String getDessert() {
         return dessert;
     }
 
-    public void setDessert(String dessert) {
-        this.dessert = dessert;
-    }
-
     public String getRest() {
         return rest;
     }
 
-    public void setRest(String rest) {
-        this.rest = rest;
-    }
-
     public String getPrice() {
         return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getStar() {
@@ -75,10 +51,6 @@ public class AllReview {
 
     public String getWaiting() {
         return waiting;
-    }
-
-    public void setWaiting(String waiting) {
-        this.waiting = waiting;
     }
 
     public String getImgtwo() {
@@ -96,18 +68,6 @@ public class AllReview {
         this.price = price;
         this.star = star;
         this.waiting = waiting;
-    }
-
-    public AllReview(String text, String mood, String coffee, String dessert, String rest, String price, String star, String waiting, String cafename) {
-        this.text = text;
-        this.mood = mood;
-        this.coffee = coffee;
-        this.dessert = dessert;
-        this.rest = rest;
-        this.price = price;
-        this.star = star;
-        this.waiting = waiting;
-        this.cafename = cafename;
     }
 
     public AllReview(String text, String mood, String coffee, String dessert, String rest, String price, String star, String waiting, String cafename, String imgtwo) {

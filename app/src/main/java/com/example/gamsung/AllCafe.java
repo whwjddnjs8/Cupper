@@ -58,18 +58,4 @@ public class AllCafe {
     public String getPos() {
         return pos;
     }
-
-    public void setPos(String pos) {
-        this.pos = pos;
-    }
-
-    public AllCafe() {}
-    public AllCafe(String name, String address, String dessert, String time, String tel, String restroom) {
-        this.name = name;
-        this.address = address;
-        this.dessert = dessert;
-        this.time = time;
-        this.tel = tel;
-        this.restroom = restroom;
-    }
 }
