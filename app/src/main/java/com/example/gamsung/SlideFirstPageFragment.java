@@ -36,7 +36,7 @@ public class SlideFirstPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         ImageView imageView = (ImageView)view.findViewById(R.id.imageView2);
-        imageView.setImageResource(R.drawable.cafe1);
+        imageView.setImageResource(R.drawable.cafe11);
         return view;
     }
 }

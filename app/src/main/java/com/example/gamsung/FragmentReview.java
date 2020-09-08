@@ -43,7 +43,7 @@ public class FragmentReview extends Fragment {
 
     public void prepareReview(){
         final int[] imgs = new int[] {
-          R.drawable.jwjw,R.drawable.hcafe8,R.drawable.jwjw,R.drawable.cafe1, R.drawable.jyjy, R.drawable.hcafe25
+                R.drawable.jwjw,R.drawable.hcafe8,R.drawable.jwjw,R.drawable.cafe1, R.drawable.jyjy, R.drawable.hcafe25
         };
 
         String img = "https://firebasestorage.googleapis.com/v0/b/gamsung-e3e5a.appspot.com/o/cafeimg%2Fyeonnam%2Fycafe21.JPG?alt=media&token=d5c3bc9d-6bb1-49ce-87f0-036f9683e6a5";

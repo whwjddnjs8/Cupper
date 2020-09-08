@@ -33,10 +33,6 @@ public class CafeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         title = intent.getStringExtra("title");     // 메인 페이지에서 item을 클릭하면 title값 intent로 넘어옴
 
-        /** ActionBar 없애기 **/
-        ActionBar ab = getSupportActionBar();
-        ab.hide();
-
         recyclerView = findViewById(R.id.recycler_view);
         cafeAdapter = new CafeAdapter(this, cafeList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

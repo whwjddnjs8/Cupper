@@ -1,5 +1,6 @@
 package com.example.gamsung;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +11,8 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -27,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FragmentMain extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -280,8 +284,8 @@ public class FragmentMain extends Fragment {
 
     private void prepareCircles(int i) {
         int[] covers = new int[]{
-                R.drawable.circle, R.drawable.circle2, R.drawable.circle3, R.drawable.circle4,
-                R.drawable.circle8, R.drawable.circle5, R.drawable.circle6, R.drawable.circle7
+                R.drawable.circle11, R.drawable.circle22, R.drawable.circle33, R.drawable.circle44,
+                R.drawable.circle55, R.drawable.circle5, R.drawable.circle77, R.drawable.circle88
         };
 
         if (i == 1) {

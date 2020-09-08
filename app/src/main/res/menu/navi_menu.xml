@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/recommend"
+            android:icon="@drawable/like"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="RECOMMEND"
+            />
+        <item
+            android:id="@+id/review"
+            android:icon="@drawable/review"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="REVIEW"
+            />
+        <item
+            android:id="@+id/community"
+            android:icon="@drawable/people"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="COMMUNITY"
+            />
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/setting"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="SETTING"
+            />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="LOGOUT"
+            />
+    </group>
+</menu>

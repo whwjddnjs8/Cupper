@@ -9,30 +9,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_margin="19dp"
-            android:scaleType="fitXY"
-            android:background="#00ff0000"
-            app:srcCompat="@drawable/previous" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:text="카페를 추천해줘!" />
-    </LinearLayout>
-
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"

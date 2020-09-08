@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="260dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00ffffff"
+        android:scaleType="fitXY"
+        android:theme="@android:style/Theme.Translucent"
+        android:tint="#6F000000" />
+
+    <TextView
+        android:id="@+id/views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="9dp"
+        android:text="100"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+    android:id="@+id/title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="55dp"
+    android:layout_gravity="left|bottom"
+    android:layout_marginLeft="18dp"
+    android:textColor="#FFFFFF"
+    android:textSize="23sp"
+    android:text="제목" />
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="35dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="18dp"
+        android:textSize="13sp"
+        android:text="세부설명" />
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_marginBottom="13dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="18dp"
+        android:textSize="10sp"
+        android:text="작성자" />
+
+</FrameLayout>

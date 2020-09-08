@@ -7,10 +7,11 @@
         android:title="MAIN" />
 
     <item
-        android:id="@+id/navigation_today"
-        android:icon="@drawable/baseline_help_outline_black_18dp"
-        android:title="TODAY" />
+        android:id="@+id/navigation_community"
+        android:icon="@drawable/people"
+        android:title="COMMUNITY" />
 
+    <!--
     <item
         android:id="@+id/navigation_review"
         android:icon="@drawable/baseline_mode_comment_black_18dp"
@@ -20,5 +21,6 @@
         android:id="@+id/navigation_mypage"
         android:icon="@drawable/baseline_face_black_18dp"
         android:title="MYPAGE" />
+        -->
 
 </menu>
