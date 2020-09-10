@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "48862318843",
+    "firebase_url": "https://gamsung-e3e5a.firebaseio.com",
+    "project_id": "gamsung-e3e5a",
+    "storage_bucket": "gamsung-e3e5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48862318843:android:281154206a10a0a88a205e",
+        "android_client_info": {
+          "package_name": "com.example.gamsung"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48862318843-jfcq0a33lt6blvdlku0mvc6bdin9rghr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamsung",
+            "certificate_hash": "933c00bd3741d974ddce2904272b95bda3b2aca0"
+          }
+        },
+        {
+          "client_id": "48862318843-kr6k3d2r6m4uohf73dkqn4qval3d1kjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamsung",
+            "certificate_hash": "22f0e0626aef6b7fd50a3c1d526e6664154d9bee"
+          }
+        },
+        {
+          "client_id": "48862318843-fl0b7t8c1be92ensd23jth052p3jd6mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG0XRWjB-Ups89uc9YpT6b8dL_lGEnzg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48862318843-fl0b7t8c1be92ensd23jth052p3jd6mg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

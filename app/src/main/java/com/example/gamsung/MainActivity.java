@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,8 +29,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +49,36 @@ public class MainActivity extends AppCompatActivity{
     private FragmentToday fragmentToday = new FragmentToday();
     private FragmentCommunity fragmentCommunity = new FragmentCommunity();
 
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    public FirebaseAuth mAuth;
+    FirebaseUser user;
+
+    private ImageView user_profile;
+    private TextView user_name;
+    private TextView user_email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // ViewPager content view 메인화면인됨
 
-        Intent intent = new Intent(this, LoadingActivity.class);
-        startActivity(intent);
+        Intent intent = getIntent();
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.inflateHeaderView(R.layout.navi_header);
+        user_profile = (ImageView)headerView.findViewById(R.id.user_profile);
+        user_name = (TextView)headerView.findViewById(R.id.user_name);
+        user_email = (TextView)headerView.findViewById(R.id.user_email);
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account != null) {
+            Toast.makeText(MainActivity.this, account.getDisplayName()+ " 님 반갑습니다", Toast.LENGTH_SHORT).show();
+            Log.d("로그인 성공 닉네임", account.getDisplayName() + account.getEmail() + account.getId() + account.getPhotoUrl());
+
+            Glide.with(this).load(account.getPhotoUrl()).circleCrop().into(user_profile);
+            user_name.setText(account.getDisplayName() + " 님");
+            user_email.setText(account.getEmail());
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,7 +91,6 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -113,8 +142,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener {
-
+    class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
