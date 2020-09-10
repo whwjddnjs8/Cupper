@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Gamsung</string>
+    <string name="sign_in">Google로 시작하기</string>
+    <string name="cupper">CUPPER</string>
 </resources>
