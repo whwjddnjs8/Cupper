@@ -23,6 +23,8 @@
         <activity android:name=".CafeReview"></activity>
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".CafeWebView"></activity>
+        <activity android:name=".CommunityMain"></activity>
+        <activity android:name=".CafeReviewList"></activity>
 
     </application>
 

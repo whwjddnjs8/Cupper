@@ -45,6 +45,12 @@ public class SearchActivity extends AppCompatActivity {
             recyclerView.setAdapter(searchAdapter);
             prepareData(0);
         }
+        else if(where == 2) {
+            searchAdapter = new SearchAdapter(this, cafeList,where);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            recyclerView.setAdapter(searchAdapter);
+            prepareData(2);
+        }
         search = (EditText)findViewById(R.id.myFilter);
 
         search.addTextChangedListener(new TextWatcher() {
@@ -65,6 +71,10 @@ public class SearchActivity extends AppCompatActivity {
                 else if(where == 0) {
                     if(cafeList.size() > 0) cafeList.clear();
                     prepareData(0);
+                }
+                else if(where == 2) {
+                    if(cafeList.size() > 0) cafeList.clear();
+                    prepareData(2);
                 }
             }
 
@@ -95,6 +105,9 @@ public class SearchActivity extends AppCompatActivity {
             searchAdapter1.notifyDataSetChanged();
         }
         else if(where == 0) {
+            searchAdapter.notifyDataSetChanged();
+        }
+        else if(where == 2) {
             searchAdapter.notifyDataSetChanged();
         }
     }

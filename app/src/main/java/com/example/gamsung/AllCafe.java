@@ -1,7 +1,23 @@
 package com.example.gamsung;
 
 public class AllCafe {
-    String name, address, dessert, time, tel, restroom, views, imageone,imagetwo, imagethr, title, reviewcnt, pos;
+    String name, address, dessert, price,tag1,tag2,tag3, time, tel, restroom, views, imageone,imagetwo, imagethr, title, reviewcnt, pos;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getTag1() {
+        return tag1;
+    }
+
+    public String getTag2() {
+        return tag2;
+    }
+
+    public String getTag3() {
+        return tag3;
+    }
 
     public String getReviewcnt() {
         return reviewcnt;

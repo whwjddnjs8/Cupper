@@ -122,6 +122,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }
+                else if(where == 2) {
+                    Intent intent = new Intent(view.getContext(), CafeReviewList.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
     }

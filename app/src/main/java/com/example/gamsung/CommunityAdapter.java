@@ -66,5 +66,19 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
         holder.username.setText(community.getUsername());
         holder.text.setText(community.getText());
         holder.views.setText(String.valueOf(community.getViews()));
+        holder.image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String title = community.getTitle();
+
+                Bundle extras = new Bundle();
+                extras.putString("title", title);
+                Intent intent = new Intent(view.getContext(), CommunityMain.class);
+                intent.putExtras(extras);
+                view.getContext().startActivity(intent);
+
+            }
+        });
     }
+
 }

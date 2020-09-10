@@ -88,15 +88,15 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 Map<String, Object> updateMap = new HashMap<>();
                 updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
                 databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
 
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+                            public void onFailure(@NonNull Exception e) {
+                                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
                     }
                 });
                 String name = cafe.getName();

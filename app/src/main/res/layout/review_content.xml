@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/profile"
-            android:layout_width="96dp"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="76dp"
             android:layout_marginTop="10dp"
             android:scaleType="fitCenter"
             tools:srcCompat="@tools:sample/avatars[4]" />
@@ -33,14 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="이름"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/cafename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="카페이름"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <RatingBar
 
@@ -64,7 +64,7 @@
         android:layout_height="79dp"
         android:padding="10dp"
         android:text="TEXT(리뷰내용)"
-        android:textSize="18sp" />
+        android:textSize="15sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,7 +78,6 @@
             android:layout_width="match_parent"
             android:layout_height="202dp"
             android:scaleType="fitXY"
-
             app:srcCompat="@drawable/hcafe18" />
 
         <LinearLayout
@@ -98,7 +97,7 @@
                 android:background="@drawable/circleline"
                 android:text="#tag1"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tag2"
@@ -110,7 +109,7 @@
                 android:background="@drawable/circleline"
                 android:text="#tag2"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tag3"
@@ -122,7 +121,7 @@
                 android:background="@drawable/circleline"
                 android:text="#tag3"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
@@ -187,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:text="123"
                     android:textColor="@color/text_like_counter" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

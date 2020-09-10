@@ -13,12 +13,21 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
     private Context context;
     private List<Review> reviewList;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username,cafe,text,tag1,tag2,tag3,Likecnt;
         public ImageButton btnLike;
@@ -35,9 +44,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             tag3 = view.findViewById(R.id.tag3);
             btnLike=view.findViewById(R.id.btnLike);
             Likecnt = view.findViewById(R.id.likecnt);
-
         }
-
     }
 
     public ReviewAdapter(Context mContext, List<Review> data) {
@@ -69,6 +76,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.tag1.setText(review.getTag1());
         holder.tag2.setText(review.getTag2());
         holder.tag3.setText(review.getTag3());
+        holder.Likecnt.setText(String.valueOf(review.getLikecnt()));
     }
 }
 

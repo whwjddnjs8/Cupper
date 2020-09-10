@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity{
         String waiting = intent1.getStringExtra("waiting");
         String imgtwo = intent1.getStringExtra("imgtwo");
 
-        AllReview review = new AllReview(text, text, mood, coffee, rest, price, star, waiting, name, imgtwo);
-        CafeReview.allReviewList.add(CafeReview.allReviewList.size(), review);
+        Review review = new Review(text, mood, coffee,dessert, rest, price, star, waiting);
+        CafeReview.ReviewList.add(CafeReview.ReviewList.size(), review);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, fragmentMain).commitAllowingStateLoss();
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);

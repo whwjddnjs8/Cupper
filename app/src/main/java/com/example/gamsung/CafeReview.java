@@ -33,16 +33,20 @@ public class CafeReview extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-    public static List<AllReview> allReviewList = new ArrayList<>();
+    public static List<Review> ReviewList = new ArrayList<>();
     private RatingBar review_ratingBar;
     private ImageButton addButton, subButton;
     private TextView textView,search;
     private EditText reviewText;
+    private EditText hash1,hash2,hash3; //xml에서 가져온 edittext 해시태그
     private String name = null, title;
-    private String mood, coffee, dessert, rest, price, waiting, star, text, reviewcnt;
+    private String tag1, tag2, tag3; //해시태그 String버전
+    private String mood, coffee, dessert,rdessert, rest,rest2,rest3, price, rprice,waiting, star, text, reviewcnt; //dessert:케이크,마카롱 이런거 rdessert:리뷰로 남긴 디저트의 맛
     private Button mood1, mood2, mood3, mood4, mood5, mood6, mood7, mood8; //분위기 버튼 8개
     private Button coffee1, coffee2, coffee3, dessert1, dessert2, dessert3; //커피와 디저트 버튼 각각 3개씩
     private Button rgood, rbad; //화장실 좋은지 나쁜지
+    private Button rpeople, rnpeople; //화장실 공용 구분
+    private Button in, out; //화장실 내부, 외부
     private Button price1,price2,waiting1,waiting2; //가격과 웨이팅
     private Button reviewbtn;
     private String button;
@@ -55,10 +59,12 @@ public class CafeReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe_review);
 
-
         textView = (TextView)findViewById(R.id.textView);
         search = (TextView)findViewById(R.id.myFilter);
         reviewText = (EditText)findViewById(R.id.reviewText);
+        hash1 = (EditText)findViewById(R.id.tag1);
+        hash2 = (EditText)findViewById(R.id.tag2);
+        hash3 = (EditText)findViewById(R.id.tag3);
         addButton = (ImageButton)findViewById(R.id.add);
         subButton = (ImageButton)findViewById(R.id.sub);
         mood1 = (Button)findViewById(R.id.mood1);
@@ -77,11 +83,22 @@ public class CafeReview extends AppCompatActivity {
         dessert3 = (Button)findViewById(R.id.dessert3);
         rgood = (Button)findViewById(R.id.rgood);
         rbad = (Button)findViewById(R.id.rbad);
+        rpeople = (Button)findViewById(R.id.rest1);
+        rnpeople = (Button)findViewById(R.id.rest2);
+        in = (Button)findViewById(R.id.rest3);
+        out = (Button)findViewById(R.id.rest4);
         price1 = (Button)findViewById(R.id.price1);
         price2 = (Button)findViewById(R.id.price2);
         waiting1 = (Button)findViewById(R.id.waiting1);
         waiting2 = (Button)findViewById(R.id.waiting2);
         reviewbtn = (Button)findViewById(R.id.review);
+
+        tag1 = hash1.getText().toString();
+        tag2 = hash2.getText().toString();
+        tag3 = hash3.getText().toString();
+        System.out.println(tag1);
+        System.out.println(tag2);
+        System.out.println(tag3);
 
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
@@ -215,15 +232,15 @@ public class CafeReview extends AppCompatActivity {
                         break;
                     case "dessert1" :
                         dessert1.setBackground(getDrawable(R.drawable.buttonborder));
-                        dessert = null;
+                        rdessert = null;
                         break;
                     case "dessert2" :
                         dessert2.setBackground(getDrawable(R.drawable.buttonborder));
-                        dessert = null;
+                        rdessert = null;
                         break;
                     case "dessert3" :
                         dessert3.setBackground(getDrawable(R.drawable.buttonborder));
-                        dessert = null;
+                        rdessert = null;
                         break;
                     case "rgood" :
                         rgood.setBackground(getDrawable(R.drawable.buttonborder));
@@ -233,13 +250,29 @@ public class CafeReview extends AppCompatActivity {
                         rbad.setBackground(getDrawable(R.drawable.buttonborder));
                         rest = null;
                         break;
+                    case "rpeople" :
+                        rpeople.setBackground(getDrawable(R.drawable.buttonborder));
+                        rest2 = null;
+                        break;
+                    case "rnpeople" :
+                        rnpeople.setBackground(getDrawable(R.drawable.buttonborder));
+                        rest2 = null;
+                        break;
+                    case "in" :
+                        in.setBackground(getDrawable(R.drawable.buttonborder));
+                        rest3 = null;
+                        break;
+                    case "out" :
+                        out.setBackground(getDrawable(R.drawable.buttonborder));
+                        rest3 = null;
+                        break;
                     case "price1" :
                         price1.setBackground(getDrawable(R.drawable.buttonborder));
-                        price = null;
+                        rprice = null;
                         break;
                     case "price2" :
                         price2.setBackground(getDrawable(R.drawable.buttonborder));
-                        price = null;
+                        rprice = null;
                         break;
                     case "waiting1" :
                         waiting1.setBackground(getDrawable(R.drawable.buttonborder));
@@ -396,10 +429,10 @@ public class CafeReview extends AppCompatActivity {
         dessert1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(dessert == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                if(rdessert == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     dessert1.setBackground(getDrawable(R.drawable.buttonfillboarder));
-                    dessert = dessert1.getText().toString();
-                    System.out.println(dessert);
+                    rdessert = dessert1.getText().toString();
+                    System.out.println(rdessert);
                 }
                 button = "dessert1";
                 return gd.onTouchEvent(motionEvent);
@@ -408,10 +441,10 @@ public class CafeReview extends AppCompatActivity {
         dessert2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(dessert == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                if(rdessert == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     dessert2.setBackground(getDrawable(R.drawable.buttonfillboarder));
-                    dessert = dessert2.getText().toString();
-                    System.out.println(dessert);
+                    rdessert = dessert2.getText().toString();
+                    System.out.println(rdessert);
                 }
                 button = "dessert2";
                 return gd.onTouchEvent(motionEvent);
@@ -420,10 +453,10 @@ public class CafeReview extends AppCompatActivity {
         dessert3.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(dessert == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                if(rdessert == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     dessert3.setBackground(getDrawable(R.drawable.buttonfillboarder));
-                    dessert = dessert3.getText().toString();
-                    System.out.println(dessert);
+                    rdessert = dessert3.getText().toString();
+                    System.out.println(rdessert);
                 }
                 button = "dessert3";
                 return gd.onTouchEvent(motionEvent);
@@ -454,14 +487,61 @@ public class CafeReview extends AppCompatActivity {
                 return gd.onTouchEvent(motionEvent);
             }
         });
-
+        rpeople.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(rest2 == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    rpeople.setBackground(getDrawable(R.drawable.buttonfillboarder));
+                    rest2 = rpeople.getText().toString();
+                    System.out.println(rest2);
+                }
+                button = "rpeople";
+                return gd.onTouchEvent(motionEvent);
+            }
+        });
+        rnpeople.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(rest2 == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    rnpeople.setBackground(getDrawable(R.drawable.buttonfillboarder));
+                    rest2 = rnpeople.getText().toString();
+                    System.out.println(rest2);
+                }
+                button = "rnpeople";
+                return gd.onTouchEvent(motionEvent);
+            }
+        });
+        in.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(rest3 == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    in.setBackground(getDrawable(R.drawable.buttonfillboarder));
+                    rest3 = in.getText().toString();
+                    System.out.println(rest3);
+                }
+                button = "in";
+                return gd.onTouchEvent(motionEvent);
+            }
+        });
+        out.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(rest3 == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    out.setBackground(getDrawable(R.drawable.buttonfillboarder));
+                    rest3 = out.getText().toString();
+                    System.out.println(rest3);
+                }
+                button = "out";
+                return gd.onTouchEvent(motionEvent);
+            }
+        });
         price1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(price == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                if(rprice == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     price1.setBackground(getDrawable(R.drawable.buttonfillboarder));
-                    price = price1.getText().toString();
-                    System.out.println(price);
+                    rprice = price1.getText().toString();
+                    System.out.println(rprice);
                 }
                 button = "price1";
                 return gd.onTouchEvent(motionEvent);
@@ -470,10 +550,10 @@ public class CafeReview extends AppCompatActivity {
         price2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(price == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                if(rprice == null && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     price2.setBackground(getDrawable(R.drawable.buttonfillboarder));
-                    price = price2.getText().toString();
-                    System.out.println(price);
+                    rprice = price2.getText().toString();
+                    System.out.println(rprice);
                 }
                 button = "price2";
                 return gd.onTouchEvent(motionEvent);
@@ -509,22 +589,22 @@ public class CafeReview extends AppCompatActivity {
         reviewbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //제출하기 버튼을 누르면 해당 버튼에 해당하는 단어가 DB에 들어감
                 databaseReference = FirebaseDatabase.getInstance().getReference(title+"/");
-                AllReview review = new AllReview(text, mood, coffee, dessert, rest, price, star, waiting);
+                Review review = new Review(text, tag1,tag2,tag3,mood, coffee, rdessert, rest,rest2,rest3, rprice, star, waiting);
                 Map<String, Object> reviewValues = review.toMap();
                 reviewValues.putAll(reviewValues);
-
-                databaseReference.child(pos).child("review").child(reviewcnt).updateChildren(reviewValues).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                //title밑에 pos밑에 review밑에 reviewcnt를 갱신함
+                    databaseReference.child(pos).child("review").child(reviewcnt).updateChildren(reviewValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
                         System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
                         AlertDialog.Builder builder = new AlertDialog.Builder(CafeReview.this);
                         builder.setMessage("리뷰가 작성되었습니다\uD83D\uDE0D");
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
 
-                        System.out.println(allReviewList.size());
+                        System.out.println(ReviewList.size());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
                         extras.putString("name", name);
@@ -545,9 +625,14 @@ public class CafeReview extends AppCompatActivity {
                         extras.putInt("no",no);
                         extras.putString("text", text);
                         extras.putString("mood", mood);
+                        extras.putString("tag1",tag1);
+                        extras.putString("tag2",tag2);
+                        extras.putString("tag3",tag3);
                         extras.putString("coffee", coffee);
-                        extras.putString("dessert", dessert);
+                        extras.putString("rdessert", rdessert);
                         extras.putString("rest", rest);
+                        extras.putString("rest2", rest2);
+                        extras.putString("rest3", rest3);
                         extras.putString("price", price);
                         extras.putString("star", star);
                         extras.putString("waiting", waiting);
