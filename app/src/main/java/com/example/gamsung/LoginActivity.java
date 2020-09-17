@@ -1,5 +1,6 @@
 package com.example.gamsung;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -108,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoadingActivity.class);
         startActivity(intent);
 
+
         btn_google = findViewById(R.id.btn_google);
         setGoogleButtonText(btn_google, getString(R.string.sign_in));
 
@@ -182,6 +184,12 @@ public class LoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK) {
+                Log.e("LOG", "결과 받기 성공");
+                Intent intent = getIntent();
+            }
+        }
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
