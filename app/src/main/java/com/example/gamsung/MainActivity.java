@@ -1,8 +1,10 @@
 package com.example.gamsung;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import android.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -114,8 +117,32 @@ public class MainActivity extends AppCompatActivity{
                 else if (id == R.id.setting) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
                             new FragmentMypage()).commit();
-                } else if (id == R.id.logout) {
-                    Toast.makeText(context, title + ": 로그아웃 시도중", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.logout) { // 로그아웃
+                    android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(MainActivity.this);
+                    dialog.setMessage("로그아웃 하시겠습니까?").setCancelable(false)
+                        .setPositiveButton("네",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    FirebaseAuth.getInstance().signOut();
+                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(intent);
+                                    Toast.makeText(MainActivity.this, "로그아웃 중입니다", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }).setNegativeButton("아니오",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                    }
+                                });
+
+                    android.app.AlertDialog alert = dialog.create();
+                    alert.setTitle("로그아웃");
+
+                    alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250,235,215)));
+                    alert.show();
                 }
                 return true;
             }
