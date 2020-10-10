@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity{
         user_name = (TextView)headerView.findViewById(R.id.user_name);
         user_email = (TextView)headerView.findViewById(R.id.user_email);
 
+        // 로그인 정보를 가지고 옴
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null) {
             Toast.makeText(MainActivity.this, account.getDisplayName()+ " 님 반갑습니다", Toast.LENGTH_SHORT).show();

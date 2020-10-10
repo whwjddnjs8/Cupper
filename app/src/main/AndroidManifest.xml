@@ -30,7 +30,7 @@
         <activity android:name=".CafeWebView"></activity>
         <activity android:name=".CommunityMain"></activity>
         <activity android:name=".CafeReviewList"></activity>
-
+        <activity android:name=".CommunityActivity"></activity>
     </application>
 
 </manifest>
