@@ -34,9 +34,9 @@ public class SearchActivity extends AppCompatActivity {
         if(cafeList.size() > 0) cafeList.clear();
 
         if(where == 1) {
-            searchAdapter1 = new SearchAdapter(this, cafeList, where);
+            searchAdapter = new SearchAdapter(this, cafeList, where);
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            recyclerView.setAdapter(searchAdapter1);
+            recyclerView.setAdapter(searchAdapter);
             prepareData(1);
         }
         else if(where == 0) {
@@ -102,7 +102,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
         if(where == 1) {
-            searchAdapter1.notifyDataSetChanged();
+            searchAdapter.notifyDataSetChanged();
         }
         else if(where == 0) {
             searchAdapter.notifyDataSetChanged();

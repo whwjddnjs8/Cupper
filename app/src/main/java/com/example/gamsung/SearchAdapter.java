@@ -112,17 +112,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                 extras.putString("star", star);
                 extras.putString("reviewcnt", reviewcnt);
                 extras.putString("pos", pos);
-                if(where == 1) {
+                if(where == 1) { //리뷰쓸때 카페 검색
                     Intent intent1 = new Intent(view.getContext(), CafeReview.class);
                     intent1.putExtras(extras);
                     view.getContext().startActivity(intent1);
                 }
-                else if(where == 0){
+                else if(where == 0){ // 첫번째 화면에서 검색눌렀을때 카페 상세정보 검색
                     Intent intent = new Intent(view.getContext(), CafeDetail.class);
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }
-                else if(where == 2) {
+                else if(where == 2) { // 해당 카페의 리뷰를 검색
                     Intent intent = new Intent(view.getContext(), CafeReviewList.class);
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);

@@ -77,6 +77,7 @@ public class FragmentReview extends Fragment {
         final int[] imgs = new int[] {
                 R.drawable.jwjw,R.drawable.hcafe8,R.drawable.jwjw,R.drawable.cafe1, R.drawable.jyjy, R.drawable.hcafe25
         };
+        /*
         //firebase에 리뷰 root에 해당하는 모든리스트 가져옴
         databaseReference.child("리뷰").addChildEventListener(new ChildEventListener(){
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -105,6 +106,8 @@ public class FragmentReview extends Fragment {
         });
         reviewAdapter.notifyDataSetChanged();
 
+
+         */
 
         String img = "https://firebasestorage.googleapis.com/v0/b/gamsung-e3e5a.appspot.com/o/cafeimg%2Fyeonnam%2Fycafe21.JPG?alt=media&token=d5c3bc9d-6bb1-49ce-87f0-036f9683e6a5";
 /*

@@ -24,20 +24,9 @@ public class Review { //리뷰 리스트에 나와야하는 것들
     }
 
 
-    public Review(int profile, int photo, int likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3) {
+    public Review(int profile, String img, String star, int likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3) {
         this.profile = profile;
-        this.photo = photo;
-        this.likecnt = likecnt;
-        this.username = username;
-        this.cafe = cafe;
-        this.text = text;
-        this.tag1 = tag1;
-        this.tag2 = tag2;
-        this.tag3 = tag3;
-    }
-
-    public Review(int profile, String img, int likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3) {
-        this.profile = profile;
+        this.star = star;
         this.img = img;
         this.likecnt = likecnt;
         this.username = username;
@@ -47,8 +36,11 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.tag2 = tag2;
         this.tag3 = tag3;
     }
-    public Review(String text,String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting) {
+
+
+    public Review(String text,String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting) {
         this.text = text;
+        this.img = img;
         this.tag1 = tag1;
         this.tag2 = tag2;
         this.tag3 = tag3;
@@ -251,7 +243,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.tag3 = tag3;
     }
 
-    public Map<String, Object> toMap() {
+    public Map<String, Object> toMap() { // 디비에 들어갈 항목들
         HashMap<String, Object> result = new HashMap<>();
         result.put("profile",profile);
         result.put("username",username);
@@ -271,8 +263,8 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         result.put("rprice", rprice);
         result.put("star", star);
         result.put("waiting", waiting);
+        result.put("likecnt",likecnt);
         return result;
     }
 
 }
-

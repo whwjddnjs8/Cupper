@@ -35,12 +35,43 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 app:srcCompat="@android:drawable/ic_menu_search" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/reviewimage"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:maxWidth="200dp"
+                android:maxHeight="200dp"
+                android:onClick="onClick"
+                android:layout_marginRight="10sp"
+                app:srcCompat="@drawable/select"></ImageView>
+
+            <Button
+                android:id="@+id/imagebutton"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="1sp"
+                android:onClick="onClick"
+                android:text="사진 선택"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
         <EditText
             android:id="@+id/reviewText"
             android:layout_width="match_parent"
-            android:layout_height="247dp"
+            android:layout_height="175dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@null"
@@ -71,6 +102,7 @@
                 android:id="@+id/tag1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="hashtag1"
@@ -81,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 android:ems="10"
                 android:hint="hashtag2"
                  />
@@ -90,6 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 android:ems="10"
                 android:hint="hashtag3"
                  />

@@ -3,10 +3,14 @@ package com.example.gamsung;
 public class AllReview {
     int profile,photo,likecnt;
     private String username,cafe,text,tag1,tag2,tag3;
-    private String img;
+    private String img,star;
 
     public int getProfile() {
         return profile;
+    }
+
+    public String getStar() {
+        return star;
     }
 
     public int getPhoto() {
