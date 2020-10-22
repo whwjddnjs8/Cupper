@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="1000"
+        android:font="@font/mangosalsa" />
+
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="1000"
+        android:font="@font/caramelcandy" />
+
+    <font
+    android:fontStyle="normal"
+    android:fontWeight="1000"
+    android:font="@font/spmango" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="1000"
+        android:font="@font/meng" />
+
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="1000"
+        android:font="@font/eson" />
+    <font
+    android:fontStyle="normal"
+    android:fontWeight="1000"
+    android:font="@font/on" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="1000"
+        android:font="@font/han" />
+
+
+</font-family>
