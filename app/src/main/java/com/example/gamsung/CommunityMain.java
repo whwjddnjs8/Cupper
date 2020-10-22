@@ -91,54 +91,54 @@ public class CommunityMain extends AppCompatActivity {
 
     public void prepareCommunityCard() {
         int round[] = new int[]{
-                R.drawable.hcafe25, R.drawable.hcafe2, R.drawable.hcafe19, R.drawable.hcafe18, R.drawable.hcafe11
+                R.drawable.homecafe1, R.drawable.homecafe2, R.drawable.homecafe3, R.drawable.homecafe4, R.drawable.homecafe5
         };
 
-        databaseReference.child("커뮤니티").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                AllCommunity allCommunity = dataSnapshot.getValue(AllCommunity.class);
-                Community c = new Community(allCommunity.getUserDisplayname(), allCommunity.getUseremail(),
-                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText());
-                communitycardList.add(c);
-                System.out.println(String.valueOf(communitycardList.size()));
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                AllCommunity allCommunity = dataSnapshot.getValue(AllCommunity.class);
-                Community c = new Community(allCommunity.getUserDisplayname(), allCommunity.getUseremail(),
-                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText());
-                communitycardList.add(c);
-                System.out.println(String.valueOf(communitycardList.size()));
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference.child("커뮤니티").addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                AllCommunity allCommunity = dataSnapshot.getValue(AllCommunity.class);
+//                Community c = new Community(allCommunity.getUserDisplayname(), allCommunity.getUseremail(),
+//                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText());
+//                communitycardList.add(c);
+//                System.out.println(String.valueOf(communitycardList.size()));
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                AllCommunity allCommunity = dataSnapshot.getValue(AllCommunity.class);
+//                Community c = new Community(allCommunity.getUserDisplayname(), allCommunity.getUseremail(),
+//                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText());
+//                communitycardList.add(c);
+//                System.out.println(String.valueOf(communitycardList.size()));
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         communityCardAdapter.notifyDataSetChanged();
-//        Community community = new Community(round[0], "수제레몬청에이드","지녕이");
-//        communitycardList.add(community);
-//        Community community1 = new Community(round[1], "수제키위에이드","쩡오니");
-//        communitycardList.add(community1);
-//        Community community2 = new Community(round[2], "수제체리에이드","수혀니");
-//        communitycardList.add(community2);
-//        Community community3 = new Community(round[3], "수제청포도에이드","유비니");
-//        communitycardList.add(community3);
-//        Community community4 = new Community(round[4], "수제블루베리에이드","민경이");
-//        communitycardList.add(community4);
+        Community community = new Community(round[0], "수제자몽에이드","최진영");
+        communitycardList.add(community);
+        Community community1 = new Community(round[1], "크로플 만들기","조정원");
+        communitycardList.add(community1);
+        Community community2 = new Community(round[2], "달고나 라떼","조정원");
+        communitycardList.add(community2);
+        Community community3 = new Community(round[3], "타로버블티","최진영");
+        communitycardList.add(community3);
+        Community community4 = new Community(round[4], "패션후르츠 에이드","최진영");
+        communitycardList.add(community4);
     }
 }

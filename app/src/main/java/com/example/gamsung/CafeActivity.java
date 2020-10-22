@@ -52,7 +52,6 @@ public class CafeActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 System.out.println("name = " + allcafe.getName());
-
                 if(title.equals("혜화")) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),

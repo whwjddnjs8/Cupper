@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/caramelcandy"
+            android:textSize="33dp"
+            android:text="Cupper">
+
+        </TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spmango"
+                android:text="> Highlights!"
+                android:textSize="18sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10sp">
+
+                <ImageView
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="99dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/banner" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginBottom="8sp"
+                    android:text="원두에 대해 알고싶다면?"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:fontFamily="@font/spmango"
+                android:text="> Let's Shopping!"
+                android:textSize="18sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="35sp">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Coffee Beans"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/beansbut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/coffeebeans" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15sp">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Glass"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/glassbut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/water" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15sp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Coffee Machine"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/machinebut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/coffeemachine" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15sp">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Cutlery"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/cutlerybut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/food" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:fontFamily="@font/spmango"
+                android:text="> Famous Beans"
+                android:textSize="18sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15sp">
+            <TableRow>
+                <ImageView
+                    android:id="@+id/beans1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="10sp"
+                    app:srcCompat="@drawable/beans1" />
+
+                <ImageView
+                    android:id="@+id/beans2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="10sp"
+                    app:srcCompat="@drawable/beans2" />
+
+                <ImageView
+                    android:id="@+id/beans3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/beans3" />
+            </TableRow>
+                <TableRow
+                    android:layout_marginTop="10sp">
+                    <TextView android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/spmango"
+                        android:text="과테말라 안티구아 SHB"
+                        android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/spmango"
+                        android:text="콜롬비아 우일라 수프리모"
+                        android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/spmango"
+                        android:text="케냐 키안부 AA"
+                        android:textSize="10sp" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

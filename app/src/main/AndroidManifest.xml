@@ -31,6 +31,12 @@
         <activity android:name=".CommunityMain"></activity>
         <activity android:name=".CafeReviewList"></activity>
         <activity android:name=".CommunityActivity"></activity>
+        <activity android:name=".Community_tool"></activity>
+        <activity android:name=".BeansDetail"></activity>
+        <activity android:name=".BeansActivity"></activity>
+        <activity android:name=".BannerCoffee"></activity>
+        <activity android:name=".BeansWebView"></activity>
+        <activity android:name=".CommunityHomecafe"></activity>
     </application>
 
 </manifest>

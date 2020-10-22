@@ -52,9 +52,9 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
         System.out.println(position);
         final Community community = communitycardList.get(position);
         // 카드뷰의 이미지, 제목 가져오기
-        //holder.roundedImageView.setImageResource(community.getRoundimg());
-        holder.subjecttext.setText(community.getSubject());
-        holder.writer.setText(community.getUserDisplayname());
+        holder.roundedImageView.setImageResource(community.getRoundimg());
+        holder.subjecttext.setText(community.getSubjecttext());
+        holder.writer.setText(community.getWriter());
 //        String url = community.getRoundimg();
 //        Glide.with(holder.itemView.getContext()).load(url).into(holder.roundedImageView);
         holder.roundedImageView.setOnClickListener(new View.OnClickListener(){

@@ -9,6 +9,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
     int profile,photo,likecnt;
     private String username,cafe,text,tag1,tag2,tag3,img;
     private String mood, coffee,dessert, rdessert, rest, rest2, rest3, price,rprice, star, waiting;
+    private String cafetag1, cafetag2, cafetag3;
     //dessert는 케이크, 마카롱 등 rdessert는 리뷰 남길때 선택한 디저트에대한 평가
     //price는 아메리카노 5000원 rprice는 리뷰 남길때 비싼지 가격대비 괜찮은지에 대한 평가
 
@@ -63,6 +64,36 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.price = price;
         this.star = star;
         this.waiting = waiting;
+    }
+
+    public Review( String cafetag1, String cafetag2, String cafetag3) {
+        this.cafetag1 = cafetag1;
+        this.cafetag2 = cafetag2;
+        this.cafetag3 = cafetag3;
+    }
+
+    public String getCafetag1() {
+        return cafetag1;
+    }
+
+    public void setCafetag1(String cafetag1) {
+        this.cafetag1 = cafetag1;
+    }
+
+    public String getCafetag2() {
+        return cafetag2;
+    }
+
+    public void setCafetag2(String cafetag2) {
+        this.cafetag2 = cafetag2;
+    }
+
+    public String getCafetag3() {
+        return cafetag3;
+    }
+
+    public void setCafetag3(String cafetag3) {
+        this.cafetag3 = cafetag3;
     }
 
     public String getDessert() {
@@ -243,6 +274,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.tag3 = tag3;
     }
 
+
     public Map<String, Object> toMap() { // 디비에 들어갈 항목들
         HashMap<String, Object> result = new HashMap<>();
         result.put("profile",profile);
@@ -264,6 +296,9 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         result.put("star", star);
         result.put("waiting", waiting);
         result.put("likecnt",likecnt);
+        result.put("cafetag1",cafetag1);
+        result.put("cafetag2",cafetag2);
+        result.put("cafetag3",cafetag3);
         return result;
     }
 

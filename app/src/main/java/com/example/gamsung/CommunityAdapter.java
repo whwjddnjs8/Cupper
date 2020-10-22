@@ -68,17 +68,34 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
         holder.image.setImageResource(community.getImg());
         holder.title.setText(community.getTitle());
         holder.username.setText(community.getUsername());
-        holder.subtext.setText(community.getText());
-        holder.views.setText(String.valueOf(community.getViews()));
-        holder.image.setOnClickListener(new View.OnClickListener(){
+        holder.subtext.setText(community.getSubtext());
+        holder.title.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 String title = community.getTitle();
                 Bundle extras = new Bundle();
                 extras.putString("title", title);
-                Intent intent = new Intent(view.getContext(), CommunityMain.class);
-                intent.putExtras(extras);
-                view.getContext().startActivity(intent);
+                if(title.equals("CUPPER 커뮤니티 바로가기")) {
+                    Intent intent = new Intent(view.getContext(), CommunityMain.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+                if(title.equals("홈카페 재료 챙기기")) {
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+                if(title.equals("홈카페 인테리어 둘러보기")) {
+                    Intent intent = new Intent(view.getContext(), CommunityHomecafe.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+                if(title.equals("홈카페 기본용품 준비하기")) {
+                    Intent intent = new Intent(view.getContext(), Community_tool.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+
 
             }
         });

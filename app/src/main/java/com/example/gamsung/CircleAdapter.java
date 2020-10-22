@@ -23,7 +23,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.myViewHold
         public ImageView circle_photo;
         public  myViewHolder(View itemView) {
             super(itemView);
-            circle_photo = (ImageView) itemView.findViewById(R.id.circle_photo);
+            circle_photo = (ImageView) itemView.findViewById(R.id.image);
             title = (TextView) itemView.findViewById(R.id.title);
         }
     }

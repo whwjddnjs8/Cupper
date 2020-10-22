@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/caramelcandy"
+                android:textSize="33dp"
+                android:text="Cupper">
+
+            </TextView>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/homegif"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@raw/homegif" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:fontFamily="@font/on"
+            android:text="HOME CAFE INTERIOR"
+            android:textAlignment="center"
+            android:textSize="25sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/homecafe11" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/han"
+                        android:text="홈카페의 완성은 화이트 테이블"
+                        android:textAlignment="center"
+                        android:textColor="#D27D32"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="예쁜 홈카페 사진에는 '화이트 테이블'이 빠지지 않고 등장해요. 하얗고 깨끗한 바탕은 어떤 음식이든 예뻐보이게 해주거든요."
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+            </TableRow>
+            <TableRow
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:fontFamily="@font/han"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="평범한 베란다 문, 카페 창문으로 변신!"
+                        android:textAlignment="center"
+                        android:textColor="#D27D32"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="카페 느낌 물씬 나는 격자창 만들기! 평범하디 평범한 우리집 베란다 문도 이것 하나면 카페 같은 배경이 될 수 있어요."
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/homecafe44" />
+
+            </TableRow>
+            <TableRow
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/homecafe33" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/han"
+                        android:text="카페 같은 집, 선반으로 꾸미기"
+                        android:textAlignment="center"
+                        android:textColor="#D27D32"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="홈카페를 즐기다보면 예쁜 컵이나 그릇을 많이 모으게 되잖아요. 하나씩 모은 소중한 컬렉션들을 이왕이면 잘 보이는 곳에 진열하면 좋겠죠? "
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </TableRow>
+            <TableRow
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/han"
+                        android:text="커피머신부터 장만하기"
+                        android:textAlignment="center"
+                        android:textColor="#D27D32"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="카페 못지 않은 커피 맛을 위해선 커피머신부터 잘 골라야 해요. 전자동, 반자동, 캡슐... 종류와 가격대가 다양하기 때문에 잘 알아보고 사는 게 좋아요. "
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/homecafe22" />
+
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -25,7 +25,7 @@ public class CafeDetail extends AppCompatActivity{
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
-    private String name, address, dessert, time, tel, restroom , views, imgone, imgtwo, imgthr, title, price, star, reviewcnt, pos;
+    private String name, address, dessert, time, tel, restroom , views, imgone, imgtwo, imgthr, title, star, reviewcnt, pos;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -33,13 +33,11 @@ public class CafeDetail extends AppCompatActivity{
 
         TextView nametv = findViewById(R.id.name);
         TextView addresstv = findViewById(R.id.address);
-        TextView pay = findViewById(R.id.price);
         TextView starr = findViewById(R.id.star);
         TextView timetv = findViewById(R.id.time);
         TextView teltv = findViewById(R.id.tel);
         TextView toilet = findViewById(R.id.restroom);
         TextView menutv = findViewById(R.id.menutv);
-        TextView paytv = findViewById(R.id.pay);
         ImageButton info = (ImageButton)findViewById(R.id.info);
         ImageButton review =(ImageButton) findViewById(R.id.review);
         ImageButton web = (ImageButton)findViewById(R.id.web);
@@ -51,9 +49,6 @@ public class CafeDetail extends AppCompatActivity{
         addresstv.setText(address);
         dessert = intent.getStringExtra("dessert");
         menutv.setText(dessert);
-        price = intent.getStringExtra("price");
-        pay.setText(price);
-        paytv.setText(price);
         star = intent.getStringExtra("star");
         starr.setText(star);
         time = intent.getStringExtra("time");

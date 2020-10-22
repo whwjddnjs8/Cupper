@@ -5,8 +5,7 @@ import java.util.Map;
 
 public class Community {
     private String title, username, subtext;
-    private int img, views;
-
+    private int img;
     // 커뮤니티 카드에서의 작성자, 제목, 사진
     private int roundimg;
     private String subjecttext, writer;
@@ -16,12 +15,12 @@ public class Community {
 
     public Community() {}
     // 커뮤니티 리스트?
-    public Community(String title, String username, String subtext, int img, int views) {
+    public Community(String title, String username, String subtext, int img) {
         this.title = title;
         this.username = username;
         this.subtext = subtext;
         this.img = img;
-        this.views = views;
+
     }
     public  Community(String title, String subtext, int img) {
         this.title = title;
@@ -73,14 +72,6 @@ public class Community {
 
     public void setImg(int img) {
         this.img = img;
-    }
-
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
     }
 
     public int getRoundimg() {
