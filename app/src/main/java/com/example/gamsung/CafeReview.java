@@ -51,6 +51,8 @@ import java.util.Map;
 public class CafeReview extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageReference;
 
     public static List<Review> ReviewList = new ArrayList<>();
     private RatingBar review_ratingBar;
@@ -185,6 +187,8 @@ public class CafeReview extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 tag1 = hash1.getText().toString();
                 System.out.println(hash1);
+
+
             }
 
             @Override
@@ -203,6 +207,9 @@ public class CafeReview extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 tag2 = hash2.getText().toString();
                 System.out.println(hash2);
+                if(tag2 == null) {
+                    tag2 = " ";
+                }
             }
 
             @Override
@@ -221,6 +228,9 @@ public class CafeReview extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 tag3 = hash3.getText().toString();
                 System.out.println(hash3);
+                if(tag3 == null) {
+                    tag3 = " ";
+                }
             }
 
             @Override
@@ -371,7 +381,6 @@ public class CafeReview extends AppCompatActivity {
                         waiting = null;
                         break;
                 }
-
                 return true;
             }
             @Override
@@ -379,7 +388,6 @@ public class CafeReview extends AppCompatActivity {
                 return super.onDoubleTapEvent(e);
             }
         });
-
         mood1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -677,21 +685,46 @@ public class CafeReview extends AppCompatActivity {
         reviewbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadFile(); //사진이 firebase에 들어감
                 //제출하기 버튼을 누르면 해당 버튼에 해당하는 단어가 DB에 들어감
                 databaseReference = FirebaseDatabase.getInstance().getReference(title+"/");
+
+                if(tag1 == null) {
+                    tag1 = "";
+                }
+                if(tag2 == null) {
+                    tag2 = "";
+                }
+                if(tag3 == null) {
+                    tag3 = "";
+                }
+                uploadFile(); //사진이 firebase에 들어감
+
                 Review review = new Review(text,img,tag1,tag2,tag3,mood, coffee, rdessert, rest,rest2,rest3, rprice, star, waiting);
                 Map<String, Object> reviewValues = review.toMap();
                 reviewValues.putAll(reviewValues);
                 //title밑에 pos밑에 review밑에 reviewcnt를 갱신함
-                    databaseReference.child(pos).child("review").child(reviewcnt).updateChildren(reviewValues).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                databaseReference.child(pos).child("review").child(reviewcnt).updateChildren(reviewValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
                         System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
                         AlertDialog.Builder builder = new AlertDialog.Builder(CafeReview.this);
                         builder.setMessage("리뷰가 작성되었습니다\uD83D\uDE0D");
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
+
+                        Map<String, Object> updateMap = new HashMap<>();
+                        updateMap.put("reviewcnt", String.valueOf(Integer.parseInt(reviewcnt)+1));
+                        databaseReference.child(pos).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+                            }
+                        });
 
                         System.out.println(ReviewList.size());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -725,7 +758,6 @@ public class CafeReview extends AppCompatActivity {
                         extras.putString("price", price);
                         extras.putString("star", star);
                         extras.putString("waiting", waiting);
-                        extras.putString("img",img);
 
                         intent.putExtras(extras);
                         startActivity(intent);
@@ -738,19 +770,7 @@ public class CafeReview extends AppCompatActivity {
                     }
                 });
 
-                Map<String, Object> updateMap = new HashMap<>();
-                updateMap.put("reviewcnt", String.valueOf(Integer.parseInt(reviewcnt)+1));
-                databaseReference.child(pos).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
-                    }
-                });
+
             }
         });
     }
@@ -766,8 +786,19 @@ public class CafeReview extends AppCompatActivity {
         if (requestCode == 200 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePath = data.getData();
             reviewimage.setImageURI(filePath); //이미지 url을 reviewimage라는 이미지뷰에 보여지게함.
-            img = filePath.toString(); //데이터베이스에 이미지 uri를 저장하기 위해 text로 바꿔서 img라는 변수에 이미지 uri를 집어넣음
-            img = getRealPathFromgURI(filePath);
+//            img = filePath.toString(); //데이터베이스에 이미지 uri를 저장하기 위해 text로 바꿔서 img라는 변수에 이미지 uri를 집어넣음
+//            img = getRealPathFromgURI(filePath);
+//            img = storageReference.getDownloadUrl().toString();
+
+//            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                @Override
+//                public void onSuccess(Uri uri) {
+//                    System.out.println("여기는 onactivityResult부분");
+//                    System.out.println("다운로드 URL : " + uri.toString());
+//                    img = uri.toString();
+//                    System.out.println("업로드 완료~!!");
+//                }
+//            });
 
         }
 
@@ -785,20 +816,82 @@ public class CafeReview extends AppCompatActivity {
     private void uploadFile() {
         if (filePath != null) {
             //storage
-            FirebaseStorage storage = FirebaseStorage.getInstance();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmss");
             Date now = new Date();
             String filename = formatter.format(now) + ".png";
+
             //storage 주소와 폴더 파일명을 지정해 준다.
-            final StorageReference storageRef = storage.getReferenceFromUrl("gs://gamsung-e3e5a.appspot.com").child("images/" + filename);
-            storageRef.putFile(filePath)
+            storageReference = storage.getReferenceFromUrl("gs://gamsung-e3e5a.appspot.com").child("images/" + filename);
+            storageReference.putFile(filePath)
                     //성공시
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot> () {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                           Task<Uri> downloadUri = taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                            img = downloadUri.toString();
-                            Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+                            // 업로드 완료 후 다운로드 경로 가져오기
+                            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    System.out.println("잘 불러오는지 확인"+title + ", " + pos + ", " + reviewcnt);
+
+                                    img = uri.toString();
+                                    databaseReference = FirebaseDatabase.getInstance().getReference(title+"/");
+//                                    Review review = new Review(img);
+//                                    Map<String, Object> reviewValues = review.toImg();
+//                                    reviewValues.putAll(reviewValues);
+//
+
+                                    // TODO 나중에 모든 데이터 지우고 넣을 때 사용하면 될거같기도하고? (대표해시태그 3개 갱신할때 사용할 수 있을 것 같기도하고)
+//                                    Map<String, Object> updateMap = new HashMap<>();
+//                                    updateMap.put("img", img);
+//
+//                                    databaseReference.child(pos).child("review").child(reviewcnt).setValue(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            System.out.println("들어갔다! 제발 지워지지마ㅏㅏ!!!!!!!!!!!!!!!!!!!!11");
+//                                        }
+//                                    }).addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            System.out.println("실패!!! Failure!!!!!!!!!!!!!!!!!!!!11");
+//                                        }
+//                                    });
+//                                    Map<String, Object> childUpdates = new HashMap<>();
+//                                    childUpdates.put(pos + "/review/" + reviewcnt + "/", reviewValues);
+//
+//                                    databaseReference.updateChildren(childUpdates);
+//                                    databaseReference.child(pos).child("review").child(reviewcnt).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            System.out.println("들어갔다! 제발 지워지지마ㅏㅏ!!!!!!!!!!!!!!!!!!!!11");
+//                                        }
+//                                    }).addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            System.out.println("실패!!! Failure!!!!!!!!!!!!!!!!!!!!11");
+//                                        }
+//                                    });
+                                    Map<String, Object> updateMap = new HashMap<>();
+                                    updateMap.put("img", img);
+                                    databaseReference.child(pos).child("review").child(reviewcnt).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            System.out.println("다운로드 URI가 들어갔다!!! SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            System.out.println("다운로드 URI Failure!!!!!!!!!!!!!!!!!!!!11");
+                                        }
+                                    });
+                                    System.out.println("여기는 onSuccess 부분입니다");
+                                    System.out.println("다운로드 URL : " + uri.toString());
+                                    System.out.println("업로드 완료~!!");
+                                }
+                            });
+//                            Task<Uri> downloadUri = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+//                            System.out.println(downloadUri.toString());
+//                            img = downloadUri.toString();
+//                            Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
 
                         }
                     })
@@ -826,4 +919,3 @@ public class CafeReview extends AppCompatActivity {
 
 
 }
-
