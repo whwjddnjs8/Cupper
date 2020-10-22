@@ -27,9 +27,10 @@ import java.util.Map;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
     private Context context;
-    public String[] hashtagarr = new String[50];
-    public int[] hashintarr = new int[50];
+    public String[] hashtagarr = new String[100];
+    //    public int[] hashintarr = new int[50];
     private String htag1, htag2, htag3;
+    public String utitle, upos;
     private int i = 0;
     public List<Review> reviewList;
     private CafeReviewList cafeReviewList = new CafeReviewList();
@@ -137,11 +138,21 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             hashtagarr[j] = htag1;
             hashtagarr[j+1] = htag2;
             hashtagarr[j+2]= htag3;
+
+//            cafeReviewList.hashchange(reviewList, hashtagarr, hashintarr);
         }
         else {
             hashtagarr[j+(j*2)]= htag1;
             hashtagarr[j+(j*2)+1] = htag2;
             hashtagarr[j+(j*2)+2] = htag3;
+//            cafeReviewList.hashchange(reviewList, hashtagarr, hashintarr);
+        }
+
+        if(j == reviewList.size()-1) {
+            System.out.println("4번째인데...");
+            System.out.println(utitle+upos);
+            cafeReviewList.hashchange(reviewList, hashtagarr);
+            puthashtag();
         }
 
         System.out.println(hashtagarr[i]+hashtagarr[i+1]+hashtagarr[i+2]+hashtagarr[i+3]
@@ -149,9 +160,23 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                 +hashtagarr[i+9]+hashtagarr[i+10]+hashtagarr[i+11]+hashtagarr[i+12]+hashtagarr[i+13]+hashtagarr[i+14]); // #아메리카노#스콘 등이 들어감, 테스트용
 
 
-        System.out.println(hashtagarr[0]+" " +hashintarr[0] +"," + hashintarr[1] +"," + hashintarr[2]+"," +
-                hashintarr[3]+"," + hashintarr[4] +"," + hashintarr[5] +"," + hashintarr[6]+"," +
-                hashintarr[7]+"," + hashintarr[8]);
+//        System.out.println(hashtagarr[0]+" " +hashintarr[0] +"," + hashintarr[1] +"," + hashintarr[2]+"," +
+//                hashintarr[3]+"," + hashintarr[4] +"," + hashintarr[5] +"," + hashintarr[6]+"," +
+//                hashintarr[7]+"," + hashintarr[8]);
 
+    }
+
+    // 대표 해시태그 3개 넣어주는 함수 puthashtag
+    public void puthashtag() {
+        System.out.println("데이터베이스에 들어가는곳인데 title은?" + utitle + "pos는?" + upos);
+        databaseReference = FirebaseDatabase.getInstance().getReference(utitle + "/");
+        Hashtag hashtag = new Hashtag(hashtagarr[0], hashtagarr[1], hashtagarr[2]);
+        Map<String, Object> hashtagValues = hashtag.toMap();
+        hashtagValues.putAll(hashtagValues);
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(upos+"/hashtag", hashtagValues);
+
+        databaseReference.updateChildren(childUpdates);
     }
 }

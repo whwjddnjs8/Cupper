@@ -1,5 +1,6 @@
 package com.example.gamsung;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.media.Image;
 import android.media.Rating;
@@ -38,9 +39,10 @@ public class CafeReviewList extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private RecyclerView recyclerView;
-    private String name,title,pos,cafe,star,reviewcnt;
+    private String name,cafe,star,reviewcnt;
+    public String title, pos;
     private ReviewAdapter reviewAdapter;
-
+    public int[] hashintarr = new int[100];
     private List<Review> reviewList;
     RatingBar ratingBar;
 
@@ -89,7 +91,10 @@ public class CafeReviewList extends AppCompatActivity {
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
-                    hashchange();
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+//                    hashchange();
 //                    databaseReference = FirebaseDatabase.getInstance().getReference(title+"/"+pos+"/review");
 //                    Map<String, Object> hashValues = new HashMap<>();
 //                    hashValues.put("review", new Review(reviewAdapter.hashtagarr[0],reviewAdapter.hashtagarr[1],reviewAdapter.hashtagarr[2]));
@@ -103,21 +108,30 @@ public class CafeReviewList extends AppCompatActivity {
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
-                    hashchange();
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+//                    hashchange();
                 }
                 else if(title.equals("망원동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(), allReview.getStar(), allReview.getLikecnt(), allReview.getUsername(),
                             allReview.getCafe(), allReview.getText(), allReview.getTag1(), allReview.getTag2(), allReview.getTag3());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
-                    hashchange();
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+//                    hashchange();
                 }
                 else if(title.equals("연남동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
-                    hashchange();
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+//                    hashchange();
                 }
 
             }
@@ -128,25 +142,25 @@ public class CafeReviewList extends AppCompatActivity {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
-                    hashchange();
+//                    hashchange();
                 }
                 else if(title.equals("익선동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
-                    hashchange();
+//                    hashchange();
                 }
                 else if(title.equals("망원동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
-                    hashchange();
+//                    hashchange();
                 }
                 else if(title.equals("연남동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
                             allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
                     reviewList.add(r);
-                    hashchange();
+//                    hashchange();
                 }
             }
 
@@ -163,25 +177,100 @@ public class CafeReviewList extends AppCompatActivity {
         reviewAdapter.notifyDataSetChanged();
 
     }
-    public void hashchange() { // ReviewAdapter에서 문자열에 해시태그를 넣어주고 CafeReviewList에서 배열을 조정함
-
+    public void hashchange(List<Review> list, String[] stag) { // ReviewAdapter에서 문자열에 해시태그를 넣어주고 CafeReviewList에서 배열을 조정함
+        String s;
         System.out.println("여기는 Hashchange함수!!!!!");
-        for(int i=0;i<reviewList.size()*3;i++){
-            if(reviewAdapter.hashtagarr[i] == reviewAdapter.hashtagarr[i+1]) {
-                reviewAdapter.hashintarr[i] += 1; //#스콘 #스콘 같으면 처음#스콘의 옆 숫자 배열에 1을 증가
-                for(int k=1;k<reviewList.size()*3;k++) {
-                    reviewAdapter.hashtagarr[i+k] = reviewAdapter.hashtagarr[i+k+1]; // 두번째에 세번째 겹치게함
-                    reviewAdapter.hashintarr[i+k] = reviewAdapter.hashintarr[i+k+1];
+        System.out.println(stag[0]+stag[1]+stag[2]+stag[3]
+                +stag[4]+stag[5]+stag[6]+stag[7]+stag[8]
+                +stag[9]+stag[10]+stag[11]+stag[12]+stag[13]+stag[14]);
+        System.out.println("리스트사이즈는?!!?!?!?!?" +list.size());
+
+        for(int i=0;i<list.size()*3;i++){ // 숫자 들어가는 배열 1로 초기화
+            hashintarr[i] = 1;
+        }
+
+        // 비교해서 같은 태그 구분?하기
+        for(int i = 0; i < list.size()*3; i++){
+            for(int j = i + 1; j<list.size()*3-1; j++) {
+                System.out.println(hashintarr[0]);
+                System.out.println(stag[i] + stag[j]);
+                s = stag[i];
+                if(stag[j] == null) {
+                    break;
+                }
+                if(s.equalsIgnoreCase(stag[j])) {
+                    if(stag[j].equals("")) {
+                        continue;
+                    }
+                    System.out.println("비교는 되는거니?");
+                    hashintarr[i] += 1;
+                    for(int k = j; k < list.size()*3;k++) {
+                        stag[k] = stag[k+1];
+                        hashintarr[k] = hashintarr[k+1];
+                    }
+                    j--;
+
+                }
+            }
+        }
+//        for(int i=0;i<reviewList.size()*3;i++){
+//            if(reviewAdapter.hashtagarr[i] == reviewAdapter.hashtagarr[i+1]) {
+//                reviewAdapter.hashintarr[i] += 1; //#스콘 #스콘 같으면 처음#스콘의 옆 숫자 배열에 1을 증가
+//                for(int k=1;k<reviewList.size()*3;k++) {
+//                    reviewAdapter.hashtagarr[i+k] = reviewAdapter.hashtagarr[i+k+1]; // 두번째에 세번째 겹치게함
+//                    reviewAdapter.hashintarr[i+k] = reviewAdapter.hashintarr[i+k+1];
+//                }
+//            }
+//        }
+
+        System.out.println(stag[0]+" " +hashintarr[0] +"," + stag[1]+" " +hashintarr[1] +"," + stag[2]+" " +hashintarr[2]+"," +
+                stag[3]+" " +hashintarr[3]+"," + stag[4]+" " + hashintarr[4] +"," + stag[5]+" " +hashintarr[5] +"," + stag[6]+" " + hashintarr[6]+"," +
+                stag[7]+" " +hashintarr[7]+"," + stag[8]+" " +hashintarr[8]+"," + stag[9]+" " +hashintarr[9]+"," + stag[10]+" " +hashintarr[10]+"," +
+                stag[11]+" " +hashintarr[11] +"," + stag[12]+" " +hashintarr[12]+"," +stag[13]+" " +hashintarr[13]+"," +stag[14]+" " +hashintarr[14]);
+
+        String tempstr;
+        int temp = 0;
+
+        // 내림차순 정렬
+        for(int i = 0; i < hashintarr.length-1; i++) {
+//            if(hashintarr[i] == 0) {
+//                break;
+//            }
+            for(int j = i+1; j < hashintarr.length-1; j++) {
+                if(hashintarr[i] < hashintarr[j]) {
+                    temp = hashintarr[i];
+                    tempstr = stag[i];
+                    hashintarr[i] = hashintarr[j];
+                    stag[i] = stag[j];
+                    hashintarr[j] = temp;
+                    stag[j] = tempstr;
                 }
             }
         }
 
-        System.out.println(reviewAdapter.hashtagarr[0]+" " +reviewAdapter.hashintarr[0] +"," + reviewAdapter.hashintarr[1] +"," + reviewAdapter.hashintarr[2]+"," +
-                reviewAdapter.hashintarr[3]+"," + reviewAdapter.hashintarr[4] +"," + reviewAdapter.hashintarr[5] +"," + reviewAdapter.hashintarr[6]+"," +
-                reviewAdapter.hashintarr[7]+"," +reviewAdapter.hashintarr[8]);
+        // 출력
+        for(int i = 0; i < hashintarr.length-1; i++) {
+            System.out.print(stag[i] + " : ");
+            System.out.println(hashintarr[i]);
+
+        }
 
 
-
+//        databaseReference.child(pos).child("hashtag").updateChildren(hashtagValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+//                AlertDialog.Builder builder = new AlertDialog.Builder(CafeReviewList.this);
+//                builder.setMessage("데이터베이스에 들어갔습니당\uD83D\uDE0D");
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+//            }
+//        });
     }
 
 }

@@ -72,6 +72,11 @@ public class BeansDetail extends AppCompatActivity {
                             , allBeans.getText(),allBeans.getImage(),String.valueOf(beansList.size()));
                     beansList.add(b);
                 }
+                else if(group.equals("신맛중간원두")) {
+                    Beans b = new Beans(allBeans.getName(), allBeans.getNote(), allBeans.getPrice()
+                            , allBeans.getText(),allBeans.getImage(),String.valueOf(beansList.size()));
+                    beansList.add(b);
+                }
                 else if(group.equals("신맛적은원두")) {
                     Beans b = new Beans(allBeans.getName(), allBeans.getNote(), allBeans.getPrice()
                             , allBeans.getText(),allBeans.getImage(),String.valueOf(beansList.size()));
@@ -94,6 +99,11 @@ public class BeansDetail extends AppCompatActivity {
                     beansList.add(b);
                 }
                 else if(group.equals("신맛높은원두")) {
+                    Beans b = new Beans(allBeans.getName(), allBeans.getNote(), allBeans.getPrice()
+                            , allBeans.getText(),allBeans.getImage(),String.valueOf(beansList.size()));
+                    beansList.add(b);
+                }
+                else if(group.equals("신맛중간원두")) {
                     Beans b = new Beans(allBeans.getName(), allBeans.getNote(), allBeans.getPrice()
                             , allBeans.getText(),allBeans.getImage(),String.valueOf(beansList.size()));
                     beansList.add(b);
