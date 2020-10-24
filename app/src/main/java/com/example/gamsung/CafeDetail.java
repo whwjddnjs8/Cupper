@@ -26,6 +26,7 @@ public class CafeDetail extends AppCompatActivity{
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
     private String name, address, dessert, time, tel, restroom , views, imgone, imgtwo, imgthr, title, star, reviewcnt, pos;
+    private String hashtag1, hashtag2, hashtag3;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -38,6 +39,10 @@ public class CafeDetail extends AppCompatActivity{
         TextView teltv = findViewById(R.id.tel);
         TextView toilet = findViewById(R.id.restroom);
         TextView menutv = findViewById(R.id.menutv);
+        TextView hashtag1tv = findViewById(R.id.tag1);
+        TextView hashtag2tv = findViewById(R.id.tag2);
+        TextView hashtag3tv = findViewById(R.id.tag3);
+
         ImageButton info = (ImageButton)findViewById(R.id.info);
         ImageButton review =(ImageButton) findViewById(R.id.review);
         ImageButton web = (ImageButton)findViewById(R.id.web);
@@ -57,6 +62,12 @@ public class CafeDetail extends AppCompatActivity{
         teltv.setText(tel);
         restroom = intent.getStringExtra("restroom");
         toilet.setText(restroom);
+        hashtag1 = intent.getStringExtra("hashtag1");
+        hashtag1tv.setText(hashtag1);
+        hashtag2 = intent.getStringExtra("hashtag2");
+        hashtag2tv.setText(hashtag2);
+        hashtag3 = intent.getStringExtra("hashtag3");
+        hashtag3tv.setText(hashtag3);
         views = intent.getStringExtra("views");
         title = intent.getStringExtra("title");
         reviewcnt = intent.getStringExtra("reviewcnt");
@@ -129,16 +140,16 @@ public class CafeDetail extends AppCompatActivity{
 
         @Override
         public Fragment getItem(int position) {
-                switch (position) {
-                    case 0:
-                        return SlidePageFragment.newInstance(0, imgone);
-                    case 1:
-                        return SlidePageFragment.newInstance(1, imgtwo);
-                    case 2:
-                        return SlidePageFragment.newInstance(2, imgthr);
-                    default:
-                        return null;
-                }
+            switch (position) {
+                case 0:
+                    return SlidePageFragment.newInstance(0, imgone);
+                case 1:
+                    return SlidePageFragment.newInstance(1, imgtwo);
+                case 2:
+                    return SlidePageFragment.newInstance(2, imgthr);
+                default:
+                    return null;
+            }
         }
         @Override
         public int getCount() {

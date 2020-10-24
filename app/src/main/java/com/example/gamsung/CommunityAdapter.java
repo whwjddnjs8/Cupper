@@ -32,6 +32,8 @@ import java.util.Map;
 public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyViewHolder> {
     private Context context;
     private List<Community> communityList;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private List<Community> communitycardList;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username,title,subtext,views;
@@ -63,7 +65,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         final Community community = communityList.get(position);
         holder.image.setImageResource(community.getImg());
         holder.title.setText(community.getTitle());
@@ -76,7 +78,9 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
                 Bundle extras = new Bundle();
                 extras.putString("title", title);
                 if(title.equals("CUPPER 커뮤니티 바로가기")) {
-                    Intent intent = new Intent(view.getContext(), CommunityMain.class);
+                    String communitycnt = community.getCommunitycnt();
+                    extras.putString("communitycnt", communitycnt);
+                   Intent intent = new Intent(view.getContext(), CommunityMain.class);
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }

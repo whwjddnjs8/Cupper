@@ -1,15 +1,24 @@
 package com.example.gamsung;
 
 public class AllCommunity {
-    private String userDisplayname, useremail, subject, material, text;
+    private String userDisplayname, useremail, subject, material, text,communitycnt,photo;
 
-//    public String getPhoto() {
-//        return photo;
-//    }
-//
-//    public void setPhoto(String photo) {
-//        this.photo = photo;
-//    }
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+
+    public String getCommunitycnt() {
+        return communitycnt;
+    }
+
+    public void setCommunitycnt(String communitycnt) {
+        this.communitycnt = communitycnt;
+    }
 
     public String getUserDisplayname() {
         return userDisplayname;

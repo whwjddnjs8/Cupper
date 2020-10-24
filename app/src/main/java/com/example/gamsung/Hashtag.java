@@ -6,6 +6,10 @@ import java.util.Map;
 public class Hashtag {
     String hashtag1, hashtag2, hashtag3;
 
+    public Hashtag() {
+
+    }
+
     public Hashtag(String hashtag1, String hashtag2, String hashtag3) {
         this.hashtag1 = hashtag1;
         this.hashtag2 = hashtag2;

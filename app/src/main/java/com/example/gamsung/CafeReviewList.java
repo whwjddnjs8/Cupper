@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.media.Rating;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +43,7 @@ public class CafeReviewList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private String name,cafe,star,reviewcnt;
     public String title, pos;
+    private String username, profile;
     private ReviewAdapter reviewAdapter;
     public int[] hashintarr = new int[100];
     private List<Review> reviewList;
@@ -57,6 +60,17 @@ public class CafeReviewList extends AppCompatActivity {
         star = intent.getStringExtra("star"); //별점을 가져옴.
         cafe = intent.getStringExtra("cafe");
         reviewcnt = intent.getStringExtra("reviewcnt");
+
+        // 로그인 정보를 가지고 옴
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account != null) {
+            Log.d("로그인 유지 중 닉네임", account.getDisplayName() + ", " + account.getEmail() + ", " + account.getPhotoUrl());
+
+//            Glide.with(this).load(account.getPhotoUrl()).circleCrop().into(user_profile);
+        }
+        username = account.getDisplayName();
+        profile = account.getPhotoUrl().toString();
+
         ImageButton button = findViewById(R.id.write);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         reviewList = new ArrayList<>();
@@ -65,15 +79,19 @@ public class CafeReviewList extends AppCompatActivity {
         recyclerView.setAdapter(reviewAdapter);
         prepareReview();
 
+        // 글쓰기(연필) 버튼 클릭시
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CafeReview.class);
                 Bundle extras = new Bundle();
+                // 작성자 이름(username)이랑 작성자 프로필(profile)이 같이 보내져야함
                 extras.putString("name", name);
                 extras.putString("title", title);
                 extras.putString("pos", pos);
                 extras.putString("reviewcnt", reviewcnt);
+                extras.putString("username", username);
+                extras.putString("profile", profile);
                 intent.putExtras(extras);
                 startActivity(intent);
             }

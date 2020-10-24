@@ -15,8 +15,9 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
     private List<Cafe> cafeList = new ArrayList<>();
+    private List<AllCafe> allCafeList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private SearchAdapter searchAdapter, searchAdapter1;
+    private SearchAdapter searchAdapter;
 
     private ImageView imageView;
     private EditText search;
@@ -29,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         where = intent.getIntExtra("where", 0);
+
 
         recyclerView = findViewById(R.id.search_recycler);
         if(cafeList.size() > 0) cafeList.clear();
@@ -63,6 +65,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 searchword = search.getText().toString();
                 System.out.println(searchword);
+
                 if(cafeList.size() > 0) cafeList.clear();
                 if(where == 1) {
                     if(cafeList.size() > 0) cafeList.clear();

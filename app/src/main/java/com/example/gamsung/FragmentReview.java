@@ -74,66 +74,6 @@ public class FragmentReview extends Fragment {
     }
 
     public void prepareReview(){
-        final int[] imgs = new int[] {
-                R.drawable.jwjw,R.drawable.hcafe8,R.drawable.jwjw,R.drawable.cafe1, R.drawable.jyjy, R.drawable.hcafe25
-        };
-        /*
-        //firebase에 리뷰 root에 해당하는 모든리스트 가져옴
-        databaseReference.child("리뷰").addChildEventListener(new ChildEventListener(){
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                AllReview allReview = dataSnapshot.getValue(AllReview.class);
-                Review r = new Review(imgs[2], imgs[3],allReview.getLikecnt(),allReview.getUsername(),
-                        allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
-                reviewList.add(r);
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                AllReview allReview = dataSnapshot.getValue(AllReview.class);
-                Review r = new Review(imgs[2], imgs[3],allReview.getLikecnt(),allReview.getUsername(),
-                        allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
-                reviewList.add(r);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String a) {}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-
-        });
-        reviewAdapter.notifyDataSetChanged();
-
-
-         */
-
-        String img = "https://firebasestorage.googleapis.com/v0/b/gamsung-e3e5a.appspot.com/o/cafeimg%2Fyeonnam%2Fycafe21.JPG?alt=media&token=d5c3bc9d-6bb1-49ce-87f0-036f9683e6a5";
-/*
-        for(int i = 1; i < CafeReview.allReviewList.size(); i++) {
-            if((i % 2) != 0) {
-                Review r = new Review(imgs[4], CafeReview.allReviewList.get(i).getImgtwo(), "지녕이",
-                        CafeReview.allReviewList.get(i).getCafename(),
-                        CafeReview.allReviewList.get(i).getText(), "#맛있다", "#혜화", "#히히");
-                reviewList.add(r);
-            }
-            else if ((i % 2) == 0) {
-                Review r = new Review(imgs[0], CafeReview.allReviewList.get(i).getImgtwo(), "정원이",
-                        CafeReview.allReviewList.get(i).getCafename(),
-                        CafeReview.allReviewList.get(i).getText(), "#룰루", "#망원동", "#좋아요");
-                reviewList.add(r);
-            }
-        }
-
- */
-/*
-        Review r = new Review(imgs[2], ,"조정원",
-                "광합성카페","처음으로 간 카페였는데 되게 괜찮았던 카페~~~!!","#연남동","#컵케익","#맛이또");
-        reviewList.add(r);
-        */
-
-
 
     }
 

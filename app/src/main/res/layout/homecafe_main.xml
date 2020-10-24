@@ -50,7 +50,8 @@
             android:layout_height="match_parent">
 
             <TableRow
-                android:padding="5dp">
+                android:padding="5dp"
+                >
 
                 <ImageView
                     android:id="@+id/imageView14"
@@ -90,7 +91,8 @@
 
             </TableRow>
             <TableRow
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginTop="10sp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -129,7 +131,8 @@
 
             </TableRow>
             <TableRow
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginTop="10sp">
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -168,7 +171,8 @@
 
             </TableRow>
             <TableRow
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginTop="10sp">
 
                 <LinearLayout
                     android:layout_width="0dp"

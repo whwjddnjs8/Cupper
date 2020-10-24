@@ -6,14 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Review { //리뷰 리스트에 나와야하는 것들
-    int profile,photo,likecnt;
-    private String username,cafe,text,tag1,tag2,tag3,img;
+    int photo,likecnt;
+    // 사용자 이름, 사용자 프로필(사진), 카페 이름, 리뷰내용, 태그1, 태그2, 태그3, 올린 사진
+    private String username,profile,cafe,text,tag1,tag2,tag3,img;
     private String mood, coffee,dessert, rdessert, rest, rest2, rest3, price,rprice, star, waiting;
     private String cafetag1, cafetag2, cafetag3;
     //dessert는 케이크, 마카롱 등 rdessert는 리뷰 남길때 선택한 디저트에대한 평가
     //price는 아메리카노 5000원 rprice는 리뷰 남길때 비싼지 가격대비 괜찮은지에 대한 평가
 
-    public Review(int profile, int photo, String username, String cafe,String text, String tag1, String tag2, String tag3) {
+    public Review(String profile, int photo, String username, String cafe,String text, String tag1, String tag2, String tag3) {
         this.profile = profile;
         this.photo = photo;
         this.username = username;
@@ -25,7 +26,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
     }
 
 
-    public Review(int profile, String img, String star, int likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3) {
+    public Review(String profile, String img, String star, int likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3) {
         this.profile = profile;
         this.star = star;
         this.img = img;
@@ -55,6 +56,26 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.star = star;
         this.waiting = waiting;
     }
+    public Review(String profile, String username, String cafe, String text,String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting) {
+        this.profile = profile;
+        this.username = username;
+        this.cafe = cafe;
+        this.text = text;
+        this.img = img;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+        this.mood = mood;
+        this.coffee = coffee;
+        this.rdessert = rdessert;
+        this.rest = rest;
+        this.rest2 = rest2;
+        this.rest3 = rest3;
+        this.rprice = rprice;
+        this.star = star;
+        this.waiting = waiting;
+    }
+
     public Review(String text, String mood, String coffee, String rdessert, String rest, String price, String star, String waiting) {
         this.text = text;
         this.mood = mood;
@@ -224,11 +245,11 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.cafe = cafe;
     }
 
-    public int getProfile() {
+    public String getProfile() {
         return profile;
     }
 
-    public void setProfile(int profile) {
+    public void setProfile(String profile) {
         this.profile = profile;
     }
 

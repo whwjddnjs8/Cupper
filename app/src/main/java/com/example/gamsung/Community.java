@@ -7,8 +7,8 @@ public class Community {
     private String title, username, subtext;
     private int img;
     // 커뮤니티 카드에서의 작성자, 제목, 사진
-    private int roundimg;
-    private String subjecttext, writer;
+//    private int roundimg;
+//    private String subjecttext, writer;
 
     // 사진, 작성자(카드에 보여지기위해), 작성자이메일(데이터베이스에 저장되기위해), 제목, 재료, 글내용, 커뮤니티 전체 글 개수
     private String photo, userDisplayname, useremail, subject, material, text, communitycnt;
@@ -28,19 +28,31 @@ public class Community {
         this.img = img;
     }
 
-    public Community(int roundimg, String subjecttext, String writer) {
-        this.roundimg = roundimg;
-        this.subjecttext = subjecttext;
-        this.writer = writer;
-    }
+//    public Community(int roundimg, String subjecttext, String writer) {
+//        this.roundimg = roundimg;
+//        this.subjecttext = subjecttext;
+//        this.writer = writer;
+//    }
 
-    public Community(String userDisplayname, String useremail, String subject, String material, String text) {
+    public Community(String userDisplayname, String photo,String useremail, String subject, String material, String text) {
         this.userDisplayname = userDisplayname;
+        this.photo = photo;
         this.useremail = useremail;
         this.subject = subject;
         this.material = material;
         this.text = text;
     }
+
+    public Community(String userDisplayname, String photo,String useremail, String subject, String material, String text, String communitycnt) {
+        this.userDisplayname = userDisplayname;
+        this.photo = photo;
+        this.useremail = useremail;
+        this.subject = subject;
+        this.material = material;
+        this.text = text;
+        this.communitycnt = communitycnt;
+    }
+
 
     public String getTitle() {
         return title;
@@ -74,29 +86,29 @@ public class Community {
         this.img = img;
     }
 
-    public int getRoundimg() {
-        return roundimg;
-    }
-
-    public void setRoundimg(int roundimg) {
-        this.roundimg = roundimg;
-    }
-
-    public String getSubjecttext() {
-        return subjecttext;
-    }
-
-    public void setSubjecttext(String subjecttext) {
-        this.subjecttext = subjecttext;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
+//    public int getRoundimg() {
+//        return roundimg;
+//    }
+//
+//    public void setRoundimg(int roundimg) {
+//        this.roundimg = roundimg;
+//    }
+//
+//    public String getSubjecttext() {
+//        return subjecttext;
+//    }
+//
+//    public void setSubjecttext(String subjecttext) {
+//        this.subjecttext = subjecttext;
+//    }
+//
+//    public String getWriter() {
+//        return writer;
+//    }
+//
+//    public void setWriter(String writer) {
+//        this.writer = writer;
+//    }
 
     public String getSubtext() {
         return subtext;
@@ -156,12 +168,13 @@ public class Community {
 
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-//        result.put("photo", photo);
+        result.put("photo", photo);
         result.put("userDisplayname",userDisplayname);
         result.put("useremail",useremail);
         result.put("subject",subject);
         result.put("material",material);
         result.put("text", text);
+        result.put("communitycnt",communitycnt);
         return result;
     }
 }

@@ -56,7 +56,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             tag3 = view.findViewById(R.id.tag3);
             btnLike=view.findViewById(R.id.btnLike);
             Likecnt = view.findViewById(R.id.likecnt);
-
+            context = view.getContext();
         }
     }
 
@@ -81,7 +81,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         final Review review = reviewList.get(position);
-        holder.profile.setImageResource(review.getProfile());
+        Glide.with(context).load(review.getProfile()).circleCrop().into(holder.profile);
+//        holder.profile.setImageResource(review.getProfile());
         String url = review.getImg();
         Glide.with(holder.itemView.getContext()).load(url).into(holder.photo);
         holder.username.setText(review.getUsername());

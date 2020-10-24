@@ -2,6 +2,8 @@ package com.example.gamsung;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +25,10 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView subjecttext, writer;
-        public RoundedImageView roundedImageView;
+        public ImageView roundedImageView;
         public  MyViewHolder(View itemView) {
             super(itemView);
-            roundedImageView = (RoundedImageView) itemView.findViewById(R.id.roundimage);   // 작성자가 올린 사진
+            roundedImageView = (ImageView) itemView.findViewById(R.id.roundimage);   // 작성자가 올린 사진
             subjecttext = (TextView) itemView.findViewById(R.id.subjecttext);   // 제목
             writer = (TextView)itemView.findViewById(R.id.writer);  // 작성자 이름(이메일 X)
         }
@@ -49,26 +51,37 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        System.out.println(position);
+        System.out.println("카드뷰"+position);
         final Community community = communitycardList.get(position);
         // 카드뷰의 이미지, 제목 가져오기
-        holder.roundedImageView.setImageResource(community.getRoundimg());
-        holder.subjecttext.setText(community.getSubjecttext());
-        holder.writer.setText(community.getWriter());
-//        String url = community.getRoundimg();
-//        Glide.with(holder.itemView.getContext()).load(url).into(holder.roundedImageView);
+//        holder.roundedImageView.setImageResource(community.getRoundimg());
+//        holder.subjecttext.setText(community.getSubjecttext());
+//        holder.writer.setText(community.getWriter());
+        holder.subjecttext.setText(community.getSubject());
+        holder.writer.setText(community.getUserDisplayname());
+        String url = community.getPhoto();
+        Glide.with(holder.itemView.getContext()).load(url).into(holder.roundedImageView);
         holder.roundedImageView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                String writer = community.getWriter();
-                Bundle extras = new Bundle();
-                extras.putString("writer", writer);
-//                Intent intent = new Intent(view.getContext(), CafeActivity.class);
-//                intent.putExtras(extras);
-//                view.getContext().startActivity(intent);
-            }
-        });
-    }
+                @Override
+                public void onClick(View view) {
+                    String text = community.getText();
+                    String material = community.getMaterial();
+                    String userDisplayname = community.getUserDisplayname();
+                    String photo = community.getPhoto();
+                    String subjecttext = community.getSubject();
+                   Bundle extras = new Bundle();
+                   extras.putString("subject",subjecttext);
+                   extras.putString("userDisplayname", userDisplayname);
+                   extras.putString("photo",photo);
+                   extras.putString("material",material);
+                   extras.putString("text",text);
+                   Intent intent = new Intent(view.getContext(), CommunityDetail.class);
+
+                   intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }
 
 
 }

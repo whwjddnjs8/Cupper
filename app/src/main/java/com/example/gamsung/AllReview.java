@@ -1,11 +1,11 @@
 package com.example.gamsung;
 
 public class AllReview {
-    int profile,photo,likecnt;
-    private String username,cafe,text,tag1,tag2,tag3;
+    int photo,likecnt;
+    private String username,profile,cafe,text,tag1,tag2,tag3;
     private String img,star;
 
-    public int getProfile() {
+    public String getProfile() {
         return profile;
     }
 

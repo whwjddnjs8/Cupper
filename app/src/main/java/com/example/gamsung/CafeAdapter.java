@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.service.autofill.Dataset;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,18 +26,30 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> {
     private Context context;
+    private CafeActivity cafeActivity;
     private List<Cafe> cafeList;
+    //    private List<Hashtag> hashtagList;
+    Bundle extras = new Bundle();
+    private int i = 0;
+    public String hashtag1, hashtag2, hashtag3;
+    private String hashtag[] = new String[50];
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference2 = firebaseDatabase.getReference();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView views, toilet, name, price, star;
@@ -82,23 +96,23 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         holder.star.setText(cafe.getStar());
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                String key = cafe.getName();
+            public void onClick(final View view) {
                 databaseReference = FirebaseDatabase.getInstance().getReference(cafeList.get(position).getTitle()+'/');
                 Map<String, Object> updateMap = new HashMap<>();
                 updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
                 databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
 
-                            public void onFailure(@NonNull Exception e) {
-                                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
                     }
                 });
+
                 String name = cafe.getName();
                 String address = cafe.getAddress();
                 String dessert = cafe.getDessert();
@@ -114,8 +128,14 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 String star = cafe.getStar();
                 String reviewcnt = cafe.getReviewcnt();
                 String pos = cafe.getPos();
+                System.out.println("포지션이 뭔가요? " + String.valueOf(position));
+                String hashtag1 = cafeActivity.hashtag[position*3];
+                System.out.println("해시태그 1 : " + hashtag1);
+                String hashtag2 = cafeActivity.hashtag[position*3+1];
+                System.out.println("해시태그 2 : " + hashtag2);
+                String hashtag3 = cafeActivity.hashtag[position*3+2];
+                System.out.println("해시태그 3 : " + hashtag3);
 
-                Bundle extras = new Bundle();
                 extras.putString("name", name);
                 extras.putString("address", address);
                 extras.putString("dessert", dessert);
@@ -131,6 +151,9 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 extras.putString("star", star);
                 extras.putString("reviewcnt", reviewcnt);
                 extras.putString("pos", pos);
+                extras.putString("hashtag1", hashtag1);
+                extras.putString("hashtag2", hashtag2);
+                extras.putString("hashtag3", hashtag3);
                 Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
                 intent.putExtras(extras);
                 view.getContext().startActivity(intent);

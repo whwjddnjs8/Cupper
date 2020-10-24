@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity{
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {

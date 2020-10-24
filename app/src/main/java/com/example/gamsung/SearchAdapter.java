@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+ // CafeAdapter와 동일하되, 추가 Search부분만 추가함.
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
     private Context context;
     private List<Cafe> cafeList;

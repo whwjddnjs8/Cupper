@@ -67,6 +67,7 @@ public class CafeReview extends AppCompatActivity {
     private String tag1, tag2, tag3; //해시태그 String버전
     private String mood, coffee, dessert,rdessert, rest,rest2,rest3, price, rprice,waiting, star, text, reviewcnt,img;
     //dessert:케이크,마카롱 이런거 rdessert:리뷰로 남긴 디저트의 맛
+    private String username, profile;
     private Button mood1, mood2, mood3, mood4, mood5, mood6, mood7, mood8; //분위기 버튼 8개
     private Button coffee1, coffee2, coffee3, dessert1, dessert2, dessert3; //커피와 디저트 버튼 각각 3개씩
     private Button rgood, rbad; //화장실 좋은지 나쁜지
@@ -140,6 +141,8 @@ public class CafeReview extends AppCompatActivity {
         imgone = intent.getStringExtra("imgone");
         imgtwo = intent.getStringExtra("imgtwo");
         imgthr = intent.getStringExtra("imgthr");
+        username = intent.getStringExtra("username");
+        profile = intent.getStringExtra("profile");
 
         imagebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -688,6 +691,7 @@ public class CafeReview extends AppCompatActivity {
                 //제출하기 버튼을 누르면 해당 버튼에 해당하는 단어가 DB에 들어감
                 databaseReference = FirebaseDatabase.getInstance().getReference(title+"/");
 
+                // 태그에 아무것도 입력하지 않으면 공백이 들어가게 함(대표해시태그 할 때 null값이면 안되기때문에)
                 if(tag1 == null) {
                     tag1 = "";
                 }
@@ -699,7 +703,8 @@ public class CafeReview extends AppCompatActivity {
                 }
                 uploadFile(); //사진이 firebase에 들어감
 
-                Review review = new Review(text,img,tag1,tag2,tag3,mood, coffee, rdessert, rest,rest2,rest3, rprice, star, waiting);
+                Review review = new Review(profile, username, name, text, img, tag1, tag2, tag3, mood, coffee, rdessert,rest, rest2, rest3, rprice, star, waiting);
+//                Review review = new Review(text,img,tag1,tag2,tag3,mood, coffee, rdessert, rest,rest2,rest3, rprice, star, waiting);
                 Map<String, Object> reviewValues = review.toMap();
                 reviewValues.putAll(reviewValues);
                 //title밑에 pos밑에 review밑에 reviewcnt를 갱신함

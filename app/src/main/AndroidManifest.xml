@@ -37,6 +37,8 @@
         <activity android:name=".BannerCoffee"></activity>
         <activity android:name=".BeansWebView"></activity>
         <activity android:name=".CommunityHomecafe"></activity>
+        <activity android:name=".CommunitySearch"></activity>
+        <activity android:name=".CommunityDetail"></activity>
     </application>
 
 </manifest>

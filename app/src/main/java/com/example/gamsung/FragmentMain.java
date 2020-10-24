@@ -305,7 +305,7 @@ public class FragmentMain extends Fragment {
             circleList2.add(c);
             c = new Circle("브런치", covers[6]);
             circleList2.add(c);
-            c = new Circle("타르트", covers[7]);
+            c = new Circle("케이크", covers[7]);
             circleList2.add(c);
         }
     }
