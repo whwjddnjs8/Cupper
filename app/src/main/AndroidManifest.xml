@@ -24,6 +24,7 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".CafeActivity"></activity>
+        <activity android:name=".DessertActivity"></activity>
         <activity android:name=".CafeDetail"></activity>
         <activity android:name=".CafeReview"></activity>
         <activity android:name=".SearchActivity"></activity>

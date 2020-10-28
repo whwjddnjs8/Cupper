@@ -372,7 +372,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:padding="30px"
+                        android:padding="63px"
                         app:srcCompat="@drawable/time" />
 
                     <LinearLayout
@@ -399,8 +399,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:text="TextView"
+                            android:lines="2"
                             android:padding="5px"
+                            android:gravity="center"
+                            android:text="TextView"
                             android:textAlignment="center"
                             android:textSize="20sp" />
                         <View

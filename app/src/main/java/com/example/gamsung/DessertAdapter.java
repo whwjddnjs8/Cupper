@@ -2,46 +2,33 @@ package com.example.gamsung;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.service.autofill.Dataset;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> {
+public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.MyViewHolder>{
     private Context context;
-    private CafeActivity cafeActivity;
-    private List<Cafe> cafeList;
+    private DessertActivity dessertActivity;
+    private List<Cafe> dessertcafelist;
     Bundle extras = new Bundle();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -60,26 +47,26 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
             star = view.findViewById(R.id.star);
         }
     }
-    public CafeAdapter(Context context, List<Cafe> list) {       // 생성자
+    public DessertAdapter(Context context, List<Cafe> list) {       // 생성자
         this.context = context;
-        cafeList = list;
+        dessertcafelist = list;
     }
 
     @Override
-    public int getItemCount() {     // 데이터가 총 몇개인지 알려주는 함수
-        return cafeList.size();
+    public int getItemCount() {
+        return dessertcafelist.size();
     }
 
     @NonNull
     @Override
-    public CafeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DessertAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cafe_item, parent, false);
-        return new CafeAdapter.MyViewHolder(itemView);
+        return new DessertAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        final Cafe cafe = cafeList.get(position);
+        final Cafe cafe = dessertcafelist.get(position);
         /** 여기가 데이터베이스에서 이미지 받아와서 세팅하는 곳 **/
         String url = cafe.getImageone();
         Glide.with(holder.itemView.getContext()).load(url).into(holder.image);
@@ -92,10 +79,10 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view) {
-                databaseReference = FirebaseDatabase.getInstance().getReference(cafeList.get(position).getTitle()+'/');
+                databaseReference = FirebaseDatabase.getInstance().getReference(dessertcafelist.get(position).getTitle()+'/');
                 Map<String, Object> updateMap = new HashMap<>();
                 updateMap.put("views", String.valueOf(Integer.parseInt(cafe.getViews())+1));
-                databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                databaseReference.child(cafe.getPos()).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
@@ -124,11 +111,11 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 String reviewcnt = cafe.getReviewcnt();
                 String pos = cafe.getPos();
                 System.out.println("포지션이 뭔가요? " + String.valueOf(position));
-                String hashtag1 = cafeActivity.hashtag[position*3];
+                String hashtag1 = dessertActivity.hashtag[position*3];
                 System.out.println("해시태그 1 : " + hashtag1);
-                String hashtag2 = cafeActivity.hashtag[position*3+1];
+                String hashtag2 = dessertActivity.hashtag[position*3+1];
                 System.out.println("해시태그 2 : " + hashtag2);
-                String hashtag3 = cafeActivity.hashtag[position*3+2];
+                String hashtag3 = dessertActivity.hashtag[position*3+2];
                 System.out.println("해시태그 3 : " + hashtag3);
 
                 extras.putString("name", name);
@@ -149,10 +136,12 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 extras.putString("hashtag1", hashtag1);
                 extras.putString("hashtag2", hashtag2);
                 extras.putString("hashtag3", hashtag3);
+
                 Intent intent = new Intent(view.getContext(), CafeDetail.class); // 예를들어 혜화카페페이지로 넘어감
                 intent.putExtras(extras);
                 view.getContext().startActivity(intent);
             }
         });
     }
+
 }

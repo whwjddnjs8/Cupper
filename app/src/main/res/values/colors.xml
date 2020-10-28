@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#8c8c8c</color>
     <color name="colorAccent">#D81B60</color>
     <color name="text_like_counter">#2b5a83</color>
+    <color name="btn_pressed">#20000000</color>
+    <color name="btn_nopressed">#00ff0000</color>
 </resources>

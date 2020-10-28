@@ -36,6 +36,9 @@ public class FragmentMain extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     public static List<AllCafe> allCafeList = new ArrayList<>();
+    public static List<Cafe> cafeList = new ArrayList<>();
+    public List<Hashtag> hashtagList = new ArrayList<>();
+    public static String[] hashtag = new String[150];
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
 
@@ -59,6 +62,8 @@ public class FragmentMain extends Fragment {
         circleadapter = new CircleAdapter(getActivity(), circleList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         recyclerView.setAdapter(circleadapter);
+        hashtag = new String[150];
+        hashtagList.clear();
         prepareCircles(1);
 
         circleList2 = new ArrayList<>();
@@ -104,19 +109,61 @@ public class FragmentMain extends Fragment {
         databaseReference.child("혜화").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("혜화");
-                    System.out.println(allCafeList.size());
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
+//                    allCafeList.add(allCafe);
+//                    allCafeList.get(allCafeList.size() - 1).setTitle("혜화");
+//                    System.out.println(allCafeList.size());
                 }
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if(allCafeList.size() < 40) {
-                    AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("혜화");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
                 }
             }
 
@@ -139,19 +186,59 @@ public class FragmentMain extends Fragment {
         databaseReference.child("망원동").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("망원동");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("망원동");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
                 }
             }
 
@@ -174,19 +261,63 @@ public class FragmentMain extends Fragment {
         databaseReference.child("익선동").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
+//                    allCafeList.add(allCafe);
+//                    allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
+//                    allCafeList.add(allCafe);
+//                    allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
                 }
             }
 
@@ -208,19 +339,63 @@ public class FragmentMain extends Fragment {
         databaseReference.child("연남동").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
+//                    allCafeList.add(allCafe);
+//                    allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AllCafe allCafe = dataSnapshot.getValue(AllCafe.class);
-                if(allCafeList.size() < 40) {
-                    allCafeList.add(allCafe);
-                    allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
+                AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if(snapshot.getKey().toString().equals("hashtag")) {
+                        if(hashtagList.size() < 40 ) {
+                            Hashtag gettag = snapshot.getValue(Hashtag.class);
+                            Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
+                            hashtagList.add(addtag);
+                            System.out.println("해시태그 size 테스트 : " + hashtagList.size());
+                            System.out.println("해시태그 잘 들어갔나요? : " + hashtagList.get(hashtagList.size() - 1).getHashtag1() + hashtagList.get(hashtagList.size() - 1).getHashtag2() +
+                                    hashtagList.get(hashtagList.size() - 1).getHashtag3());
+                            hashtag[(hashtagList.size() - 1) * 3] = hashtagList.get(hashtagList.size() - 1).getHashtag1();
+                            hashtag[(hashtagList.size() - 1) * 3 + 1] = hashtagList.get(hashtagList.size() - 1).getHashtag2();
+                            hashtag[(hashtagList.size() - 1) * 3 + 2] = hashtagList.get(hashtagList.size() - 1).getHashtag3();
+                            System.out.println("해시태그 배열에도 들어갔는지 확인 : " + hashtag[(hashtagList.size() - 1) * 3] + hashtag[(hashtagList.size() - 1) * 3 + 1] +
+                                    hashtag[(hashtagList.size() - 1) * 3 + 2]);
+                            System.out.println("해시태그!!!!!??!?!?!? : " + snapshot.getValue().toString());
+                        }
+                    }
+                }
+                if(cafeList.size() < 40) {
+                    Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
+                            allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
+                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                    cafeList.add(cafe);
+//                    allCafeList.add(allCafe);
+//                    allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
                 }
 
             }

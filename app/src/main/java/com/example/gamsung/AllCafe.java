@@ -2,6 +2,11 @@ package com.example.gamsung;
 
 public class AllCafe {
     String name, address, dessert, price,tag1,tag2,tag3, time, tel, restroom, views, imageone,imagetwo, imagethr, title, reviewcnt, pos;
+    Hashtag hashtag;
+
+    public Hashtag getHashtag() {
+        return hashtag;
+    }
 
     public String getPrice() {
         return price;

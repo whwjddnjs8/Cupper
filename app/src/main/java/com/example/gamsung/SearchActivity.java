@@ -16,6 +16,8 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     private List<Cafe> cafeList = new ArrayList<>();
     private List<AllCafe> allCafeList = new ArrayList<>();
+    public static String[] hashtag = new String[150];
+    public static int pos;
     private RecyclerView recyclerView;
     private SearchAdapter searchAdapter;
 
@@ -90,17 +92,21 @@ public class SearchActivity extends AppCompatActivity {
     private void prepareData(int n) {
         if(cafeList.size() > 0) cafeList.clear();
 
-        for(int i = 0; i < FragmentMain.allCafeList.size(); i++) {
-            if(FragmentMain.allCafeList.get(i).getName().contains(""+searchword+"")) {
-                System.out.println(FragmentMain.allCafeList.get(i).getName());
-                System.out.println(FragmentMain.allCafeList.get(i).getPos());
-                Cafe cafe = new Cafe(FragmentMain.allCafeList.get(i).getName(), FragmentMain.allCafeList.get(i).getAddress(),
-                        FragmentMain.allCafeList.get(i).getDessert(), FragmentMain.allCafeList.get(i).getTime(),
-                        FragmentMain.allCafeList.get(i).getTel(), FragmentMain.allCafeList.get(i).getRestroom(),
-                        FragmentMain.allCafeList.get(i).getViews(), FragmentMain.allCafeList.get(i).getImageone(),
-                        FragmentMain.allCafeList.get(i).getImagetwo(), FragmentMain.allCafeList.get(i).getImagethr(),
-                        FragmentMain.allCafeList.get(i).getTitle(), "아메리카노5000원", "4.2점",
-                        FragmentMain.allCafeList.get(i).getReviewcnt(), FragmentMain.allCafeList.get(i).getPos());
+        for(int i = 0; i < FragmentMain.cafeList.size(); i++) {
+            if(FragmentMain.cafeList.get(i).getName().contains(""+searchword+"")) {
+                System.out.println(FragmentMain.cafeList.get(i).getName());
+                System.out.println(FragmentMain.cafeList.get(i).getPos());
+                System.out.println(FragmentMain.hashtag[i*3] + FragmentMain.hashtag[i*3+1] + FragmentMain.hashtag[i*3+2]);
+                hashtag[i*3] = FragmentMain.hashtag[i*3];
+                hashtag[i*3+1] = FragmentMain.hashtag[i*3+1];
+                hashtag[i*3+2] = FragmentMain.hashtag[i*3+2];
+                Cafe cafe = new Cafe(FragmentMain.cafeList.get(i).getName(), FragmentMain.cafeList.get(i).getAddress(),
+                        FragmentMain.cafeList.get(i).getDessert(), FragmentMain.cafeList.get(i).getTime(),
+                        FragmentMain.cafeList.get(i).getTel(), FragmentMain.cafeList.get(i).getToilet(),
+                        FragmentMain.cafeList.get(i).getViews(), FragmentMain.cafeList.get(i).getImageone(),
+                        FragmentMain.cafeList.get(i).getImagetwo(), FragmentMain.cafeList.get(i).getImagethr(),
+                        FragmentMain.cafeList.get(i).getTitle(), "아메리카노5000원", "4.2점",
+                        FragmentMain.cafeList.get(i).getReviewcnt(), FragmentMain.cafeList.get(i).getPos());
                 cafeList.add(cafe);
             }
         }

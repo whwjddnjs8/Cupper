@@ -52,9 +52,16 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.myViewHold
                 String title = circle.getTitle();
                 Bundle extras = new Bundle();
                 extras.putString("title", title);
-                Intent intent = new Intent(view.getContext(), CafeActivity.class);
-                intent.putExtras(extras);
-                view.getContext().startActivity(intent);
+                if(title.equals("마카롱") || title.equals("티라미수") || title.equals("브런치") || title.equals("케이크")) {
+                    Intent intent = new Intent(view.getContext(), DessertActivity.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(view.getContext(), CafeActivity.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
     }
