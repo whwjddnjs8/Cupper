@@ -62,7 +62,7 @@ public class Community_tool extends AppCompatActivity {
         glassbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CafeReview.class); //배너 클릭했을때 원두에 대한 설명 나오게 함
+                Intent intent = new Intent(getApplicationContext(), CommunityGlass.class); //배너 클릭했을때 원두에 대한 설명 나오게 함
                 startActivity(intent);
             }
         });

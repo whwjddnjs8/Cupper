@@ -1,14 +1,23 @@
 package com.example.gamsung;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -29,7 +38,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     private Context context;
     public String[] hashtagarr = new String[100];
     //    public int[] hashintarr = new int[50];
-    private String htag1, htag2, htag3;
+    private String htag1, htag2, htag3,button;
+   // public TableLayout table;
+    public TableRow tablerow,tablerow1,tablerow2,tablerow3; // 더보기 숨겨야할 테이블 row 4개
+    public ImageButton btn;
     public String utitle, upos;
     private int i = 0;
     public List<Review> reviewList;
@@ -38,12 +50,20 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username,cafe,text,tag1,tag2,tag3,Likecnt,star;
-        public ImageButton btnLike;
+        public TextView mood,coffee,rdessert,rest,rest2,rest3,rprice,waiting;
+        public TextView more,more2; // 더보기
+        public ImageButton btnLike; //좋아요 버튼
         public ImageView profile,photo;
         RatingBar ratingBar;
 
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
+            more = view.findViewById(R.id.more);
+            more2 = view.findViewById(R.id.more2);
+            tablerow = view.findViewById(R.id.tablerow);
+            tablerow1 = view.findViewById(R.id.tablerow1);
+            tablerow2 = view.findViewById(R.id.tablerow2);
+            tablerow3 = view.findViewById(R.id.tablerow3);
             ratingBar = view.findViewById(R.id.ratingbar);
             profile = view.findViewById(R.id.profile);
             username = view.findViewById(R.id.username);
@@ -54,9 +74,18 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             tag1 = view.findViewById(R.id.tag1);
             tag2 = view.findViewById(R.id.tag2);
             tag3 = view.findViewById(R.id.tag3);
-            btnLike=view.findViewById(R.id.btnLike);
+            btnLike = view.findViewById(R.id.btnLike);
             Likecnt = view.findViewById(R.id.likecnt);
+            mood = view.findViewById(R.id.mood);
+            coffee = view.findViewById(R.id.coffee);
+            rdessert = view.findViewById(R.id.rdessert);
+            rest = view.findViewById(R.id.rest1);
+            rest2 = view.findViewById(R.id.rest2);
+            rest3 = view.findViewById(R.id.rest3);
+            rprice = view.findViewById(R.id.price);
+            waiting = view.findViewById(R.id.waiting);
             context = view.getContext();
+
         }
     }
 
@@ -73,13 +102,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_content, parent, false);
-
         return new ReviewAdapter.MyViewHolder(itemView);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final Review review = reviewList.get(position);
         Glide.with(context).load(review.getProfile()).circleCrop().into(holder.profile);
 //        holder.profile.setImageResource(review.getProfile());
@@ -92,8 +120,29 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.tag1.setText(review.getTag1());
         holder.tag2.setText(review.getTag2());
         holder.tag3.setText(review.getTag3());
+        holder.mood.setText(review.getMood());
+        holder.coffee.setText(review.getCoffee());
+        holder.rdessert.setText(review.getRdessert());
+        holder.rest.setText(review.getRest());
+        holder.rest2.setText(review.getRest2());
+        holder.rest3.setText(review.getRest3());
+        holder.rprice.setText(review.getRprice());
+        holder.waiting.setText(review.getWaiting());
         holder.Likecnt.setText(String.valueOf(review.getLikecnt()));
         holder.ratingBar.setRating(Float.valueOf(review.getStar()));
+
+        //더보기 누르면 리뷰때 썼던 버튼들 다 나오게함!
+        holder.more.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                holder.more2.setVisibility(holder.more2.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                tablerow.setVisibility(tablerow.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                tablerow1.setVisibility(tablerow1.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                tablerow2.setVisibility(tablerow2.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                tablerow3.setVisibility(tablerow3.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            }
+        });
 
 //        for(int i=0;i<reviewList.size()*3;i++){ // 숫자 들어가는 배열 1로 초기화
 //            hashintarr[i] = 1;
@@ -106,14 +155,38 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         System.out.println("여기는 어댑터 갱신해주는곳인가????/");
         arrayadd(htag1, htag2, htag3, position);
 
-        /*
+
         holder.btnLike.setOnClickListener(new View.OnClickListener() { // 리뷰 리스트에 있는 리뷰 좋아요 눌렀을 때
             @Override
             public void onClick(View view) {
-                databaseReference = FirebaseDatabase.getInstance().getReference().child(""); //child안에있는곳으로 likecnt 증가
+
+                Bundle bundle = ((Activity)context).getIntent().getExtras();
+                final String pos = bundle.getString("pos");
+                final String title = bundle.getString("title");
+                System.out.println("잘불러오니?" + pos + title );
+
+                databaseReference = FirebaseDatabase.getInstance().getReference().child(title + "/"); //child안에있는곳으로 likecnt 증가
                 Map<String, Object> updateMap = new HashMap<>();
-                updateMap.put("likecnt", String.valueOf(review.getLikecnt())+1);
-                databaseReference.child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                if(holder.btnLike.getTag() != null && holder.btnLike.getTag().toString().equals("red")) {
+                    holder.btnLike.setImageResource(R.drawable.ic_heart_outline_grey);
+                    holder.btnLike.setTag("greyheart");
+                    //좋아요의 수 1 감소
+                    String cnt = String.valueOf(Integer.parseInt(review.getLikecnt()));
+                    updateMap.put("likecnt", cnt);
+                    holder.Likecnt.setText(cnt);
+                    Toast.makeText(context, "좋아요를 취소했습니다!", Toast.LENGTH_SHORT).show();
+                } else {
+                    holder.btnLike.setImageResource(R.drawable.ic_heart_red);
+                    holder.btnLike.setTag("red");
+                    //좋아요의 수 1 증가
+                    String cnt2 = String.valueOf(Integer.parseInt(review.getLikecnt())+1);
+                    updateMap.put("likecnt", cnt2);
+                    holder.Likecnt.setText(cnt2);
+                    Toast.makeText(context, "리뷰에 좋아요를 눌렀습니다!", Toast.LENGTH_SHORT).show();
+
+                }
+                databaseReference.child(pos).child("review").child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
@@ -128,10 +201,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             }
         });
 
-         */
-
-
     }
+
 
     public void arrayadd(String htag1, String htag2, String htag3, int j) {
         System.out.println("여기는 arrayadd 함수다!!!!");

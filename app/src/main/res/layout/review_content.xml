@@ -74,7 +74,7 @@
 
                     <TextView
                         android:id="@+id/star"
-                        android:layout_marginLeft="1dp"
+                        android:layout_marginLeft="3dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="TextView" />
@@ -101,10 +101,175 @@
         android:gravity="left"
         android:text="TEXT(리뷰내용)"
         android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#c8c8c8"
+        android:gravity="left"
+        android:text="더보기" />
+    <TextView
+        android:id="@+id/more2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#c8c8c8"
+        android:gravity="left"
+        android:visibility="visible"
+        android:text="클릭하시면 더 상세한 리뷰를 볼 수 있습니다" />
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <TableRow android:id="@+id/tablerow"
+            android:visibility="gone"
+            android:layout_marginBottom="5sp">
+
+            <TextView
+                android:id="@+id/moodt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="분위기 : "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/mood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="심플"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+
+            <TextView
+                android:id="@+id/coffeet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="커피 맛 : "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/coffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="단맛"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+        </TableRow>
+        <TableRow android:id="@+id/tablerow1"
+            android:layout_marginLeft="20sp"
+            android:visibility="gone"
+            android:layout_marginBottom="5sp">
+
+            <TextView
+                android:id="@+id/textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="디저트 맛 : "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/rdessert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:text="ㅎ"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+
+        </TableRow>
+        <TableRow android:id="@+id/tablerow2"
+            android:visibility="gone"
+            android:layout_marginBottom="5sp">
+
+            <TextView
+                android:id="@+id/textview4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="화장실 : "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/rest1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="좋아요"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+
+            <TextView
+                android:id="@+id/rest2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ㅎ"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+
+
+            <TextView
+                android:id="@+id/rest3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="좋아요"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+        </TableRow>
+        <TableRow android:id="@+id/tablerow3"
+            android:visibility="gone"
+            android:layout_marginBottom="5sp">
+
+            <TextView
+                android:id="@+id/textview3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="가격은 : "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ㅎ"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+
+            <TextView
+                android:id="@+id/textview5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="웨이팅은 : "
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="좋아요"
+                android:textAlignment="center"
+                android:textColor="#F06464" />
+        </TableRow>
+    </TableLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
@@ -237,7 +402,6 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="7dp"
         android:background="#D6D6D6" />
 </LinearLayout>

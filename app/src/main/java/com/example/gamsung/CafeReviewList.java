@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class CafeReviewList extends AppCompatActivity {
     private String name,cafe,star,reviewcnt;
     public String title, pos;
     private String username, profile;
+    private String mood,coffee;
     private ReviewAdapter reviewAdapter;
     public int[] hashintarr = new int[100];
     private List<Review> reviewList;
@@ -53,6 +55,9 @@ public class CafeReviewList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review_list);
+        final TextView more = (TextView)findViewById(R.id.more);
+       // final TextView moodt = (TextView)findViewById(R.id.moodt);
+        final TableLayout table = (TableLayout)findViewById(R.id.table);
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         title = intent.getStringExtra("title");
@@ -60,6 +65,9 @@ public class CafeReviewList extends AppCompatActivity {
         star = intent.getStringExtra("star"); //별점을 가져옴.
         cafe = intent.getStringExtra("cafe");
         reviewcnt = intent.getStringExtra("reviewcnt");
+        mood = intent.getStringExtra("mood");
+        coffee = intent.getStringExtra("coffee");
+
 
         // 로그인 정보를 가지고 옴
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
@@ -79,6 +87,13 @@ public class CafeReviewList extends AppCompatActivity {
         recyclerView.setAdapter(reviewAdapter);
         prepareReview();
 
+//        more.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                table.setVisibility(table.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+//            }
+//        });
+
         // 글쓰기(연필) 버튼 클릭시
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +107,8 @@ public class CafeReviewList extends AppCompatActivity {
                 extras.putString("reviewcnt", reviewcnt);
                 extras.putString("username", username);
                 extras.putString("profile", profile);
+                extras.putString("mood",mood);
+                extras.putString("coffee",coffee);
                 intent.putExtras(extras);
                 startActivity(intent);
             }
@@ -106,24 +123,19 @@ public class CafeReviewList extends AppCompatActivity {
                 AllReview allReview = dataSnapshot.getValue(AllReview.class);
                 if(title.equals("혜화")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
                     reviewAdapter.utitle = title;
                     reviewAdapter.upos = pos;
-//                    hashchange();
-//                    databaseReference = FirebaseDatabase.getInstance().getReference(title+"/"+pos+"/review");
-//                    Map<String, Object> hashValues = new HashMap<>();
-//                    hashValues.put("review", new Review(reviewAdapter.hashtagarr[0],reviewAdapter.hashtagarr[1],reviewAdapter.hashtagarr[2]));
-//                    Review review = new Review(reviewAdapter.hashtagarr[0],reviewAdapter.hashtagarr[1],reviewAdapter.hashtagarr[2]);
-//                    Map<String, Object> hashValues = review.toMap();
-//                    hashValues.putAll(hashValues);
 
                 }
                 else if(title.equals("익선동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
@@ -132,8 +144,9 @@ public class CafeReviewList extends AppCompatActivity {
 //                    hashchange();
                 }
                 else if(title.equals("망원동")) {
-                    Review r = new Review(allReview.getProfile(), allReview.getImg(), allReview.getStar(), allReview.getLikecnt(), allReview.getUsername(),
-                            allReview.getCafe(), allReview.getText(), allReview.getTag1(), allReview.getTag2(), allReview.getTag3());
+                    Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
@@ -143,7 +156,8 @@ public class CafeReviewList extends AppCompatActivity {
                 }
                 else if(title.equals("연남동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
@@ -158,25 +172,29 @@ public class CafeReviewList extends AppCompatActivity {
                 AllReview allReview = dataSnapshot.getValue(AllReview.class);
                 if(title.equals("혜화")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
 //                    hashchange();
                 }
                 else if(title.equals("익선동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
 //                    hashchange();
                 }
                 else if(title.equals("망원동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
 //                    hashchange();
                 }
                 else if(title.equals("연남동")) {
                     Review r = new Review(allReview.getProfile(), allReview.getImg(),allReview.getStar(),allReview.getLikecnt(),allReview.getUsername(),
-                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3());
+                            allReview.getCafe(),allReview.getText(),allReview.getTag1(),allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),allReview.getRprice(),allReview.getWaiting());
                     reviewList.add(r);
 //                    hashchange();
                 }

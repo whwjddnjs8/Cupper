@@ -39,6 +39,7 @@
         <activity android:name=".CommunityHomecafe"></activity>
         <activity android:name=".CommunitySearch"></activity>
         <activity android:name=".CommunityDetail"></activity>
+        <activity android:name=".CommunityGlass"></activity>
     </application>
 
 </manifest>

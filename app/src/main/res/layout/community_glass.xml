@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/glass" />
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90sp"
+            android:layout_gravity="center"
+            android:text="to complete the homecafe \n a glass"
+            android:textAlignment="center"
+            android:fontFamily="@font/lora"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/border5"
+            android:textSize="22sp" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/lora"
+        android:layout_marginTop="128sp"
+        android:layout_gravity="center"
+        android:text="GO!" />
+
+
+</FrameLayout>
+

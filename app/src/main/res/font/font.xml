@@ -31,6 +31,10 @@
         android:fontStyle="normal"
         android:fontWeight="1000"
         android:font="@font/han" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="1000"
+        android:font="@font/lora" />
 
 
 </font-family>

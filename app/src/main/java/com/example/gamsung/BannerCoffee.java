@@ -1,8 +1,15 @@
 package com.example.gamsung;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,9 +41,6 @@ public class BannerCoffee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.banner_coffee);
 
-//        TextView t = (TextView)findViewById(R.id.textView);
-//        Animation animation = AnimationUtils.loadAnimation(this,R.anim.translate);
-//        t.startAnimation(animation);
         final TextView t1 = (TextView)findViewById(R.id.textView1);
         final TextView t2 = (TextView)findViewById(R.id.textView2);
         final TextView t3 = (TextView)findViewById(R.id.textView3);
@@ -47,6 +51,7 @@ public class BannerCoffee extends AppCompatActivity {
         final TextView t8 = (TextView)findViewById(R.id.textView8);
         final TextView t9 = (TextView)findViewById(R.id.textView9);
         final TextView t10 = (TextView)findViewById(R.id.textView10);
+
         ImageView image = (ImageView)findViewById(R.id.image);
         ImageButton imageButton = (ImageButton)findViewById(R.id.buttonpoint) ;
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.translate);

@@ -1,9 +1,50 @@
 package com.example.gamsung;
 
 public class AllReview {
-    int photo,likecnt;
-    private String username,profile,cafe,text,tag1,tag2,tag3;
+    int photo;
+    private String username,profile,cafe,text,tag1,tag2,tag3,likecnt;
+    private String mood, coffee,dessert, rdessert, rest, rest2, rest3, price,rprice, waiting;
     private String img,star;
+
+    public String getMood() {
+        return mood;
+    }
+
+    public String getCoffee() {
+        return coffee;
+    }
+
+    public String getDessert() {
+        return dessert;
+    }
+
+    public String getRdessert() {
+        return rdessert;
+    }
+
+    public String getRest() {
+        return rest;
+    }
+
+    public String getRest2() {
+        return rest2;
+    }
+
+    public String getRest3() {
+        return rest3;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getRprice() {
+        return rprice;
+    }
+
+    public String getWaiting() {
+        return waiting;
+    }
 
     public String getProfile() {
         return profile;
@@ -17,7 +58,7 @@ public class AllReview {
         return photo;
     }
 
-    public int getLikecnt() {
+    public String getLikecnt() {
         return likecnt;
     }
 
