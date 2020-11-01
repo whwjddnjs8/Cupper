@@ -105,7 +105,7 @@ public class SearchActivity extends AppCompatActivity {
                         FragmentMain.cafeList.get(i).getTel(), FragmentMain.cafeList.get(i).getToilet(),
                         FragmentMain.cafeList.get(i).getViews(), FragmentMain.cafeList.get(i).getImageone(),
                         FragmentMain.cafeList.get(i).getImagetwo(), FragmentMain.cafeList.get(i).getImagethr(),
-                        FragmentMain.cafeList.get(i).getTitle(), "아메리카노5000원", "4.2점",
+                        FragmentMain.cafeList.get(i).getTitle(), FragmentMain.cafeList.get(i).getAvgstar(),
                         FragmentMain.cafeList.get(i).getReviewcnt(), FragmentMain.cafeList.get(i).getPos());
                 cafeList.add(cafe);
             }

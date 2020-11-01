@@ -73,7 +73,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("티라미수")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -81,7 +81,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("브런치")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -89,7 +89,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("케이크")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -97,7 +97,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 }
             }
@@ -148,7 +148,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "망원동", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("티라미수")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -156,7 +156,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "망원동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("브런치")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -164,7 +164,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "망원동", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("케이크")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -172,7 +172,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "망원동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 }
             }
@@ -223,7 +223,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "익선동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("티라미수")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -231,7 +231,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "익선동", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("브런치")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -239,7 +239,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "익선동", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("케이크")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -247,7 +247,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "익선동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 }
             }
@@ -298,7 +298,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "연남동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("티라미수")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -306,7 +306,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("브런치")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -314,7 +314,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "연남동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 } else if (title.equals("케이크")) {
                     AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
@@ -322,7 +322,7 @@ public class DessertActivity extends AppCompatActivity {
 
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), dataSnapshot.getKey());
+                            allcafe.getImagethr(), "연남동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), dataSnapshot.getKey());
                     dessertcafelist.add(cafe);
                 }
             }

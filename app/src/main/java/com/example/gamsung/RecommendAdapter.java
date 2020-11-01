@@ -88,7 +88,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.MyVi
                 String imgthr = cafe.getImagethr();
                 String title = cafe.getTitle();
                 String price = cafe.getPrice();
-                String star = cafe.getStar();
+                String star = cafe.getAvgstar();
                 String reviewcnt = cafe.getReviewcnt();
                 String pos = cafe.getPos();
                 switch (cafe.getTitle()) {

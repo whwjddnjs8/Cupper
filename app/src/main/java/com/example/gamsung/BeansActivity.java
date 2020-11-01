@@ -45,6 +45,15 @@ public class BeansActivity extends AppCompatActivity {
         TextView bean4 = (TextView) findViewById(R.id.bean4);
         TextView bean5 = (TextView) findViewById(R.id.bean5);
         TextView beanbut = (TextView) findViewById(R.id.beanbut);
+        TextView cupper = (TextView)findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         bean1.setOnClickListener(new View.OnClickListener() {
             @Override

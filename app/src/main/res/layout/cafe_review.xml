@@ -154,9 +154,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:max="5"
+                android:stepSize="0.1"
                 android:numStars="5"
                 android:rating="3"
-                android:stepSize="0.5" />
+                />
 
             <ImageButton
                 android:id="@+id/add"

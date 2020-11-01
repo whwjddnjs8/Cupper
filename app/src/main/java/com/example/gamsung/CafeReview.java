@@ -65,7 +65,7 @@ public class CafeReview extends AppCompatActivity {
     private EditText hash1,hash2,hash3; //xml에서 가져온 edittext 해시태그
     private String name = null, title;
     private String tag1, tag2, tag3; //해시태그 String버전
-    private String mood, coffee, dessert,rdessert, rest,rest2,rest3, price, rprice,waiting, star, text, reviewcnt,img;
+    private String mood, coffee, dessert,rdessert, rest,rest2,rest3, price, rprice,waiting, star, text, reviewcnt,img,likecnt;
     //dessert:케이크,마카롱 이런거 rdessert:리뷰로 남긴 디저트의 맛
     private String username, profile;
     private Button mood1, mood2, mood3, mood4, mood5, mood6, mood7, mood8; //분위기 버튼 8개
@@ -143,6 +143,7 @@ public class CafeReview extends AppCompatActivity {
         imgthr = intent.getStringExtra("imgthr");
         username = intent.getStringExtra("username");
         profile = intent.getStringExtra("profile");
+        likecnt = intent.getStringExtra("likecnt");
 
         imagebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -701,9 +702,13 @@ public class CafeReview extends AppCompatActivity {
                 if(tag3 == null) {
                     tag3 = "";
                 }
+                if(likecnt == null) {
+                    likecnt = String.valueOf(0); //likecnt 0 으로 초기화
+                }
+
                 uploadFile(); //사진이 firebase에 들어감
 
-                Review review = new Review(profile, username, name, text, img, tag1, tag2, tag3, mood, coffee, rdessert,rest, rest2, rest3, rprice, star, waiting);
+                Review review = new Review(profile,username, name, text, img, tag1, tag2, tag3, mood, coffee, rdessert,rest, rest2, rest3, rprice, star, waiting,likecnt);
 //                Review review = new Review(text,img,tag1,tag2,tag3,mood, coffee, rdessert, rest,rest2,rest3, rprice, star, waiting);
                 Map<String, Object> reviewValues = review.toMap();
                 reviewValues.putAll(reviewValues);
@@ -732,7 +737,7 @@ public class CafeReview extends AppCompatActivity {
                         });
 
                         System.out.println(ReviewList.size());
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), FragmentReview.class);
                         Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
                         extras.putString("name", name);
                         extras.putString("address", address);
@@ -763,6 +768,7 @@ public class CafeReview extends AppCompatActivity {
                         extras.putString("price", price);
                         extras.putString("star", star);
                         extras.putString("waiting", waiting);
+                        extras.putString("likecnt",likecnt);
 
                         intent.putExtras(extras);
                         startActivity(intent);

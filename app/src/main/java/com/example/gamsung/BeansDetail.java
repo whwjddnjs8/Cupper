@@ -38,6 +38,15 @@ public class BeansDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beans_detail);
 
+        TextView cupper = (TextView)findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
         Intent intent = getIntent();
         group = intent.getStringExtra("group");
         System.out.println(group);

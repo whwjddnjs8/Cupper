@@ -41,6 +41,15 @@ public class Community_tool extends AppCompatActivity {
         ImageButton machinebut =(ImageButton)findViewById(R.id.machinebut);
         ImageButton cutlerybut =(ImageButton)findViewById(R.id.cutlerybut);
         ImageView banner = (ImageView)findViewById(R.id.banner);
+        TextView cupper = (TextView)findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         banner.setOnClickListener(new View.OnClickListener() {

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,8 +48,9 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView views, toilet, name, price, star;
+        public TextView views, toilet, name, star;
         public ImageView image;
+        public RatingBar ratingbar;
 
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
@@ -56,8 +58,8 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
             views = view.findViewById(R.id.views);
             toilet = view.findViewById(R.id.toilet);
             name = view.findViewById(R.id.name);
-            price = view.findViewById(R.id.price);
-            star = view.findViewById(R.id.star);
+           star = view.findViewById(R.id.star);
+           ratingbar = view.findViewById(R.id.ratingbar);
         }
     }
     public CafeAdapter(Context context, List<Cafe> list) {       // 생성자
@@ -87,8 +89,8 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         holder.views.setText(cafe.getViews());
         holder.toilet.setText(cafe.getToilet());
         holder.name.setText(cafe.getName());
-        holder.price.setText(cafe.getPrice());
-        holder.star.setText(cafe.getStar());
+        holder.star.setText(cafe.getAvgstar());
+        holder.ratingbar.setRating(Float.valueOf(cafe.getAvgstar()));
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view) {
@@ -119,8 +121,7 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 String imgtwo = cafe.getImagetwo();
                 String imgthr = cafe.getImagethr();
                 String title = cafe.getTitle();
-                String price = cafe.getPrice();
-                String star = cafe.getStar();
+                String star = cafe.getAvgstar();
                 String reviewcnt = cafe.getReviewcnt();
                 String pos = cafe.getPos();
                 System.out.println("포지션이 뭔가요? " + String.valueOf(position));
@@ -142,7 +143,6 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
                 extras.putString("imgtwo", imgtwo);
                 extras.putString("imgthr", imgthr);
                 extras.putString("title", title);
-                extras.putString("price", price);
                 extras.putString("star", star);
                 extras.putString("reviewcnt", reviewcnt);
                 extras.putString("pos", pos);

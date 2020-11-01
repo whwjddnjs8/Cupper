@@ -213,7 +213,7 @@ public class CommunityActivity extends AppCompatActivity {
                         });
 
                         //System.out.println(communitycardList.size());
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), CommunityMain.class);
                         Bundle extras = new Bundle();
                         extras.putString("userDisplayname", userDisplayname);
                         extras.putString("useremail", useremail);

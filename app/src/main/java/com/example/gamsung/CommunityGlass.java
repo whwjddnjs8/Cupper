@@ -37,6 +37,7 @@ public class CommunityGlass extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.image);
         TextView text = (TextView)findViewById(R.id.text);
 
+
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.translate);
         image.startAnimation(animation);
         text.startAnimation(animation);

@@ -33,6 +33,15 @@ public class CommunityHomecafe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homecafe_main);
 
+        TextView cupper = (TextView)findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
         ImageView homegif = (ImageView) findViewById(R.id.homegif);
         Glide.with(this).load(R.raw.homegif).into(homegif);
 

@@ -1,9 +1,9 @@
 package com.example.gamsung;
 
 public class Cafe {
-    private String name, address, dessert, time, tel, toilet, views, imageone, imagetwo, imagethr, title, price, star, reviewcnt, pos;
+    private String name, address, dessert, time, tel, toilet, views, imageone, imagetwo, imagethr, title, price, avgstar, reviewcnt, pos;
 
-    public Cafe(String name, String address, String dessert, String time, String tel, String toilet, String views, String imageone, String imagetwo, String imagethr, String title, String price, String star, String reviewcnt, String pos) {
+    public Cafe(String name, String address, String dessert, String time, String tel, String toilet, String views, String imageone, String imagetwo, String imagethr, String title, String avgstar, String reviewcnt, String pos) {
         this.name = name;
         this.address = address;
         this.dessert = dessert;
@@ -15,8 +15,7 @@ public class Cafe {
         this.imagetwo = imagetwo;
         this.imagethr = imagethr;
         this.title = title;
-        this.price = price;
-        this.star = star;
+        this.avgstar = avgstar;
         this.reviewcnt = reviewcnt;
         this.pos = pos;
     }
@@ -73,12 +72,12 @@ public class Cafe {
         return price;
     }
 
-    public String getStar() {
-        return star;
+    public String getAvgstar() {
+        return avgstar;
     }
 
-    public void setStar(String star) {
-        this.star = star;
+    public void setAvgstar(String avgstar) {
+        this.avgstar = avgstar;
     }
 
     public String getImagetwo() {

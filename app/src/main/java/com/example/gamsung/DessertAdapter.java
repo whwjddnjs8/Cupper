@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView views, toilet, name, price, star;
         public ImageView image;
+        public RatingBar ratingBar;
 
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
@@ -45,6 +47,7 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.MyViewHo
             name = view.findViewById(R.id.name);
             price = view.findViewById(R.id.price);
             star = view.findViewById(R.id.star);
+            ratingBar = view.findViewById(R.id.ratingbar);
         }
     }
     public DessertAdapter(Context context, List<Cafe> list) {       // 생성자
@@ -75,7 +78,8 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.MyViewHo
         holder.toilet.setText(cafe.getToilet());
         holder.name.setText(cafe.getName());
         holder.price.setText(cafe.getPrice());
-        holder.star.setText(cafe.getStar());
+        holder.star.setText(cafe.getAvgstar());
+        holder.ratingBar.setRating(Float.valueOf(cafe.getAvgstar()));
         holder.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view) {
@@ -107,7 +111,7 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.MyViewHo
                 String imgthr = cafe.getImagethr();
                 String title = cafe.getTitle();
                 String price = cafe.getPrice();
-                String star = cafe.getStar();
+                String star = cafe.getAvgstar();
                 String reviewcnt = cafe.getReviewcnt();
                 String pos = cafe.getPos();
                 System.out.println("포지션이 뭔가요? " + String.valueOf(position));

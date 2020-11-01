@@ -3,10 +3,12 @@ package com.example.gamsung;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +22,31 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class CafeDetail extends AppCompatActivity{
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
-    private String name, address, dessert, time, tel, restroom , views, imgone, imgtwo, imgthr, title, star, reviewcnt, pos;
+    private String name, address, dessert, time, tel, restroom , views, imgone, imgtwo, imgthr, title, avgstar, reviewcnt, pos;
     private String hashtag1, hashtag2, hashtag3;
+    public static String cnt = String.valueOf(0);
+    private boolean check = false;
+    private String position;
+    private RatingBar ratingBar;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -42,9 +62,11 @@ public class CafeDetail extends AppCompatActivity{
         TextView hashtag1tv = findViewById(R.id.tag1);
         TextView hashtag2tv = findViewById(R.id.tag2);
         TextView hashtag3tv = findViewById(R.id.tag3);
+        RatingBar ratingBar = findViewById(R.id.ratingbar);
 
+        final ImageButton favorite = (ImageButton)findViewById(R.id.favorite);
         ImageButton info = (ImageButton)findViewById(R.id.info);
-        ImageButton review =(ImageButton) findViewById(R.id.review);
+        final ImageButton review =(ImageButton) findViewById(R.id.review);
         ImageButton web = (ImageButton)findViewById(R.id.web);
 
         Intent intent = getIntent();
@@ -54,8 +76,8 @@ public class CafeDetail extends AppCompatActivity{
         addresstv.setText(address);
         dessert = intent.getStringExtra("dessert");
         menutv.setText(dessert);
-        star = intent.getStringExtra("star");
-        starr.setText(star);
+        avgstar = intent.getStringExtra("star");
+        starr.setText(avgstar);
         time = intent.getStringExtra("time");
         timetv.setText(time);
         tel = intent.getStringExtra("tel");
@@ -75,6 +97,7 @@ public class CafeDetail extends AppCompatActivity{
         imgtwo = intent.getStringExtra("imgtwo");
         imgthr = intent.getStringExtra("imgthr");
         pos = intent.getStringExtra("pos");
+        ratingBar.setRating(Float.valueOf(avgstar));
 
         mPager = findViewById(R.id.pager);
         mPagerAdapter = new SlidePagerAdapter(getSupportFragmentManager());
@@ -90,6 +113,85 @@ public class CafeDetail extends AppCompatActivity{
             }
             @Override
             public void onPageScrollStateChanged(int state) {
+            }
+        });
+        // 로그인 정보를 가지고 옴
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account != null) {
+            Log.d("로그인 유지 중 닉네임", account.getDisplayName() + ", " + account.getEmail() + ", " + account.getPhotoUrl());
+            System.out.println("ID토큰 : " + account.getIdToken());
+            System.out.println("이건 뭐지 : " + account.getAccount().toString());
+            System.out.println("이건 뭐지2 : " + account.getId());
+
+
+            //            Glide.with(this).load(account.getPhotoUrl()).circleCrop().into(user_profile);
+        }
+        System.out.println("체크!!!!! + " + check);
+        for(int i = 0; i < FragmentMain.allFavoriteList.size(); i++) {
+            // 즐겨찾기에 추가되어있는 이름과 상세보기 하는 이름이 같으면(즐겨찾기 목록에 있으면 true)
+            if(FragmentMain.allFavoriteList.get(i).getName().equals(name)) {
+                check = true;
+                position = String.valueOf(i);
+                favorite.setImageResource(R.drawable.star_yellow);
+
+            }
+        }
+        // 즐겨찾기 누르면 색이 바뀜
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = account.getId().toString();
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자/");
+
+                Map<String, Object> updateMap = new HashMap<>();
+
+                if(favorite.getTag() != null && favorite.getTag().toString().equals("yellow")) {
+                    favorite.setImageResource(R.drawable.star_grey);
+                    favorite.setTag("grey");
+                    if(check == true) {
+                        System.out.println("제대로 된 거 불렀나? " + position);
+                        check = false;
+                    }
+                }
+                else {
+                    favorite.setImageResource(R.drawable.star_yellow);
+                    favorite.setTag("yellow");
+                    updateMap.put("name", name);
+                    cnt = String.valueOf(FragmentMain.allFavoriteList.size());
+
+                    if(check == false) {
+                        // 즐겨찾기 한 카페를 추가하는 것
+                        databaseReference.child(id).child(cnt).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+
+                            }
+                        });
+                        // 즐겨찾기 한 카페의 수를 갱신
+                        Map<String, Object> updateMap2 = new HashMap<>();
+                        updateMap2.put("cnt", String.valueOf(Integer.parseInt(cnt) + 1));
+                        //cnt를 증가시키고 update시킴
+                        databaseReference.updateChildren(updateMap2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
+                            }
+                        });
+
+                        Toast.makeText(getApplicationContext(), "즐겨찾기에 추가되었습니다!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         info.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,8 +38,12 @@ import java.util.List;
 public class FragmentMain extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference2 = firebaseDatabase.getReference();
+
     public static List<AllCafe> allCafeList = new ArrayList<>();
     public static List<Cafe> cafeList = new ArrayList<>();
+    public static List<Favorite> allFavoriteList = new ArrayList<>();
+    public List<Favorite> favoriteList = new ArrayList<>();
     public List<Hashtag> hashtagList = new ArrayList<>();
     public static String[] hashtag = new String[150];
     private RecyclerView recyclerView;
@@ -64,6 +71,8 @@ public class FragmentMain extends Fragment {
         recyclerView.setAdapter(circleadapter);
         hashtag = new String[150];
         hashtagList.clear();
+        favoriteList = new ArrayList<>();
+        allFavoriteList = new ArrayList<>();
         prepareCircles(1);
 
         circleList2 = new ArrayList<>();
@@ -131,7 +140,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
 //                    allCafeList.add(allCafe);
 //                    allCafeList.get(allCafeList.size() - 1).setTitle("혜화");
@@ -162,7 +171,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "혜화", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
                 }
             }
@@ -208,7 +217,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "망원동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
                 }
             }
@@ -237,7 +246,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "망원동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "망원동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
                 }
             }
@@ -283,7 +292,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "익선동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
 //                    allCafeList.add(allCafe);
 //                    allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
@@ -314,7 +323,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "익선동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "익선동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
 //                    allCafeList.add(allCafe);
 //                    allCafeList.get(allCafeList.size() - 1).setTitle("익선동");
@@ -361,7 +370,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
 //                    allCafeList.add(allCafe);
 //                    allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
@@ -392,7 +401,7 @@ public class FragmentMain extends Fragment {
                 if(cafeList.size() < 40) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
-                            allcafe.getImagethr(), "연남동", "아메리카노5000원", "4.2점", allcafe.getReviewcnt(), allcafe.getPos());
+                            allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
                     cafeList.add(cafe);
 //                    allCafeList.add(allCafe);
 //                    allCafeList.get(allCafeList.size() - 1).setTitle("연남동");
@@ -416,6 +425,52 @@ public class FragmentMain extends Fragment {
             }
         });
 
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+        if(account != null) {
+            Log.d("로그인 유지 중 닉네임", account.getDisplayName() + ", " + account.getEmail() + ", " + account.getPhotoUrl());
+            System.out.println("ID토큰 : " + account.getIdToken());
+            System.out.println("이건 뭐지 : " + account.getAccount().toString());
+            System.out.println("이건 뭐지2 : " + account.getId());
+
+            //            Glide.with(this).load(account.getPhotoUrl()).circleCrop().into(user_profile);
+        }
+        String id = account.getId().toString();
+        databaseReference2.child("사용자").child(id).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Favorite allFavorite = dataSnapshot.getValue(Favorite.class);
+                Favorite favorite = new Favorite(allFavorite.getName());
+                if(allFavoriteList.size() < favoriteList.size()+1) {
+                    allFavoriteList.add(favorite);
+                }
+                favoriteList.add(favorite);
+                System.out.println("즐겨찾기 갯수 " + String.valueOf(favoriteList.size()));
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                Favorite allFavorite = dataSnapshot.getValue(Favorite.class);
+//                Favorite f = new Favorite(allFavorite.getName(), String.valueOf(favoriteList.size()));
+//                allFavoriteList.add(allFavorite);
+//                favoriteList.add(f);
+//                System.out.println(String.valueOf(favoriteList.size()));
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         return rootview;
     }
 

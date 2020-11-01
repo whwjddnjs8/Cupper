@@ -53,6 +53,15 @@ public class CommunityDetail extends AppCompatActivity {
         TextView materialv = (TextView)findViewById(R.id.material);
         TextView textv = (TextView)findViewById(R.id.text);
         ImageView photov = (ImageView)findViewById(R.id.photo);
+        TextView cupper = (TextView)findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         Intent intent = getIntent();
         subject = intent.getStringExtra("subject");

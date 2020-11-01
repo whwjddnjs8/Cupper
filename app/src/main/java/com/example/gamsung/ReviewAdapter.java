@@ -38,7 +38,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     private Context context;
     public String[] hashtagarr = new String[100];
     //    public int[] hashintarr = new int[50];
+    public String[] stararr = new String[100];
     private String htag1, htag2, htag3,button;
+    public String star;
    // public TableLayout table;
     public TableRow tablerow,tablerow1,tablerow2,tablerow3; // 더보기 숨겨야할 테이블 row 4개
     public ImageButton btn;
@@ -59,7 +61,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
             more = view.findViewById(R.id.more);
-            more2 = view.findViewById(R.id.more2);
             tablerow = view.findViewById(R.id.tablerow);
             tablerow1 = view.findViewById(R.id.tablerow1);
             tablerow2 = view.findViewById(R.id.tablerow2);
@@ -93,6 +94,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         this.context = mContext;
         reviewList = data;
     }
+
     @Override
     public int getItemCount() {
         return reviewList.size();
@@ -128,15 +130,19 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.rest3.setText(review.getRest3());
         holder.rprice.setText(review.getRprice());
         holder.waiting.setText(review.getWaiting());
-        holder.Likecnt.setText(String.valueOf(review.getLikecnt()));
+        if(review.getLikecnt() == null) {
+            Bundle bundle = ((Activity)context).getIntent().getExtras();
+            final String likecnt = bundle.getString("likecnt");
+            holder.Likecnt.setText(likecnt);
+        }else {
+            holder.Likecnt.setText(String.valueOf(review.getLikecnt()));
+        }
         holder.ratingBar.setRating(Float.valueOf(review.getStar()));
 
         //더보기 누르면 리뷰때 썼던 버튼들 다 나오게함!
         holder.more.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-                holder.more2.setVisibility(holder.more2.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 tablerow.setVisibility(tablerow.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 tablerow1.setVisibility(tablerow1.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 tablerow2.setVisibility(tablerow2.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
@@ -152,8 +158,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         htag2 = review.getTag2();
         htag3 = review.getTag3();
 
+        star = review.getStar(); // 넣어준 별점이 들어감
+
         System.out.println("여기는 어댑터 갱신해주는곳인가????/");
         arrayadd(htag1, htag2, htag3, position);
+
 
 
         holder.btnLike.setOnClickListener(new View.OnClickListener() { // 리뷰 리스트에 있는 리뷰 좋아요 눌렀을 때
@@ -161,9 +170,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             public void onClick(View view) {
 
                 Bundle bundle = ((Activity)context).getIntent().getExtras();
-                final String pos = bundle.getString("pos");
                 final String title = bundle.getString("title");
-                System.out.println("잘불러오니?" + pos + title );
+                final String pos = bundle.getString("pos");
+
 
                 databaseReference = FirebaseDatabase.getInstance().getReference().child(title + "/"); //child안에있는곳으로 likecnt 증가
                 Map<String, Object> updateMap = new HashMap<>();
@@ -171,7 +180,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                 if(holder.btnLike.getTag() != null && holder.btnLike.getTag().toString().equals("red")) {
                     holder.btnLike.setImageResource(R.drawable.ic_heart_outline_grey);
                     holder.btnLike.setTag("greyheart");
-                    //좋아요의 수 1 감소
+                    //likecnt 1 감소
                     String cnt = String.valueOf(Integer.parseInt(review.getLikecnt()));
                     updateMap.put("likecnt", cnt);
                     holder.Likecnt.setText(cnt);
@@ -179,7 +188,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                 } else {
                     holder.btnLike.setImageResource(R.drawable.ic_heart_red);
                     holder.btnLike.setTag("red");
-                    //좋아요의 수 1 증가
+                    //likecnt 1 증가
                     String cnt2 = String.valueOf(Integer.parseInt(review.getLikecnt())+1);
                     updateMap.put("likecnt", cnt2);
                     holder.Likecnt.setText(cnt2);
@@ -202,6 +211,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         });
 
     }
+
 
 
     public void arrayadd(String htag1, String htag2, String htag3, int j) {

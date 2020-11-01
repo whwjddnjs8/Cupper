@@ -40,23 +40,12 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
         android:layout_gravity="left|bottom"
         android:layout_marginLeft="9dp"
+        android:layout_marginBottom="30dp"
+        android:text="학림다방"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:text="학림다방" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:layout_marginBottom="25dp"
-        android:textColor="#FFFFFF"
-        android:layout_marginLeft="9dp"
-        android:textSize="16sp"
-        android:text="아메리카노 5000원" />
+        android:textSize="16sp" />
 
     <RatingBar
 
@@ -65,9 +54,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="9dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="7dp"
         android:layout_gravity="left|bottom"
         android:isIndicator="true"
+        android:stepSize="0.1"
         android:numStars="5"
         android:rating="5" />
 

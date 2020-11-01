@@ -1,8 +1,12 @@
 package com.example.gamsung;
 
 public class AllCafe {
-    String name, address, dessert, price,tag1,tag2,tag3, time, tel, restroom, views, imageone,imagetwo, imagethr, title, reviewcnt, pos;
+    String name, address, dessert, price,tag1,tag2,tag3, time, tel, restroom, views, imageone,imagetwo, avgstar,imagethr, title, reviewcnt, pos;
     Hashtag hashtag;
+
+    public String getAvgstar() {
+        return avgstar;
+    }
 
     public Hashtag getHashtag() {
         return hashtag;

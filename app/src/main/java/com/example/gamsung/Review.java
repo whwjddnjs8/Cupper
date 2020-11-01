@@ -15,7 +15,13 @@ public class Review { //리뷰 리스트에 나와야하는 것들
     //dessert는 케이크, 마카롱 등 rdessert는 리뷰 남길때 선택한 디저트에대한 평가
     //price는 아메리카노 5000원 rprice는 리뷰 남길때 비싼지 가격대비 괜찮은지에 대한 평가
 
-    public Review(String profile, int photo, String username, String cafe,String text, String tag1, String tag2, String tag3) {
+
+
+    public Review(String star) {
+        this.star = star;
+    }
+
+    public Review(String profile, int photo, String username, String cafe, String text, String tag1, String tag2, String tag3) {
         this.profile = profile;
         this.photo = photo;
         this.username = username;
@@ -27,75 +33,27 @@ public class Review { //리뷰 리스트에 나와야하는 것들
     }
 
 
-    public Review(String profile, String img, String star, String likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3) {
+
+
+    public Review(String profile, String username, String cafe, String text, String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting,String likecnt) {
         this.profile = profile;
-        this.star = star;
+        this.username = username;
+        this.cafe = cafe;
+        this.text = text;
         this.img = img;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
+        this.tag3 = tag3;
+        this.mood = mood;
+        this.coffee = coffee;
+        this.rdessert = rdessert;
+        this.rest = rest;
+        this.rest2 = rest2;
+        this.rest3 = rest3;
+        this.rprice = rprice;
+        this.star = star;
+        this.waiting = waiting;
         this.likecnt = likecnt;
-        this.username = username;
-        this.cafe = cafe;
-        this.text = text;
-        this.tag1 = tag1;
-        this.tag2 = tag2;
-        this.tag3 = tag3;
-    }
-
-    public Review(String profile, String img, String star, String likecnt, String username, String cafe, String text, String tag1, String tag2, String tag3,String mood, String coffee,String rdessert,String rest,String rest2,String rest3, String rprice, String waiting) {
-        this.profile = profile;
-        this.star = star;
-        this.img = img;
-        this.likecnt = likecnt;
-        this.username = username;
-        this.cafe = cafe;
-        this.text = text;
-        this.tag1 = tag1;
-        this.tag2 = tag2;
-        this.tag3 = tag3;
-        this.mood = mood;
-        this.coffee = coffee;
-        this.rdessert = rdessert;
-        this.rest = rest;
-        this.rest2 = rest2;
-        this.rest3 = rest3;
-        this.rprice = rprice;
-        this.waiting = waiting;
-    }
-    public Review(String text, String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting) {
-        this.text = text;
-        this.img = img;
-        this.tag1 = tag1;
-        this.tag2 = tag2;
-        this.tag3 = tag3;
-        this.mood = mood;
-        this.coffee = coffee;
-        this.rdessert = rdessert;
-        this.rest = rest;
-        this.rest2 = rest2;
-        this.rest3 = rest3;
-        this.rprice = rprice;
-        this.star = star;
-        this.waiting = waiting;
-    }
-
-
-    public Review(String profile, String username, String cafe, String text, String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting) {
-        this.profile = profile;
-        this.username = username;
-        this.cafe = cafe;
-        this.text = text;
-        this.img = img;
-        this.tag1 = tag1;
-        this.tag2 = tag2;
-        this.tag3 = tag3;
-        this.mood = mood;
-        this.coffee = coffee;
-        this.rdessert = rdessert;
-        this.rest = rest;
-        this.rest2 = rest2;
-        this.rest3 = rest3;
-        this.rprice = rprice;
-        this.star = star;
-        this.waiting = waiting;
 
     }
 

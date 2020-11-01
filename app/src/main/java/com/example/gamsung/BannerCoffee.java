@@ -41,6 +41,7 @@ public class BannerCoffee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.banner_coffee);
 
+        final TextView cupper = (TextView)findViewById(R.id.cupper);
         final TextView t1 = (TextView)findViewById(R.id.textView1);
         final TextView t2 = (TextView)findViewById(R.id.textView2);
         final TextView t3 = (TextView)findViewById(R.id.textView3);
@@ -52,6 +53,14 @@ public class BannerCoffee extends AppCompatActivity {
         final TextView t9 = (TextView)findViewById(R.id.textView9);
         final TextView t10 = (TextView)findViewById(R.id.textView10);
 
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
         ImageView image = (ImageView)findViewById(R.id.image);
         ImageButton imageButton = (ImageButton)findViewById(R.id.buttonpoint) ;
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.translate);

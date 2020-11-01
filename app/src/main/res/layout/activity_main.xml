@@ -20,12 +20,15 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/cupper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/caramelcandy"
+                android:text="Cupper"
                 android:textSize="33dp"
-                android:text="Cupper">
+                tools:layout_editor_absoluteX="155dp"
+                tools:layout_editor_absoluteY="6dp">
 
             </TextView>
 
