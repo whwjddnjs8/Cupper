@@ -67,6 +67,15 @@ public class MainActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
 
+        TextView cupper = (TextView)findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.inflateHeaderView(R.layout.navi_header);
         user_profile = (ImageView)headerView.findViewById(R.id.user_profile);

@@ -1,6 +1,7 @@
 package com.example.gamsung;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class FragmentToday extends Fragment {
     private RecommendAdapter recommendAdapter;
     private RecyclerView recyclerView;
     private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
+    private TextView cupper;
     public static int pos;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class FragmentToday extends Fragment {
         recommendAdapter = new RecommendAdapter(getActivity(), cafeList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(recommendAdapter);
+
 
         btn1 = rootview.findViewById(R.id.btn1);
         btn1.setBackground(getResources().getDrawable(R.color.btn_pressed));
@@ -46,6 +49,16 @@ public class FragmentToday extends Fragment {
         btn6 = rootview.findViewById(R.id.btn6);
         btn7 = rootview.findViewById(R.id.btn7);
         btn8 = rootview.findViewById(R.id.btn8);
+        cupper = rootview.findViewById(R.id.cupper);
+        cupper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         View.OnClickListener btnClick = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
