@@ -159,9 +159,12 @@ public class CafeDetail extends AppCompatActivity{
                     updateMap.put("name", name);
                     cnt = String.valueOf(FragmentMain.allFavoriteList.size());
 
+                    if(FragmentMain.myposition == null) {
+                        FragmentMain.myposition = FragmentMain.users;
+                    }
                     if(check == false) {
                         // 즐겨찾기 한 카페를 추가하는 것
-                        databaseReference.child(id).child(cnt).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child(FragmentMain.myposition).child(id).child(cnt).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
@@ -177,7 +180,7 @@ public class CafeDetail extends AppCompatActivity{
                         Map<String, Object> updateMap2 = new HashMap<>();
                         updateMap2.put("cnt", String.valueOf(Integer.parseInt(cnt) + 1));
                         //cnt를 증가시키고 update시킴
-                        databaseReference.updateChildren(updateMap2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child(FragmentMain.myposition).updateChildren(updateMap2).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
@@ -203,9 +206,11 @@ public class CafeDetail extends AppCompatActivity{
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CafeReview.class);
+                Intent intent = new Intent(getApplicationContext(), CafeReviewList.class);
                 Bundle extras = new Bundle();
                 extras.putString("name", name);
+                extras.putString("title", title);
+                extras.putString("pos", pos);
                 intent.putExtras(extras);
                 startActivity(intent);
             }

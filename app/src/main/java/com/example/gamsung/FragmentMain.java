@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +48,8 @@ public class FragmentMain extends Fragment {
     public List<Favorite> favoriteList = new ArrayList<>();
     public List<Hashtag> hashtagList = new ArrayList<>();
     public static String[] hashtag = new String[150];
+    public static String users;
+    public static String myposition;
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
 
@@ -434,36 +438,36 @@ public class FragmentMain extends Fragment {
 
             //            Glide.with(this).load(account.getPhotoUrl()).circleCrop().into(user_profile);
         }
-        String id = account.getId().toString();
-        databaseReference2.child("사용자").child(id).addChildEventListener(new ChildEventListener() {
+        final String id = account.getId().toString();
+        System.out.println("초기 Myposition : " + myposition);
+        databaseReference.child("사용자").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Favorite allFavorite = dataSnapshot.getValue(Favorite.class);
-                Favorite favorite = new Favorite(allFavorite.getName());
-                if(allFavoriteList.size() < favoriteList.size()+1) {
-                    allFavoriteList.add(favorite);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    System.out.println("어떻게 나오나여" + snapshot.getValue());
+                    System.out.println("키가 나오나" + snapshot.getKey().toString());
+                    for(DataSnapshot snap : snapshot.getChildren()) {
+                        System.out.println("뭐가나오냐 " + snap.getKey().toString());
+                        if(snap.getKey().toString().equals(id)) {   // id값에 있는 즐겨찾기 목록을 들고오기
+                            myposition = snap.getRef().getParent().getKey().toString();
+                            System.out.println("부모값이 나오나? " + snap.getRef().getParent().getKey().toString());
+                            System.out.println("값이 나와라! " + snap.getValue().toString());
+                            for(DataSnapshot snapshot1 : snap.getChildren()) {
+                                Favorite allFavorite = snapshot1.getValue(Favorite.class);
+                                Favorite favorite = new Favorite(allFavorite.getName());
+                                if(allFavoriteList.size() < favoriteList.size()+1) {
+                                    allFavoriteList.add(favorite);
+                                }
+                                favoriteList.add(favorite);
+                                System.out.println("즐겨찾기 갯수 " + String.valueOf(favoriteList.size()));
+                                System.out.println("모든 즐겨찾기 갯수 " + String.valueOf(allFavoriteList.size()));
+                                System.out.println("Myposition : " + myposition);
+                            }
+                        }
+                    }
+                    users = String.valueOf(Integer.parseInt(snapshot.getKey().toString())+1);
+                    System.out.println("사용자 수 : " + users);
                 }
-                favoriteList.add(favorite);
-                System.out.println("즐겨찾기 갯수 " + String.valueOf(favoriteList.size()));
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                Favorite allFavorite = dataSnapshot.getValue(Favorite.class);
-//                Favorite f = new Favorite(allFavorite.getName(), String.valueOf(favoriteList.size()));
-//                allFavoriteList.add(allFavorite);
-//                favoriteList.add(f);
-//                System.out.println(String.valueOf(favoriteList.size()));
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override

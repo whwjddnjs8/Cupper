@@ -737,7 +737,7 @@ public class CafeReview extends AppCompatActivity {
                         });
 
                         System.out.println(ReviewList.size());
-                        Intent intent = new Intent(getApplicationContext(), FragmentReview.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
                         extras.putString("name", name);
                         extras.putString("address", address);

@@ -77,7 +77,6 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.MyViewHo
         holder.views.setText(cafe.getViews());
         holder.toilet.setText(cafe.getToilet());
         holder.name.setText(cafe.getName());
-        holder.price.setText(cafe.getPrice());
         holder.star.setText(cafe.getAvgstar());
         holder.ratingBar.setRating(Float.valueOf(cafe.getAvgstar()));
         holder.image.setOnClickListener(new View.OnClickListener(){
