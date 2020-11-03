@@ -16,7 +16,7 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     private List<Cafe> cafeList = new ArrayList<>();
     private List<AllCafe> allCafeList = new ArrayList<>();
-    public static String[] hashtag = new String[150];
+    public static String[] hashtag = new String[1000];
     public static int pos;
     private RecyclerView recyclerView;
     private SearchAdapter searchAdapter;

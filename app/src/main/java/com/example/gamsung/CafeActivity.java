@@ -27,7 +27,7 @@ public class CafeActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private List<Cafe> cafeList = new ArrayList<>();
     public List<Hashtag> hashtagList = new ArrayList<>();
-    public static String[] hashtag = new String[50];
+    public static String[] hashtag = new String[1000];
     private RecyclerView recyclerView;
     private CafeAdapter cafeAdapter;
     private String title;
@@ -45,7 +45,7 @@ public class CafeActivity extends AppCompatActivity {
         cafeAdapter = new CafeAdapter(this, cafeList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(cafeAdapter);
-        hashtag = new String[50];
+        hashtag = new String[1000];
         prepareCafeData();
     }
 

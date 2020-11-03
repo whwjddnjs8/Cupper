@@ -23,7 +23,7 @@ import java.util.List;
 // Navigation에서 추천을 눌렀을 때 동작하는 Fragment
 public class FragmentToday extends Fragment {
     private List<Cafe> cafeList = new ArrayList<>();
-    public static String[] hashtag = new String[150];
+    public static String[] hashtag = new String[1000];
     private RecommendAdapter recommendAdapter;
     private RecyclerView recyclerView;
     private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;

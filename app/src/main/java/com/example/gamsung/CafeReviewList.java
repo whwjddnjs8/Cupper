@@ -52,7 +52,7 @@ public class CafeReviewList extends AppCompatActivity {
     float sum = 0.0f;  // 별점 합계
     float avg = 0.0f; //별점 평균
     private ReviewAdapter reviewAdapter;
-    public int[] hashintarr = new int[100];
+    public int[] hashintarr = new int[1000];
     public static List<Review> reviewList;
     RatingBar ratingBar;
 

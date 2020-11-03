@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import android.app.AlertDialog;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -45,6 +48,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
     private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
     private Context context = this;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -64,7 +68,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // ViewPager content view 메인화면인됨
-
         Intent intent = getIntent();
 
         TextView cupper = (TextView)findViewById(R.id.cupper);
@@ -76,8 +79,8 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View headerView = navigationView.inflateHeaderView(R.layout.navi_header);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final View headerView = navigationView.inflateHeaderView(R.layout.navi_header);
         user_profile = (ImageView)headerView.findViewById(R.id.user_profile);
         user_name = (TextView)headerView.findViewById(R.id.user_name);
         user_email = (TextView)headerView.findViewById(R.id.user_email);
@@ -94,13 +97,24 @@ public class MainActivity extends AppCompatActivity{
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(null);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
-        actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
-        actionBar.setHomeAsUpIndicator(R.drawable.list); //뒤로가기 버튼 이미지 지정
+        //actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
+       // actionBar.setHomeAsUpIndicator(R.drawable.list); //뒤로가기 버튼 이미지 지정
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -177,6 +191,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -207,6 +222,12 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        mDrawerToggle.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
+    }
+
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -217,6 +238,8 @@ public class MainActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+     */
 
 }
 

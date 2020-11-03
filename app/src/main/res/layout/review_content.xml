@@ -312,7 +312,7 @@
             android:id="@+id/reviewPhoto"
             android:layout_width="match_parent"
             android:layout_height="230dp"
-            android:scaleType="fitXY" />
+             />
 
 
 
@@ -339,29 +339,17 @@
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:padding="3dp"
+                android:layout_marginLeft="5sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_heart_outline_grey" />
-
-            <ImageButton
-                android:id="@+id/btnComments"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/btn_feed_action"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_comment_outline_grey" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_vertical|right">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_heart_small_blue" />
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="10sp"
+                android:gravity="right">
 
                 <TextSwitcher
                     android:id="@+id/tsLikesCounter"
@@ -379,12 +367,13 @@
                         android:text="123"
                         android:textColor="@color/text_like_counter" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="likes"
-                        android:textColor="@color/text_like_counter" />
+
                 </TextSwitcher>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="명이 좋아합니다"
+                    android:textColor="@color/text_like_counter" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

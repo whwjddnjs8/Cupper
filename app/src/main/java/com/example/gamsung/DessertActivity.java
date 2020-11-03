@@ -23,7 +23,7 @@ public class DessertActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private List<Cafe> dessertcafelist = new ArrayList<>();
     public List<Hashtag> hashtagList = new ArrayList<>();
-    public static String[] hashtag = new String[50];
+    public static String[] hashtag = new String[1000];
     private DessertAdapter dessertAdapter;
     private RecyclerView recyclerView;
     private String title;
@@ -40,7 +40,7 @@ public class DessertActivity extends AppCompatActivity {
         dessertAdapter = new DessertAdapter(this, dessertcafelist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(dessertAdapter);
-        hashtag = new String[50];
+        hashtag = new String[1000];
         prepareDessertData();
     }
 

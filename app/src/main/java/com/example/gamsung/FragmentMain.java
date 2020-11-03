@@ -47,7 +47,7 @@ public class FragmentMain extends Fragment {
     public static List<Favorite> allFavoriteList = new ArrayList<>();
     public List<Favorite> favoriteList = new ArrayList<>();
     public List<Hashtag> hashtagList = new ArrayList<>();
-    public static String[] hashtag = new String[150];
+    public static String[] hashtag = new String[1000];
     public static String users;
     public static String myposition;
     private RecyclerView recyclerView;
@@ -73,7 +73,7 @@ public class FragmentMain extends Fragment {
         circleadapter = new CircleAdapter(getActivity(), circleList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         recyclerView.setAdapter(circleadapter);
-        hashtag = new String[150];
+        hashtag = new String[1000];
         hashtagList.clear();
         favoriteList = new ArrayList<>();
         allFavoriteList = new ArrayList<>();
@@ -125,7 +125,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -141,7 +141,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -156,7 +156,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -172,7 +172,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -202,7 +202,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -218,7 +218,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "망원동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -231,7 +231,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -247,7 +247,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "망원동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -277,7 +277,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -293,7 +293,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "익선동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -308,7 +308,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -324,7 +324,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "익선동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -355,7 +355,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -371,7 +371,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -386,7 +386,7 @@ public class FragmentMain extends Fragment {
                 AllCafe allcafe = dataSnapshot.getValue(AllCafe.class);
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if(snapshot.getKey().toString().equals("hashtag")) {
-                        if(hashtagList.size() < 40 ) {
+                        if(hashtagList.size() < 100 ) {
                             Hashtag gettag = snapshot.getValue(Hashtag.class);
                             Hashtag addtag = new Hashtag(gettag.getHashtag1(), gettag.getHashtag2(), gettag.getHashtag3());
                             hashtagList.add(addtag);
@@ -402,7 +402,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 40) {
+                if(cafeList.size() < 100) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());

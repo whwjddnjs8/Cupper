@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
     private Context context;
-    public String[] hashtagarr = new String[100];
+    public String[] hashtagarr = new String[1000];
     //    public int[] hashintarr = new int[50];
     public String[] stararr = new String[100];
     private String htag1, htag2, htag3,button;
