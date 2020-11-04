@@ -168,11 +168,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.btnLike.setOnClickListener(new View.OnClickListener() { // 리뷰 리스트에 있는 리뷰 좋아요 눌렀을 때
             @Override
             public void onClick(View view) {
-
                 Bundle bundle = ((Activity)context).getIntent().getExtras();
                 final String title = bundle.getString("title");
                 final String pos = bundle.getString("pos");
-
 
                 databaseReference = FirebaseDatabase.getInstance().getReference().child(title + "/"); //child안에있는곳으로 likecnt 증가
                 Map<String, Object> updateMap = new HashMap<>();

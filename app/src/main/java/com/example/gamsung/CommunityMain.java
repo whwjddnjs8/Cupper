@@ -136,8 +136,9 @@ public class CommunityMain extends AppCompatActivity {
 
                 AllCommunity allCommunity = dataSnapshot.getValue(AllCommunity.class);
                 Community c = new Community(allCommunity.getUserDisplayname(),allCommunity.getPhoto(), allCommunity.getUseremail(),
-                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText(),String.valueOf(communitycardList.size()));
+                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText(),String.valueOf(communitycardList.size()),allCommunity.getLikecnt(),allCommunity.getPos());
                 if(allCommunityList.size() < communitycardList.size()+1) {
+                    System.out.println("커뮤니티 리스트 사이즈가 몇이길래,," + communitycardList.size());
                     allCommunityList.add(allCommunity);
                 }
                 communitycardList.add(c);
@@ -149,7 +150,7 @@ public class CommunityMain extends AppCompatActivity {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 AllCommunity allCommunity = dataSnapshot.getValue(AllCommunity.class);
                 Community c = new Community(allCommunity.getUserDisplayname(),allCommunity.getPhoto(), allCommunity.getUseremail(),
-                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText(),String.valueOf(communitycardList.size()));
+                        allCommunity.getSubject(), allCommunity.getMaterial(), allCommunity.getText(),String.valueOf(communitycardList.size()),allCommunity.getLikecnt(),allCommunity.getPos());
                 allCommunityList.add(allCommunity);
                 communitycardList.add(c);
                 System.out.println(String.valueOf(communitycardList.size()));

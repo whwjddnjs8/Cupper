@@ -75,7 +75,8 @@ public class CommunitySearch extends AppCompatActivity {
             if(CommunityMain.allCommunityList.get(i).getSubject().contains(""+searchword+"")) {
                 System.out.println(CommunityMain.allCommunityList.get(i).getSubject());
                 Community c = new Community(CommunityMain.allCommunityList.get(i).getUserDisplayname(),CommunityMain.allCommunityList.get(i).getPhoto(), CommunityMain.allCommunityList.get(i).getUseremail(),
-                        CommunityMain.allCommunityList.get(i).getSubject(), CommunityMain.allCommunityList.get(i).getMaterial(), CommunityMain.allCommunityList.get(i).getText());
+                        CommunityMain.allCommunityList.get(i).getSubject(), CommunityMain.allCommunityList.get(i).getMaterial(),
+                        CommunityMain.allCommunityList.get(i).getText(),CommunityMain.allCommunityList.get(i).getLikecnt(),CommunityMain.allCommunityList.get(i).getPos());
                 communityList.add(c);
             }
         }

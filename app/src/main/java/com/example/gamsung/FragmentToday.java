@@ -188,7 +188,7 @@ public class FragmentToday extends Fragment {
         if(cafeList.size() > 0) cafeList.clear();
 
         System.out.println(btnstr);
-        for(int i = 0; i < FragmentMain.cafeList.size(); i++) {
+        for(int i = 0; i < 68; i++) {
             if(FragmentMain.hashtag[i*3].contains(""+btnstr+"") || FragmentMain.hashtag[i*3+1].contains(""+btnstr+"") || FragmentMain.hashtag[i*3+2].contains(""+btnstr+"")) {
                 System.out.println(FragmentMain.hashtag[i*3] + FragmentMain.hashtag[i*3+1] + FragmentMain.hashtag[i*3+2]);
                 hashtag[i*3] = FragmentMain.hashtag[i*3];

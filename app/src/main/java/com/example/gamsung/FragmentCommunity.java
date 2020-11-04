@@ -36,8 +36,8 @@ public class FragmentCommunity extends Fragment {
                 "자신의 홈카페를 소개시켜주세요",imgs[4]); //여기서는 홈카페의 게시글을 다 보여주고 처음들어갈때는 홈카페 좋아요순으로 정렬
         communityList.add(c0);
 
-        Community c = new Community("홈카페 재료 챙기기","운영자",
-                "홈카페를 하기 위한 나만의 재료를 챙겨보아요",imgs[1]); //
+        Community c = new Community("홈카페 TOP 10","운영자",
+                "여러분들이 올려주신 홈카페 레시피중 제일 좋아해주셨던 TOP10!!",imgs[1]); //
 
         communityList.add(c);
         Community c1 = new Community("홈카페 인테리어 둘러보기","운영자",

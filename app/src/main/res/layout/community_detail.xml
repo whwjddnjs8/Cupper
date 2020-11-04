@@ -35,27 +35,60 @@
             android:layout_margin="20sp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/subject"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/spmango"
-                android:text="> 커뮤니티 제목"
-                android:textSize="22sp"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/userDisplayname"
+                <TextView
+                    android:id="@+id/subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/han"
+                    android:text="> 커뮤니티 제목"
+                    android:textSize="22sp" />
+
+                <ImageButton
+                    android:id="@+id/btnLike"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5sp"
+                    android:background="@android:color/transparent"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_heart_outline_grey" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/spmango"
-                android:textSize="15sp"
-                android:layout_marginTop="5sp"
-                android:text="작성자" />
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/userDisplayname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/han"
+                    android:text="작성자"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/likecnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16sp"
+                    android:textSize="16sp"
+                    android:text="12" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:layout_marginTop="20sp"
                 app:srcCompat="@drawable/homecafe2" />
 
@@ -64,26 +97,28 @@
                 android:layout_height="match_parent"
                 >
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="20sp">
 
-                    <ImageView
-                        android:id="@+id/imageView18"
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="20sp"
-                        android:layout_marginRight="20sp"
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/groceries" />
+                        android:textAlignment="center"
+                        android:textColor="#8B4F1D"
+                        android:text="🍞"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/material"
                         android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_weight="3"
-                        android:layout_marginTop="20sp"
+                        android:layout_height="80dp"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
+                        android:layout_marginLeft="10sp"
+                        android:layout_weight="5"
                         android:text="TextView"
+                        android:textAlignment="center"
                         android:textSize="15sp" />
                 </TableRow>
                 <View
@@ -95,27 +130,29 @@
                     android:layout_marginTop="7dp"
                     android:layout_marginBottom="7dp"
                     android:background="#D6D6D6" />
-                <TableRow>
+                <TableRow android:layout_marginTop="20sp">
 
-                    <ImageView
-                        android:id="@+id/imageView19"
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="20sp"
-                        android:layout_marginRight="20sp"
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/recipe" />
+                        android:textAlignment="center"
+                        android:textColor="#8B4F1D"
+                        android:textSize="18sp"
+                        android:text="📜" />
 
                     <TextView
                         android:id="@+id/text"
                         android:layout_width="wrap_content"
-                        android:layout_height="150dp"
+                        android:layout_height="300dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="20sp"
-                        android:textAlignment="center"
-                        android:layout_weight="3"
+                        android:layout_weight="5"
+                        android:layout_marginLeft="10sp"
                         android:text="TextView"
+                        android:textAlignment="center"
                         android:textSize="15sp" />
+
                 </TableRow>
             </TableLayout>
 

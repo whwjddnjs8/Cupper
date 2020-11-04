@@ -26,6 +26,7 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView subjecttext, writer;
         public ImageView roundedImageView;
+        public String pos;
         public  MyViewHolder(View itemView) {
             super(itemView);
             roundedImageView = (ImageView) itemView.findViewById(R.id.roundimage);   // 작성자가 올린 사진
@@ -50,7 +51,7 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
         return new CommunityCardAdapter.MyViewHolder(itemView);    }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         System.out.println("카드뷰"+position);
         final Community community = communitycardList.get(position);
         // 카드뷰의 이미지, 제목 가져오기
@@ -60,6 +61,10 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
         holder.subjecttext.setText(community.getSubject());
         holder.writer.setText(community.getUserDisplayname());
         String url = community.getPhoto();
+        if(holder.pos == null) {
+            holder.pos = String.valueOf(position);
+            System.out.println("지금들어가는 커뮤니티 게시글의 번호는??" + holder.pos);
+        }
         Glide.with(holder.itemView.getContext()).load(url).into(holder.roundedImageView);
         holder.roundedImageView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -75,6 +80,7 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
                    extras.putString("photo",photo);
                    extras.putString("material",material);
                    extras.putString("text",text);
+                   extras.putString("pos",holder.pos);
                    Intent intent = new Intent(view.getContext(), CommunityDetail.class);
 
                    intent.putExtras(extras);

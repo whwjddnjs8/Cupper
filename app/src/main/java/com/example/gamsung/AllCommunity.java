@@ -1,7 +1,15 @@
 package com.example.gamsung;
 
 public class AllCommunity {
-    private String userDisplayname, useremail, subject, material, text,communitycnt,photo;
+    private String userDisplayname, useremail, subject, material, text,communitycnt,photo,likecnt,pos;
+
+    public String getPos() {
+        return pos;
+    }
+
+    public String getLikecnt() {
+        return likecnt;
+    }
 
     public String getPhoto() {
         return photo;

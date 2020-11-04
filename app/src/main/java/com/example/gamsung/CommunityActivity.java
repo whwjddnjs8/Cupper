@@ -59,8 +59,7 @@ public class CommunityActivity extends AppCompatActivity {
     private EditText subjectText, materialText, writingText;
     private TextView count;
     private ImageView photoview;
-    private String pos;
-    private String useremail, userDisplayname, profileurl, photo, subject, material, text, communitycnt;  // 사진, 작성자(카드에 보여지기위해), 작성자이메일(데이터베이스에 저장되기위해), 제목, 재료, 글내용)
+    private String useremail, userDisplayname, profileurl, photo, subject, material, text, communitycnt,likecnt,pos;  // 사진, 작성자(카드에 보여지기위해), 작성자이메일(데이터베이스에 저장되기위해), 제목, 재료, 글내용)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,11 +170,19 @@ public class CommunityActivity extends AppCompatActivity {
                 startActivityForResult(intent, 200);
             }
         });
+
 //        recyclerView = findViewById(R.id.recycler_view);
 //        cafeAdapter = new CafeAdapter(this, cafeList);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 //        recyclerView.setAdapter(cafeAdapter);
 //        prepareCafeData();
+        if(likecnt == null) {
+            likecnt = String.valueOf(0); //likecnt 0 으로 초기화
+        }
+//        if(pos == null) {
+//            pos = String.valueOf(communsitycardList.size());
+//            System.out.println("지금들어가는 커뮤니티 게시글의 번호는??" + pos);
+//        }
 
         writingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,7 +191,7 @@ public class CommunityActivity extends AppCompatActivity {
                 //작성하기 버튼을 누르면 해당 버튼에 해당하는 단어가 DB에 들어감
                 databaseReference = FirebaseDatabase.getInstance().getReference("커뮤니티게시판/" );
                 // 사진, 작성자(카드에 보여지기위해), 작성자이메일(데이터베이스에 저장되기위해), 제목, 재료, 글내용)
-                Community community = new Community(userDisplayname, photo, useremail, subject, material, text);
+                Community community = new Community(userDisplayname, photo, useremail, subject, material, text,likecnt,pos);
                 Map<String, Object> communityValues = community.toMap();
                 communityValues.putAll(communityValues);
                 //커뮤니티 게시판경로를 위에서 결정해줬으니까 그 밑에 community밑에 0,1,2증가하여 게시글 추가(communitycnt는 숫자일뿐 그 목록아님)
@@ -213,7 +220,7 @@ public class CommunityActivity extends AppCompatActivity {
                         });
 
                         //System.out.println(communitycardList.size());
-                        Intent intent = new Intent(getApplicationContext(), CommunityMain.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         Bundle extras = new Bundle();
                         extras.putString("userDisplayname", userDisplayname);
                         extras.putString("useremail", useremail);
@@ -222,6 +229,7 @@ public class CommunityActivity extends AppCompatActivity {
                         extras.putString("photo",photo);
                         extras.putString("text", text);
                         extras.putString("communitycnt", communitycnt);
+                        extras.putString("pos",pos);
                         intent.putExtras(extras);
                         startActivity(intent);
 

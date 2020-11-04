@@ -11,7 +11,7 @@ public class Community {
 //    private String subjecttext, writer;
 
     // 사진, 작성자(카드에 보여지기위해), 작성자이메일(데이터베이스에 저장되기위해), 제목, 재료, 글내용, 커뮤니티 전체 글 개수
-    private String photo, userDisplayname, useremail, subject, material, text, communitycnt;
+    private String photo, userDisplayname, useremail, subject, material, text, communitycnt,likecnt,pos;
 
     public Community() {}
     // 커뮤니티 리스트?
@@ -34,16 +34,18 @@ public class Community {
 //        this.writer = writer;
 //    }
 
-    public Community(String userDisplayname, String photo,String useremail, String subject, String material, String text) {
+    public Community(String userDisplayname, String photo,String useremail, String subject, String material, String text,String likecnt,String pos) {
         this.userDisplayname = userDisplayname;
         this.photo = photo;
         this.useremail = useremail;
         this.subject = subject;
         this.material = material;
         this.text = text;
+        this.likecnt = likecnt;
+        this.pos = pos;
     }
 
-    public Community(String userDisplayname, String photo,String useremail, String subject, String material, String text, String communitycnt) {
+    public Community(String userDisplayname, String photo,String useremail, String subject, String material, String text, String communitycnt,String likecnt,String pos) {
         this.userDisplayname = userDisplayname;
         this.photo = photo;
         this.useremail = useremail;
@@ -51,8 +53,25 @@ public class Community {
         this.material = material;
         this.text = text;
         this.communitycnt = communitycnt;
+        this.likecnt = likecnt;
+        this.pos = pos;
     }
 
+    public String getLikecnt() {
+        return likecnt;
+    }
+
+    public void setLikecnt(String likecnt) {
+        this.likecnt = likecnt;
+    }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
+    }
 
     public String getTitle() {
         return title;
@@ -174,6 +193,8 @@ public class Community {
         result.put("subject",subject);
         result.put("material",material);
         result.put("text", text);
+        result.put("pos",pos);
+        result.put("likecnt",likecnt);
         result.put("communitycnt",communitycnt);
         return result;
     }
