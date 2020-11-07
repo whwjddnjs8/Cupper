@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity{
                 } else if (id == R.id.review) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
                             new FragmentReview()).commit();
+
                 }
                 else if (id == R.id.community) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,

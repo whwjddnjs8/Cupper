@@ -13,7 +13,14 @@ public class Community {
     // 사진, 작성자(카드에 보여지기위해), 작성자이메일(데이터베이스에 저장되기위해), 제목, 재료, 글내용, 커뮤니티 전체 글 개수
     private String photo, userDisplayname, useremail, subject, material, text, communitycnt,likecnt,pos;
 
+
+
     public Community() {}
+    //TOP 10하려고 만든 생성자
+    public Community(String likecnt) {
+        this.likecnt = likecnt;
+    }
+
     // 커뮤니티 리스트?
     public Community(String title, String username, String subtext, int img) {
         this.title = title;

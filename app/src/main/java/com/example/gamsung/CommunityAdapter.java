@@ -2,30 +2,20 @@ package com.example.gamsung;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /** Community를 클릭했을 때 나오는 리스트 (CUPPER 커뮤니티 바로가기, 이번주 홈카페 BEST10 등) **/
 
@@ -41,7 +31,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
             title = view.findViewById(R.id.title);
-            username = view.findViewById(R.id.username);
+            username = view.findViewById(R.id.writer);
             subtext = view.findViewById(R.id.subtext);
             image = view.findViewById(R.id.image);
             views = view.findViewById(R.id.views);
@@ -84,8 +74,8 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }
-                if(title.equals("홈카페 재료 챙기기")) {
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                if(title.equals("홈카페 TOP 10")) {
+                    Intent intent = new Intent(view.getContext(), CommunityTop.class);
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }
@@ -96,6 +86,11 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.MyVi
                 }
                 if(title.equals("홈카페 기본용품 준비하기")) {
                     Intent intent = new Intent(view.getContext(), Community_tool.class);
+                    intent.putExtras(extras);
+                    view.getContext().startActivity(intent);
+                }
+                if(title.equals("지식 공유 게시판")) {
+                    Intent intent = new Intent(view.getContext(), MessageBoard.class);
                     intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }

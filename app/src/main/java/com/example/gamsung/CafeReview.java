@@ -76,7 +76,8 @@ public class CafeReview extends AppCompatActivity {
     private Button price1,price2,waiting1,waiting2; //가격과 웨이팅
     private Button reviewbtn;
     private String button;
-    private String pos;
+    private String pos; // 카페의 포지션
+    private String position; //리뷰의 포지션
     private String address, time, tel, restroom, views, imgone, imgtwo, imgthr;
     private int no = 0;
     private File tempFile;
@@ -705,10 +706,14 @@ public class CafeReview extends AppCompatActivity {
                 if(likecnt == null) {
                     likecnt = String.valueOf(0); //likecnt 0 으로 초기화
                 }
+                if(position == null) {
+                    position = String.valueOf(reviewcnt);
+                    System.out.println("지금들어가는 게시글의 번호는??" + position);
+                }
 
                 uploadFile(); //사진이 firebase에 들어감
 
-                Review review = new Review(profile,username, name, text, img, tag1, tag2, tag3, mood, coffee, rdessert,rest, rest2, rest3, rprice, star, waiting,likecnt);
+                Review review = new Review(profile,username, name, text, img, tag1, tag2, tag3, mood, coffee, rdessert,rest, rest2, rest3, rprice, star, waiting,likecnt,position);
 //                Review review = new Review(text,img,tag1,tag2,tag3,mood, coffee, rdessert, rest,rest2,rest3, rprice, star, waiting);
                 Map<String, Object> reviewValues = review.toMap();
                 reviewValues.putAll(reviewValues);
@@ -753,7 +758,7 @@ public class CafeReview extends AppCompatActivity {
                         extras.putString("price", price);
                         extras.putString("star", star);
                         extras.putString("reviewcnt", reviewcnt);
-                        extras.putString("pos", pos);
+                        //extras.putString("pos", pos);
                         extras.putInt("no",no);
                         extras.putString("text", text);
                         extras.putString("mood", mood);
@@ -769,6 +774,7 @@ public class CafeReview extends AppCompatActivity {
                         extras.putString("star", star);
                         extras.putString("waiting", waiting);
                         extras.putString("likecnt",likecnt);
+                        extras.putString("pos",position);
 
                         intent.putExtras(extras);
                         startActivity(intent);

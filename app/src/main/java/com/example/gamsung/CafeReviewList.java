@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +59,9 @@ public class CafeReviewList extends AppCompatActivity {
     public int[] hashintarr = new int[1000];
     public static List<Review> reviewList;
     RatingBar ratingBar;
-
+    private Spinner spinner;
+    private ArrayList<String> arrayList; // 좋아요순, 최근 순 저장되는 리스트
+    private ArrayAdapter<String> arrayAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +95,7 @@ public class CafeReviewList extends AppCompatActivity {
         reviewAdapter = new ReviewAdapter(this, reviewList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(reviewAdapter);
-        prepareReview();
+        //prepareReview();
 
 //        more.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -118,6 +124,36 @@ public class CafeReviewList extends AppCompatActivity {
             }
         });
 
+        arrayList = new ArrayList<>();
+        arrayList.add("최신 순");
+        arrayList.add("좋아요 순");
+
+        arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, arrayList);
+
+        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(getContext(),arrayList.get(i)+"가 선택되었습니다.", Toast.LENGTH_SHORT).show();
+                String selectedClass = adapterView.getItemAtPosition(i).toString();
+                switch (selectedClass) {
+                    case "최신 순" :{
+                        System.out.println("최신순으로 정렬 시작!");
+                        prepareReview();
+                        break;
+                    }
+                    case "좋아요 순" :{
+                        System.out.println("좋아요순으로 정렬 시작!");
+                        prepareLikeReview();
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
     }
 
     public void prepareReview() {
@@ -126,12 +162,16 @@ public class CafeReviewList extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 AllReview allReview = dataSnapshot.getValue(AllReview.class);
                 if(title.equals("혜화")) {
-                    Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
-                            allReview.getText(),allReview.getImg(),allReview.getTag1(),
-                            allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
-                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
-                    reviewList.add(r);
+                    if(reviewList.size() < 7)
+                    {
+                        Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
+                                allReview.getText(),allReview.getImg(),allReview.getTag1(),
+                                allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                                allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
+                                allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
+                        reviewList.add(r);
+                    }
+
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
                     reviewAdapter.utitle = title;
@@ -140,7 +180,7 @@ public class CafeReviewList extends AppCompatActivity {
                     if(reviewList.size()<10) {
                         Review review = new Review(allReview.getStar());
                         starList.add(review);
-                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        System.out.println( "한번에 ? " + starList.get(starList.size()-1).getStar());
                         sum += Float.parseFloat(allReview.getStar());
                         avg = sum / starList.size();
                         String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
@@ -148,6 +188,7 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
             }
 
                 else if(title.equals("익선동")) {
@@ -155,7 +196,7 @@ public class CafeReviewList extends AppCompatActivity {
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
@@ -174,13 +215,14 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
                 }
                 else if(title.equals("망원동")) {
                     Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
@@ -198,13 +240,14 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
                 }
                 else if(title.equals("연남동")) {
                     Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);
@@ -222,6 +265,7 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
                 }
 
             }
@@ -233,7 +277,7 @@ public class CafeReviewList extends AppCompatActivity {
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
 //                    hashchange();
                     if(reviewList.size()<10) {
@@ -247,13 +291,14 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
                 }
                 else if(title.equals("익선동")) {
                     Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
 //                    hashchange();
                     if(reviewList.size()<10) {
@@ -267,13 +312,14 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
                 }
                 else if(title.equals("망원동")) {
                     Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
 //                    hashchange();
                     if(reviewList.size()<10) {
@@ -287,13 +333,14 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
                 }
                 else if(title.equals("연남동")) {
                     Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
                             allReview.getText(),allReview.getImg(),allReview.getTag1(),
                             allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
                             allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt());
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
                     reviewList.add(r);
 //                    hashchange();
                     if(reviewList.size()<10) {
@@ -307,6 +354,245 @@ public class CafeReviewList extends AppCompatActivity {
                         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
                         databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
                     }
+                    Collections.reverse(reviewList);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String a) {}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+
+        });
+        reviewAdapter.notifyDataSetChanged();
+
+    }
+    public void prepareLikeReview() {
+        //카페이름을 검색하면 이름에 따른 리뷰를 불러옴
+        databaseReference.child( title +"/" + pos + "/review" ).addChildEventListener(new ChildEventListener(){
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                AllReview allReview = dataSnapshot.getValue(AllReview.class);
+                if(title.equals("혜화")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
+                                allReview.getText(),allReview.getImg(),allReview.getTag1(),
+                                allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                                allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
+                                allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
+                        reviewList.add(r);
+                    }
+                    System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println( "한번에 ? " + starList.get(starList.size()-1).getStar());
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+
+                    }
+                    Collections.sort(reviewList, new Comparator<Review>() {
+                        @Override
+                        public int compare(Review review1, Review review2) {
+                            return Integer.valueOf(review1.getLikecnt()).compareTo(Integer.valueOf(review2.getLikecnt()));
+                        }
+                    });
+                    Collections.reverse(reviewList);
+                    for(int i=0;i<reviewList.size();i++) {
+                        System.out.println(reviewList.get(i).getLikecnt());
+                    }
+
+                }
+
+                else if(title.equals("익선동")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+                    System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+
+//                    hashchange();
+                    if(reviewList.size()<50) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
+                }
+                else if(title.equals("망원동")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+                    System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+//                    hashchange();
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
+                }
+                else if(title.equals("연남동")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+                    System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
+                    System.out.println(title + pos);
+                    reviewAdapter.utitle = title;
+                    reviewAdapter.upos = pos;
+//                    hashchange();
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
+                }
+
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                AllReview allReview = dataSnapshot.getValue(AllReview.class);
+                if(title.equals("혜화")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+//                    hashchange();
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
+                }
+                else if(title.equals("익선동")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+//                    hashchange();
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
+                }
+                else if(title.equals("망원동")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+//                    hashchange();
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
+                }
+                else if(title.equals("연남동")) {
+                    if(reviewList.size()<7) {
+                        Review r = new Review(allReview.getProfile(), allReview.getUsername(), allReview.getCafe(),
+                                allReview.getText(), allReview.getImg(), allReview.getTag1(),
+                                allReview.getTag2(), allReview.getTag3(), allReview.getMood(), allReview.getCoffee(),
+                                allReview.getRdessert(), allReview.getRest(), allReview.getRest2(), allReview.getRest3(),
+                                allReview.getRprice(), allReview.getStar(), allReview.getWaiting(), allReview.getLikecnt(), allReview.getPos());
+                        reviewList.add(r);
+                    }
+//                    hashchange();
+                    if(reviewList.size()<10) {
+                        Review review = new Review(allReview.getStar());
+                        starList.add(review);
+                        System.out.println(starList.get(starList.size()-1).getStar()); //별점이 한번에 출력
+                        sum += Float.parseFloat(allReview.getStar());
+                        avg = sum / starList.size();
+                        String avgstar  = String.format("%.1f",avg); //avgstar이 최종 별점
+                        System.out.println("최종 별점은?? " + avgstar);
+                        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+                        databaseReference1.child(title + "/" + pos + "/avgstar").setValue(avgstar);
+                    }
+                    Collections.reverse(reviewList);
                 }
             }
 
@@ -326,7 +612,8 @@ public class CafeReviewList extends AppCompatActivity {
 
 
 
-    public void hashchange(List<Review> list, String[] stag) { // ReviewAdapter에서 문자열에 해시태그를 넣어주고 CafeReviewList에서 배열을 조정함
+
+  public void hashchange(List<Review> list, String[] stag) { // ReviewAdapter에서 문자열에 해시태그를 넣어주고 CafeReviewList에서 배열을 조정함
         String s;
         System.out.println("여기는 Hashchange함수!!!!!");
         System.out.println(stag[0]+stag[1]+stag[2]+stag[3]
@@ -405,6 +692,7 @@ public class CafeReviewList extends AppCompatActivity {
         }
 
 
+
 //        databaseReference.child(pos).child("hashtag").updateChildren(hashtagValues).addOnCompleteListener(new OnCompleteListener<Void>() {
 //            @Override
 //            public void onComplete(@NonNull Task<Void> task) {
@@ -420,7 +708,7 @@ public class CafeReviewList extends AppCompatActivity {
 //                System.out.println("Failure!!!!!!!!!!!!!!!!!!!!11");
 //            }
 //        });
-    }
+      }
 
 
 }

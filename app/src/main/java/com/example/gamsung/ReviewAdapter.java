@@ -3,24 +3,18 @@ package com.example.gamsung;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -43,7 +37,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     public String star;
    // public TableLayout table;
     public TableRow tablerow,tablerow1,tablerow2,tablerow3; // 더보기 숨겨야할 테이블 row 4개
-    public ImageButton btn;
     public String utitle, upos;
     private int i = 0;
     public List<Review> reviewList;
@@ -53,13 +46,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username,cafe,text,tag1,tag2,tag3,Likecnt,star;
         public TextView mood,coffee,rdessert,rest,rest2,rest3,rprice,waiting;
-        public TextView more,more2; // 더보기
+        public TextView more; // 더보기
         public ImageButton btnLike; //좋아요 버튼
         public ImageView profile,photo;
+        public String pos; //리뷰의포지션
         RatingBar ratingBar;
 
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
+            Bundle bundle = ((Activity)context).getIntent().getExtras();
             more = view.findViewById(R.id.more);
             tablerow = view.findViewById(R.id.tablerow);
             tablerow1 = view.findViewById(R.id.tablerow1);
@@ -67,11 +62,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             tablerow3 = view.findViewById(R.id.tablerow3);
             ratingBar = view.findViewById(R.id.ratingbar);
             profile = view.findViewById(R.id.profile);
-            username = view.findViewById(R.id.username);
-            cafe = view.findViewById(R.id.cafename);
+            username = view.findViewById(R.id.writer);
+            cafe = view.findViewById(R.id.subjectText);
             star = view.findViewById(R.id.star);
             text = view.findViewById(R.id.reviewText);
-            photo = view.findViewById(R.id.reviewPhoto);
+            photo = view.findViewById(R.id.roundimage);
             tag1 = view.findViewById(R.id.tag1);
             tag2 = view.findViewById(R.id.tag2);
             tag3 = view.findViewById(R.id.tag3);
@@ -86,7 +81,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             rprice = view.findViewById(R.id.price);
             waiting = view.findViewById(R.id.waiting);
             context = view.getContext();
-
         }
     }
 
@@ -130,6 +124,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.rest3.setText(review.getRest3());
         holder.rprice.setText(review.getRprice());
         holder.waiting.setText(review.getWaiting());
+        holder.pos = review.getPos();
+        System.out.println("포지션을 출력해조!!!" + position);
         if(review.getLikecnt() == null) {
             Bundle bundle = ((Activity)context).getIntent().getExtras();
             final String likecnt = bundle.getString("likecnt");
@@ -139,6 +135,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         }
         holder.ratingBar.setRating(Float.valueOf(review.getStar()));
 
+
         //더보기 누르면 리뷰때 썼던 버튼들 다 나오게함!
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +144,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                 tablerow1.setVisibility(tablerow1.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 tablerow2.setVisibility(tablerow2.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 tablerow3.setVisibility(tablerow3.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+//                tablerow.setVisibility(View.VISIBLE);
+//                tablerow1.setVisibility(View.VISIBLE);
+//                tablerow2.setVisibility(View.VISIBLE);
+//                tablerow3.setVisibility(View.VISIBLE);
             }
         });
 
@@ -157,13 +158,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         htag1 = review.getTag1(); // 각각의 태그가 들어감
         htag2 = review.getTag2();
         htag3 = review.getTag3();
-
         star = review.getStar(); // 넣어준 별점이 들어감
 
         System.out.println("여기는 어댑터 갱신해주는곳인가????/");
         arrayadd(htag1, htag2, htag3, position);
-
-
 
         holder.btnLike.setOnClickListener(new View.OnClickListener() { // 리뷰 리스트에 있는 리뷰 좋아요 눌렀을 때
             @Override
@@ -193,7 +191,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                     Toast.makeText(context, "리뷰에 좋아요를 눌렀습니다!", Toast.LENGTH_SHORT).show();
 
                 }
-                databaseReference.child(pos).child("review").child(String.valueOf(position)).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                databaseReference.child(pos).child("review").child(holder.pos).updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         System.out.println("SuccessFul!!!!!!!!!!!!!!!!!!!11");
@@ -227,7 +225,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             hashtagarr[j+(j*2)+2] = htag3;
 //            cafeReviewList.hashchange(reviewList, hashtagarr, hashintarr);
         }
-
+//이거 풀어줘야됨 CafeReviewList의 hashchange도 풀어줘야됨.
         if(j == reviewList.size()-1) {
             System.out.println("4번째인데...");
             System.out.println(utitle+upos);

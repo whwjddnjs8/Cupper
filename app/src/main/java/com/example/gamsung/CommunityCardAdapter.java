@@ -82,7 +82,6 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
                    extras.putString("text",text);
                    extras.putString("pos",holder.pos);
                    Intent intent = new Intent(view.getContext(), CommunityDetail.class);
-
                    intent.putExtras(extras);
                     view.getContext().startActivity(intent);
                 }

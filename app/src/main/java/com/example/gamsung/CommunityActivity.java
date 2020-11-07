@@ -91,7 +91,6 @@ public class CommunityActivity extends AppCompatActivity {
         useremail = intent.getStringExtra("useremail");
         profileurl = intent.getStringExtra("profileurl");
         communitycnt = intent.getStringExtra("communitycnt");
-        System.out.println("제발"+communitycnt);
         Log.d("로그인 정보를 잘 받아옴", "이름 : " + userDisplayname + "이메일 : " + useremail + "profileurl : " + profileurl ) ;
 
 
@@ -179,10 +178,10 @@ public class CommunityActivity extends AppCompatActivity {
         if(likecnt == null) {
             likecnt = String.valueOf(0); //likecnt 0 으로 초기화
         }
-//        if(pos == null) {
-//            pos = String.valueOf(communsitycardList.size());
-//            System.out.println("지금들어가는 커뮤니티 게시글의 번호는??" + pos);
-//        }
+        if(pos == null) {
+            pos = String.valueOf(communitycnt);
+            System.out.println("지금들어가는 커뮤니티 게시글의 번호는??" + pos);
+        }
 
         writingButton.setOnClickListener(new View.OnClickListener() {
             @Override

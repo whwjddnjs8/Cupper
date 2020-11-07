@@ -34,7 +34,7 @@
         android:textSize="13sp"
         android:text="세부설명" />
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/writer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"

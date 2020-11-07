@@ -1,10 +1,13 @@
 package com.example.gamsung;
 
 public class AllReview {
+    private String pos;
     int photo;
     private String username,profile,cafe,text,tag1,tag2,tag3,likecnt;
     private String mood, coffee,dessert, rdessert, rest, rest2, rest3, price,rprice, waiting;
     private String img,star;
+
+    public String getPos() { return pos; }
 
     public String getMood() {
         return mood;

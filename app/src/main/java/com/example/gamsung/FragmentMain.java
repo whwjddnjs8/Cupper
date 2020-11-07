@@ -141,7 +141,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -172,7 +172,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "혜화", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -218,7 +218,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "망원동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -247,7 +247,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "망원동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -293,7 +293,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "익선동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -324,7 +324,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "익선동",  allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -371,7 +371,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());
@@ -402,7 +402,7 @@ public class FragmentMain extends Fragment {
                         }
                     }
                 }
-                if(cafeList.size() < 100) {
+                if(cafeList.size() < 68) {
                     Cafe cafe = new Cafe(allcafe.getName(), allcafe.getAddress(), allcafe.getDessert(), allcafe.getTime(), allcafe.getTel(),
                             allcafe.getRestroom(), allcafe.getViews(), allcafe.getImageone(), allcafe.getImagetwo(),
                             allcafe.getImagethr(), "연남동", allcafe.getAvgstar(), allcafe.getReviewcnt(), allcafe.getPos());

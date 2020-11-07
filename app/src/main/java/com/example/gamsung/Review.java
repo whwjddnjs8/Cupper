@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Review { //리뷰 리스트에 나와야하는 것들
     int photo;
+    private String pos;
     // 사용자 이름, 사용자 프로필(사진), 카페 이름, 리뷰내용, 태그1, 태그2, 태그3, 올린 사진
     private String username,profile,cafe,text,tag1,tag2,tag3,img,likecnt;
     private String mood, coffee,dessert, rdessert, rest, rest2, rest3, price,rprice, star, waiting;
@@ -21,7 +22,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.star = star;
     }
 
-    public Review(String profile, int photo, String username, String cafe, String text, String tag1, String tag2, String tag3) {
+    public Review(String profile, int photo, String username, String cafe, String text, String tag1, String tag2, String tag3,String pos) {
         this.profile = profile;
         this.photo = photo;
         this.username = username;
@@ -30,12 +31,9 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.tag1 = tag1;
         this.tag2 = tag2;
         this.tag3 = tag3;
+        this.pos = pos;
     }
-
-
-
-
-    public Review(String profile, String username, String cafe, String text, String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting,String likecnt) {
+    public Review(String profile, String username, String cafe, String text, String img, String tag1, String tag2, String tag3, String mood, String coffee, String rdessert, String rest, String rest2, String rest3, String rprice, String star, String waiting,String likecnt,String pos) {
         this.profile = profile;
         this.username = username;
         this.cafe = cafe;
@@ -54,6 +52,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.star = star;
         this.waiting = waiting;
         this.likecnt = likecnt;
+        this.pos = pos;
 
     }
 
@@ -72,6 +71,14 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         this.cafetag1 = cafetag1;
         this.cafetag2 = cafetag2;
         this.cafetag3 = cafetag3;
+    }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
     }
 
     public String getCafetag1() {
@@ -301,6 +308,7 @@ public class Review { //리뷰 리스트에 나와야하는 것들
         result.put("cafetag1",cafetag1);
         result.put("cafetag2",cafetag2);
         result.put("cafetag3",cafetag3);
+        result.put("pos",pos);
         return result;
     }
 
