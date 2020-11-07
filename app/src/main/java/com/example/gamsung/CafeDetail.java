@@ -1,11 +1,14 @@
 package com.example.gamsung;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -29,15 +32,32 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.geometry.LatLngBounds;
+import com.naver.maps.map.CameraAnimation;
+import com.naver.maps.map.CameraUpdate;
+import com.naver.maps.map.MapFragment;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.NaverMapSdk;
+import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.Marker;
 
+import net.daum.mf.map.api.MapCurrentLocationMarker;
+import net.daum.mf.map.api.MapPOIItem;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
+
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class CafeDetail extends AppCompatActivity{
+public class CafeDetail extends AppCompatActivity implements OnMapReadyCallback {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
+    private static NaverMap naverMap;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 3;
@@ -47,7 +67,7 @@ public class CafeDetail extends AppCompatActivity{
     private boolean check = false;
     private String position;
     private RatingBar ratingBar;
-
+    private static double latitude, longitude;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe_detail);
@@ -225,6 +245,44 @@ public class CafeDetail extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+//        MapView mapView = new MapView(this);
+//
+//        ViewGroup mapViewContainer = (ViewGroup)findViewById(R.id.map_view);
+//        mapViewContainer.addView(mapView);
+//
+//        MapPoint.GeoCoordinate
+//        MapPOIItem marker = new MapPOIItem();
+//        marker.setItemName("이얍");
+//        marker.setTag(0);
+//        marker.setMapPoint(mapPoint);
+//        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+
+//        mapView.addPOIItem(marker);
+
+        FragmentManager fm = getSupportFragmentManager();
+        MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map_fragment);
+        if(mapFragment == null) {
+            mapFragment = MapFragment.newInstance();
+            fm.beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+        }
+        NaverMapSdk.getInstance(this).setClient(
+                new NaverMapSdk.NaverCloudPlatformClient("umkz1g8san"));
+
+        mapFragment.getMapAsync(this);
+
+        List<Address> list = null;
+        Geocoder geocoder = new Geocoder(this);
+        try {
+            list = geocoder.getFromLocationName(address, 10);
+//            System.out.println("경도인가 위도인가? : " + String.valueOf(list.get(0).getLongitude()) + " " + String.valueOf(list.get(0).getLatitude()));
+            latitude = list.get(0).getLatitude();
+            longitude = list.get(0).getLongitude();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -235,6 +293,18 @@ public class CafeDetail extends AppCompatActivity{
         } else {
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
+    }
+
+    @Override
+    public void onMapReady(@NonNull NaverMap map) {
+        naverMap = map;
+        Marker marker = new Marker();
+        marker.setPosition(new LatLng(latitude, longitude));
+        marker.setMap(naverMap);
+        naverMap.setMinZoom(19.0);
+        naverMap.setMaxZoom(25.0);
+        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(latitude, longitude)).animate(CameraAnimation.Fly);
+        naverMap.moveCamera(cameraUpdate);
     }
 
     // FragmentAdapter class 를 정의

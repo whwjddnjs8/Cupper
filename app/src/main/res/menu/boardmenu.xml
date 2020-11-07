@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item00"
+        android:title="\t\t\t  HOME" />
+    <item
+        android:id="@+id/item01"
+        android:title="☕  카페 공유게시판" />
+    <item
+        android:id="@+id/item02"
+        android:title="📜  재료 공유게시판" />
+    <item
+        android:id="@+id/item03"
+        android:title="🍰  레시피 Q &amp; A" />
+</menu>
