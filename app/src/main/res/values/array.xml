@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="boardlist">
+        <item>게시판 선택</item>
+        <item>카페 공유게시판</item>
+        <item>재료 공유게시판</item>
+        <item>레시피 Q&amp;A</item>
+    </string-array>
+</resources>
