@@ -32,6 +32,7 @@ public class CommunityCardAdapter extends RecyclerView.Adapter<CommunityCardAdap
             roundedImageView = (ImageView) itemView.findViewById(R.id.roundimage);   // 작성자가 올린 사진
             subjecttext = (TextView) itemView.findViewById(R.id.subjecttext);   // 제목
             writer = (TextView)itemView.findViewById(R.id.writer);  // 작성자 이름(이메일 X)
+
         }
     }
 

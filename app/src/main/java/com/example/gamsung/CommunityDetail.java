@@ -93,7 +93,6 @@ public class CommunityDetail extends AppCompatActivity {
                 databaseReference = FirebaseDatabase.getInstance().getReference().child("커뮤니티게시판/"); //child안에있는곳으로 likecnt 증가
                 Map<String, Object> updateMap = new HashMap<>();
 
-
                 if(btnLike.getTag() != null && btnLike.getTag().toString().equals("red")) {
                     btnLike.setImageResource(R.drawable.ic_heart_outline_grey);
                     btnLike.setTag("greyheart");

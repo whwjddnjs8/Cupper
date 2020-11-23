@@ -1,9 +1,11 @@
 package com.example.gamsung;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -46,11 +50,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username,cafe,text,tag1,tag2,tag3,Likecnt,star;
         public TextView mood,coffee,rdessert,rest,rest2,rest3,rprice,waiting;
-        public TextView more; // 더보기
+        public TextView more,modify; // 더보기
         public ImageButton btnLike; //좋아요 버튼
         public ImageView profile,photo;
         public String pos; //리뷰의포지션
         RatingBar ratingBar;
+        public String useremail, userDisplayname, profileurl;
+
 
         public MyViewHolder(View view) {    // 뷰홀더가 만들어짐
             super(view);
@@ -80,6 +86,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             rest3 = view.findViewById(R.id.rest3);
             rprice = view.findViewById(R.id.price);
             waiting = view.findViewById(R.id.waiting);
+            modify = view.findViewById(R.id.modify);
             context = view.getContext();
         }
     }
@@ -104,6 +111,17 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        // 로그인 정보를 가지고 옴
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
+        if(account != null) {
+            Log.d("리뷰 어댑터 로그인 유지 중 닉네임", account.getDisplayName() + ", " + account.getEmail() + ", " + account.getPhotoUrl());
+
+//            Glide.with(this).load(account.getPhotoUrl()).circleCrop().into(user_profile);
+        }
+        String useremail = account.getEmail();
+        String userDisplayname = account.getDisplayName();
+        String profile = account.getPhotoUrl().toString();
+
         final Review review = reviewList.get(position);
         Glide.with(context).load(review.getProfile()).circleCrop().into(holder.profile);
 //        holder.profile.setImageResource(review.getProfile());
@@ -125,7 +143,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.rprice.setText(review.getRprice());
         holder.waiting.setText(review.getWaiting());
         holder.pos = review.getPos();
-        System.out.println("포지션을 출력해조!!!" + position);
         if(review.getLikecnt() == null) {
             Bundle bundle = ((Activity)context).getIntent().getExtras();
             final String likecnt = bundle.getString("likecnt");
@@ -151,9 +168,31 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             }
         });
 
-//        for(int i=0;i<reviewList.size()*3;i++){ // 숫자 들어가는 배열 1로 초기화
-//            hashintarr[i] = 1;
-//        }
+//        holder.modify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //회원 한정 수정 가능
+//                if(account.getDisplayName().equals(review.getUsername())) {
+//                    Toast.makeText(context,"회원맞습니다.",Toast.LENGTH_LONG).show();
+//                    String img = review.getImg();
+//                    String cafe = review.getCafe();
+//                    String star = review.getStar();
+//                    String text = review.getText();
+//
+//                    Bundle extras = new Bundle(); // 번들은 인텐트 속에 있는 데이터 꾸러미
+//                    extras.putString("img", img);
+//                    extras.putString("cafe", cafe);
+//                    extras.putString("star", star);
+//                    extras.putString("text", text);
+//                    Intent intent = new Intent(view.getContext(), ReviewModify.class);
+//                    intent.putExtras(extras);
+//                    view.getContext().startActivity(intent);
+//                }
+//                else {
+//                    Toast.makeText(context,"수정 불가합니다.",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
 
         htag1 = review.getTag1(); // 각각의 태그가 들어감
         htag2 = review.getTag2();

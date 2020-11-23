@@ -42,11 +42,6 @@ import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 
-import net.daum.mf.map.api.MapCurrentLocationMarker;
-import net.daum.mf.map.api.MapPOIItem;
-import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapView;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;

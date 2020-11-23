@@ -138,12 +138,12 @@ public class CafeReviewList extends AppCompatActivity {
 //                Toast.makeText(getContext(),arrayList.get(i)+"가 선택되었습니다.", Toast.LENGTH_SHORT).show();
                 String selectedClass = adapterView.getItemAtPosition(i).toString();
                 switch (selectedClass) {
-                    case "최신 순" :{
+                    case "좋아요 순" :{
                         System.out.println("최신순으로 정렬 시작!");
                         prepareReview();
                         break;
                     }
-                    case "좋아요 순" :{
+                    case "최신 순" :{
                         System.out.println("좋아요순으로 정렬 시작!");
                         prepareLikeReview();
                         break;
@@ -162,15 +162,12 @@ public class CafeReviewList extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 AllReview allReview = dataSnapshot.getValue(AllReview.class);
                 if(title.equals("혜화")) {
-                    if(reviewList.size() < 7)
-                    {
-                        Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
-                                allReview.getText(),allReview.getImg(),allReview.getTag1(),
-                                allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
-                                allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
-                                allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
-                        reviewList.add(r);
-                    }
+                    Review r = new Review(allReview.getProfile(),allReview.getUsername(),allReview.getCafe(),
+                            allReview.getText(),allReview.getImg(),allReview.getTag1(),
+                            allReview.getTag2(),allReview.getTag3(),allReview.getMood(),allReview.getCoffee(),
+                            allReview.getRdessert(),allReview.getRest(),allReview.getRest2(),allReview.getRest3(),
+                            allReview.getRprice(),allReview.getStar(),allReview.getWaiting(),allReview.getLikecnt(),allReview.getPos());
+                    reviewList.add(r);
 
                     System.out.println("여기는 리뷰리스트다 리뷰리스트!!!");
                     System.out.println(title + pos);

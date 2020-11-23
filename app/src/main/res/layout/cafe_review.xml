@@ -252,7 +252,7 @@
                             android:layout_marginRight="2dp"
                             android:layout_weight="1"
                             android:background="@drawable/buttonborder"
-                            android:text="오션뷰" />
+                            android:text="핑크" />
 
                         <Button
                             android:id="@+id/mood6"
@@ -261,7 +261,7 @@
                             android:layout_marginRight="2dp"
                             android:layout_weight="1"
                             android:background="@drawable/buttonborder"
-                            android:text="마운틴뷰" />
+                            android:text="고급세련" />
 
                         <Button
                             android:id="@+id/mood7"
@@ -270,7 +270,7 @@
                             android:layout_marginRight="2dp"
                             android:layout_weight="1"
                             android:background="@drawable/buttonborder"
-                            android:text="한옥" />
+                            android:text="아늑편안" />
 
                         <Button
                             android:id="@+id/mood8"
@@ -278,7 +278,7 @@
                             android:layout_height="34dp"
                             android:layout_weight="1"
                             android:background="@drawable/buttonborder"
-                            android:text="힙" />
+                            android:text="로맨틱" />
                     </LinearLayout>
                 </LinearLayout>
 

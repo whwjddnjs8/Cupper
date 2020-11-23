@@ -50,11 +50,6 @@ public class CafeActivity extends AppCompatActivity {
     }
 
     private void prepareCafeData() {
-        final int[] covers = new int[] {
-                R.drawable.hcafe1, R.drawable.hcafe4, R.drawable.hcafe7, R.drawable.hcafe10, R.drawable.hcafe13, R.drawable.hcafe16,
-                R.drawable.hcafe19, R.drawable.hcafe22, R.drawable.hcafe25, R.drawable.hcafe28
-        };
-
         /** 파이어베이스에서 title값이랑 똑같은 값을 가진 데이터를 가져옴 **/
         databaseReference.child(title).addChildEventListener(new ChildEventListener() {
             @Override
